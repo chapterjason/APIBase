@@ -1,1 +1,10 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../src/index.ts"],"names":[],"mappings":";;;;;AAAA,gCAA2B"}
+{
+  "version": 3,
+  "file": "index.js",
+  "sourceRoot": "",
+  "sources": [
+    "../src/index.ts"
+  ],
+  "names": [],
+  "mappings": ";;;;;AAAA,yCAAoC;AACpC,0CAAqC;AACrC,oCAA+B;AAC/B,yCAAoC;AACpC,wCAAmC"
+}
