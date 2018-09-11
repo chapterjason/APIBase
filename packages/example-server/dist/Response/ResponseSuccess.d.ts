@@ -7,12 +7,9 @@
  * File that was distributed with this source code.
  */
 
-import {Database} from "../Database/Database";
+export declare class ResponseSuccess {
+    protected success: boolean;
+    protected data: any;
 
-export declare class Loader {
-    protected file: string;
-
-    constructor(file: string);
-
-    load(database: Database): void;
+    constructor(data: any);
 }

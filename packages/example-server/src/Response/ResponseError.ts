@@ -7,7 +7,13 @@
  * File that was distributed with this source code.
  */
 
-import {Server} from '@apibase/server';
-import {Database} from '@apibase/database';
 
-export declare function bindDatabaseEvents(server: Server, database: Database): void;
+export class ResponseError {
+
+    protected success: boolean = false;
+    protected errorMessage: string;
+
+    public constructor(message: string) {
+        this.errorMessage = message;
+    }
+}
