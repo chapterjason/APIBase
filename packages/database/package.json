@@ -28,8 +28,7 @@
     "all": true
   },
   "dependencies": {
-    "@apibase/core": "^1.0.0",
-    "typescript": "^3.0.1"
+    "@apibase/core": "^1.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.4",
@@ -37,6 +36,7 @@
     "@types/express": "^4.16.0",
     "@types/istanbul": "^0.4.30",
     "@types/mocha": "^5.2.5",
+    "typescript": "^3.0.1",
     "chai": "^4.1.2",
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
