@@ -11,7 +11,7 @@ import * as SocketIOClient from 'socket.io-client';
 
 export interface ClientOptions {
     uri: string;
-    client: SocketIOClient.ConnectOpts
+    client: SocketIOClient.ConnectOpts;
 }
 
 export class Client {

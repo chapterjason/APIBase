@@ -8,7 +8,6 @@
  */
 
 "use strict";
-
 /*
  * This file is part of the APIBase package.
  *

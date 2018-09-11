@@ -23,7 +23,6 @@ var Client = /** @class */ (function () {
         this.options = options;
         this.socket = SocketIOClient.connect(this.options.uri, this.options.client);
     }
-
     Client.prototype.on = function (event, listener) {
         this.socket.on(event, listener);
         return this;
