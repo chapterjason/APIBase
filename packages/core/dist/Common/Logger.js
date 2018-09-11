@@ -1,21 +1,4 @@
-/*
- * This file is part of the APIBase package.
- *
- * (c) Jason Schilling <jason.schilling@sourecode.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * File that was distributed with this source code.
- */
-
 "use strict";
-/*
- * This file is part of the APIBase package.
- *
- * (c) Jason Schilling <jason.schilling@sourecode.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * File that was distributed with this source code.
- */
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
     if (!m) return o;
@@ -42,6 +25,14 @@ var __spread = (this && this.__spread) || function () {
 };
 Object.defineProperty(exports, "__esModule", {value: true});
 var String_1 = require("./String");
+/*
+ * This file is part of the APIBase package.
+ *
+ * (c) Jason Schilling <jason.schilling@sourecode.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * File that was distributed with this source code.
+ */
 var LogLevel;
 (function (LogLevel) {
     LogLevel[LogLevel["QUIET"] = 0] = "QUIET";
@@ -109,9 +100,9 @@ var Logger = /** @class */ (function () {
             now.getSeconds()
         ]
             .map(function (unit) {
-                return String_1.String.padLeft(unit.toString());
+                return String_1.padLeft(unit.toString());
             });
-        units.push(String_1.String.padLeft(now.getMilliseconds().toString(), 3));
+        units.push(String_1.padLeft(now.getMilliseconds().toString(), 3));
         return units.join(':');
     };
     Logger.internalLog = function (type) {

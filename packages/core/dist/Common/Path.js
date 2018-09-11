@@ -1,12 +1,3 @@
-/*
- * This file is part of the APIBase package.
- *
- * (c) Jason Schilling <jason.schilling@sourecode.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * File that was distributed with this source code.
- */
-
 "use strict";
 /*
  * This file is part of the APIBase package.
@@ -32,7 +23,6 @@ var Path = /** @class */ (function () {
             this.segments = [];
         }
     }
-
     Path.normalize = function (segment) {
         if (typeof segment === "string") {
             segment = segment.split('/');

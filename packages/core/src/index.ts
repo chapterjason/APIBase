@@ -14,4 +14,3 @@ export * from './Common/Path';
 export * from './Common/RegularExpression';
 
 export * from './Collection/Map';
-export * from './Collection/DataStorage';

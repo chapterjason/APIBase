@@ -1,12 +1,3 @@
-/*
- * This file is part of the APIBase package.
- *
- * (c) Jason Schilling <jason.schilling@sourecode.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * File that was distributed with this source code.
- */
-
 "use strict";
 /*
  * This file is part of the APIBase package.
@@ -26,5 +17,4 @@ __export(require("./Common/Logger"));
 __export(require("./Common/Path"));
 __export(require("./Common/RegularExpression"));
 __export(require("./Collection/Map"));
-__export(require("./Collection/DataStorage"));
 //# sourceMappingURL=index.js.map

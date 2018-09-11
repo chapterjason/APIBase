@@ -1,16 +1,11 @@
-/*
- * This file is part of the APIBase package.
- *
- * (c) Jason Schilling <jason.schilling@sourecode.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * File that was distributed with this source code.
- */
+export declare function escape(string: string): string;
 
-export declare namespace RegularExpression {
-    function escape(string: string): string;
+export declare function match(string: string, regexp: RegExp): boolean;
 
-    function match(string: string, regexp: RegExp): RegExpExecArray;
-
-    function matchAll(string: string, regexp: RegExp): any[];
+export interface Match {
+    index: number;
+    input: string;
+    groups: string[];
 }
+
+export declare function matchAll(string: string, regexp: RegExp): any[];

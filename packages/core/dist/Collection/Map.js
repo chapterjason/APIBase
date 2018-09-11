@@ -1,12 +1,3 @@
-/*
- * This file is part of the APIBase package.
- *
- * (c) Jason Schilling <jason.schilling@sourecode.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * File that was distributed with this source code.
- */
-
 "use strict";
 /*
  * This file is part of the APIBase package.
@@ -57,7 +48,6 @@ var MapTupelIterator = /** @class */ (function () {
         this.keys = keys;
         this.values = values;
     }
-
     MapTupelIterator.prototype.next = function () {
         if (this.pointer < this.keys.length) {
             var index = this.pointer++;
@@ -84,7 +74,6 @@ var MapValueIterator = /** @class */ (function () {
         this.pointer = 0;
         this.values = values;
     }
-
     MapValueIterator.prototype.next = function () {
         if (this.pointer < this.values.length) {
             var index = this.pointer++;
@@ -111,7 +100,6 @@ var MapKeyIterator = /** @class */ (function () {
         this.pointer = 0;
         this.keys = keys;
     }
-
     MapKeyIterator.prototype.next = function () {
         if (this.pointer < this.keys.length) {
             var index = this.pointer++;
@@ -142,7 +130,6 @@ var Map = /** @class */ (function () {
             try {
                 for (var items_1 = __values(items), items_1_1 = items_1.next(); !items_1_1.done; items_1_1 = items_1.next()) {
                     var pair = items_1_1.value;
-                    console.log(pair);
                     this._keys.push(pair[0]);
                     this._values.push(pair[1]);
                 }
@@ -160,7 +147,6 @@ var Map = /** @class */ (function () {
             }
         }
     }
-
     Map.prototype.clear = function () {
         this._keys = [];
         this._values = [];
@@ -187,6 +173,7 @@ var Map = /** @class */ (function () {
         if (index > -1) {
             return this._values[index];
         }
+        return null;
     };
     Map.prototype.has = function (key) {
         return this._keys.indexOf(key) > -1;
@@ -206,9 +193,6 @@ var Map = /** @class */ (function () {
     };
     Map.prototype[Symbol.iterator] = function () {
         return this.entries();
-    };
-    Map.prototype[Symbol.toStringTag] = function () {
-        return 'Map';
     };
     Map.prototype.reverse = function () {
         this._keys = this._keys.reverse();
