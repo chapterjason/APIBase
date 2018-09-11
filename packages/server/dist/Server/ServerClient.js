@@ -27,7 +27,6 @@ var ServerClient = /** @class */ (function () {
             this.storage.set('hostname', address);
         }
     }
-
     ServerClient.prototype.on = function (event, listener) {
         this.options.socket.on(event, listener);
         return this;

@@ -24,6 +24,7 @@ export class Server {
 
     protected server: SocketIO.Server;
     protected webServer: https.Server;
+
     protected options: ServerOptions;
     protected events: events.EventEmitter;
     protected clients: ServerClient[] = [];
@@ -38,11 +39,11 @@ export class Server {
 
         this.events = new events.EventEmitter();
         this.webServer = https.createServer(this.options.webServer || {});
-        this.webServer.listen(this.options.port || 3306, this.options.hostname || 'localhost', () => {
+        this.webServer.listen(this.options.port || 7955, this.options.hostname || 'localhost', () => {
             Logger.info('Server listen on ' + this.getHostname());
         });
-        this.server = SocketIO(this.webServer, this.options.server);
 
+        this.server = SocketIO(this.webServer, this.options.server);
         this.server.on('connection', this.listener.bind(this));
     }
 

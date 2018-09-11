@@ -34,13 +34,12 @@ var Server = /** @class */ (function () {
         this.options = options;
         this.events = new events.EventEmitter();
         this.webServer = https.createServer(this.options.webServer || {});
-        this.webServer.listen(this.options.port || 3306, this.options.hostname || 'localhost', function () {
+        this.webServer.listen(this.options.port || 7955, this.options.hostname || 'localhost', function () {
             core_1.Logger.info('Server listen on ' + _this.getHostname());
         });
         this.server = SocketIO(this.webServer, this.options.server);
         this.server.on('connection', this.listener.bind(this));
     }
-
     Server.prototype.getServer = function () {
         return this.server;
     };
