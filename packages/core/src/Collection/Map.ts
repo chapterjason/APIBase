@@ -110,7 +110,6 @@ export class Map<KeyType, ValueType> {
     public constructor(items?: IterableIterator<MapTupel<KeyType, ValueType>> | Array<MapTupel<KeyType, ValueType>>) {
         if (items) {
             for (let pair of items) {
-                console.log(pair);
                 this._keys.push(pair[0]);
                 this._values.push(pair[1]);
             }
@@ -148,6 +147,8 @@ export class Map<KeyType, ValueType> {
         if (index > -1) {
             return this._values[index];
         }
+
+        return null;
     }
 
     public has(key: KeyType): boolean {
@@ -173,10 +174,6 @@ export class Map<KeyType, ValueType> {
 
     public [Symbol.iterator](): IterableIterator<MapTupel<KeyType, ValueType>> {
         return this.entries();
-    }
-
-    public [Symbol.toStringTag](): string {
-        return 'Map';
     }
 
     public reverse() {

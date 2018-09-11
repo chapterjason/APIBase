@@ -7,37 +7,40 @@
  * File that was distributed with this source code.
  */
 
-export namespace RegularExpression {
+export function escape(string: string) {
+    return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+}
 
-    export function escape(string: string) {
-        return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+export function match(string: string, regexp: RegExp) {
+    return !!regexp.exec(string);
+}
+
+export interface Match {
+    index: number;
+    input: string;
+    groups: string[];
+}
+
+export function matchAll(string: string, regexp: RegExp) {
+    const matches = [];
+    let currentMatch;
+
+    if (!regexp.global) {
+        throw new Error('Missing global flag!');
     }
 
-    export function match(string: string, regexp: RegExp) {
-        return regexp.exec(string);
-    }
-
-    export function matchAll(string: string, regexp: RegExp) {
-        const matches = [];
-        let currentMatch;
-
-        while ((currentMatch = regexp.exec(string)) !== null) {
-            // This is necessary to avoid infinite loops with zero-width matches
-            if (currentMatch.index === regexp.lastIndex) {
-                regexp.lastIndex++;
-            }
-
-            const index = currentMatch.index;
-            const input = currentMatch[0];
-
-            const match = currentMatch.slice(1);
-            match.index = index;
-            match.input = input;
-
-            matches.push(match);
+    while ((currentMatch = regexp.exec(string)) !== null) {
+        // This is necessary to avoid infinite loops with zero-width matches
+        if (currentMatch.index === regexp.lastIndex) {
+            regexp.lastIndex++;
         }
 
-        return matches;
+        matches.push({
+            index: currentMatch.index,
+            input: currentMatch[0],
+            groups: currentMatch.slice(1)
+        });
     }
 
+    return matches;
 }
