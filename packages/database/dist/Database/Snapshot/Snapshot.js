@@ -17,24 +17,20 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", {value: true});
-var fs = require("fs");
-var zlib = require("zlib");
-var Saver = /** @class */ (function () {
-    function Saver(file) {
-        this.file = file;
+var Database_1 = require("../Database");
+var Snapshot = /** @class */ (function () {
+    function Snapshot(reference, data) {
+        this.reference = reference;
+        this.database = new Database_1.Database(data);
     }
 
-    Saver.prototype.save = function (database, encoded) {
-        if (encoded === void 0) {
-            encoded = true;
-        }
-        var data = JSON.stringify(database.get('/'));
-        if (encoded) {
-            data = zlib.deflateSync(data, {memLevel: 9, level: 9}).toString('base64');
-        }
-        fs.writeFileSync(this.file, data);
+    Snapshot.prototype.value = function () {
+        return this.database.get();
     };
-    return Saver;
+    Snapshot.prototype.key = function () {
+        return this.reference.key();
+    };
+    return Snapshot;
 }());
-exports.Saver = Saver;
-//# sourceMappingURL=Saver.js.map
+exports.Snapshot = Snapshot;
+//# sourceMappingURL=Snapshot.js.map

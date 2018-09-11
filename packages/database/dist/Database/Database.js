@@ -16,116 +16,149 @@
  * For the full copyright and license information, please view the LICENSE
  * File that was distributed with this source code.
  */
+var __values = (this && this.__values) || function (o) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    if (m) return m.call(o);
+    return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return {value: o && o[i++], done: !o};
+        }
+    };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@apibase/core");
-var Utils_1 = require("../Common/Utils");
-var Reference_1 = require("./Reference");
+var Reference_1 = require("./Reference/Reference");
+var CollectionReference_1 = require("./Reference/CollectionReference");
 var Database = /** @class */ (function () {
     function Database(mapping) {
         if (mapping === void 0) { mapping = {}; }
         this.depthLimit = 32;
-        this.setRoot(mapping);
+        this.mapping = mapping;
     }
 
-    Database.prototype.delete = function (path) {
-        var items = Utils_1.normalize(path);
-        var current = this.mapping;
-        if (items.length > 0) {
-            var lastIndex = items.length - 1;
-            var currentPath = [];
-            for (var itemIndex in items) {
-                var item = items[itemIndex];
-                if (item in current) {
-                    currentPath.push(item);
-                    if (parseInt(itemIndex) === lastIndex) {
-                        delete current[item];
-                        return true;
-                    }
-                    current = current[item];
-                }
-                else {
-                    throw new Error("Path \"" + item + "\" not found under \"/" + currentPath.join('/') + "\"!");
-                }
-            }
+    Database.prototype.getPath = function (path) {
+        if (path === void 0) {
+            path = [];
         }
-        else {
+        if (typeof path === "string") {
+            path = new core_1.Path(path);
+        }
+        else if (Array.isArray(path)) {
+            path = new core_1.Path(path);
+        }
+        return path;
+    };
+    Database.prototype.delete = function (path) {
+        if (path === void 0) {
+            path = [];
+        }
+        path = this.getPath(path);
+        if (path.length() === 0) {
             this.mapping = {};
             return true;
         }
-    };
-    Database.prototype.push = function (path, value) {
-        var pathValue;
-        try {
-            pathValue = this.get(path);
-        }
-        catch (error) {
-            this.set(path, {});
-            pathValue = {};
-        }
-        finally {
-            if (!core_1.isObject(pathValue)) {
-                throw new Error('Path "' + path + '" is already occupied');
+        else {
+            var segments = path.getSegments();
+            var current = this.mapping;
+            var lastIndex = segments.length - 1;
+            var currentPath = new core_1.Path();
+            var itemIndex = 0;
+            for (; itemIndex < segments.length; itemIndex++) {
+                var segment = segments[itemIndex];
+                if (segment in current) {
+                    currentPath.child(segment);
+                    if (itemIndex === lastIndex) {
+                        delete current[segment];
+                        return true;
+                    }
+                    current = current[segment];
+                }
+                else {
+                    throw new Error('Path "' + segment + '" not found under "' + currentPath.toString() + '"!');
+                }
             }
-            var id = core_1.generateIdentifier();
-            this.set(path + '/' + id, value);
-            return path + '/' + id;
         }
+        return false;
     };
     Database.prototype.set = function (path, value) {
-        var items = Utils_1.normalize(path);
-        var current = this.mapping;
-        var counter = 0;
-        var last = items.pop();
-        if (last) {
-            for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
-                var item = items_1[_i];
-                counter++;
-                if (counter > this.depthLimit) {
-                    throw new Error("Depth limit of \"" + this.depthLimit + "\" exceeded!");
-                }
-                if (!current[item]) {
-                    current[item] = {};
-                }
-                current = current[item];
-            }
-            current[last] = value;
+        path = this.getPath(path);
+        if (path.length() === 0) {
+            this.mapping = value;
         }
         else {
-            this.setRoot(value);
+            var segments = path.getSegments();
+            var current = this.mapping;
+            var limitCounter = 0;
+            for (var segmentIndex = 0; segmentIndex < segments.length; segmentIndex++) {
+                var segment = segments[segmentIndex];
+                limitCounter++;
+                if (limitCounter > this.depthLimit) {
+                    throw new Error('Depth limit of ' + this.depthLimit + ' exceeded!');
+                }
+                if (!current[segment]) {
+                    current[segment] = {};
+                }
+                if (segmentIndex <= segments.length - 2) {
+                    current = current[segment];
+                }
+                else {
+                    current[segment] = value;
+                }
+            }
         }
         return this;
     };
     Database.prototype.get = function (path) {
-        var items = Utils_1.normalize(path);
-        var current = this.mapping;
-        if (items.length > 0) {
-            var currentPath = [];
-            for (var _i = 0, items_2 = items; _i < items_2.length; _i++) {
-                var item = items_2[_i];
-                if (item in current) {
-                    currentPath.push(item);
-                    current = current[item];
-                }
-                else {
-                    throw new Error("Path \"" + item + "\" not found under \"/" + currentPath.join('/') + "\"!");
-                }
-            }
-        }
-        return current;
-    };
-    Database.prototype.ref = function (path) {
         if (path === void 0) {
-            path = '/';
+            path = [];
         }
-        return new Reference_1.Reference(this, path);
-    };
-    Database.prototype.setRoot = function (value) {
-        if (core_1.isObject(value)) {
-            this.mapping = value;
+        var e_1, _a;
+        path = this.getPath(path);
+        if (path.length() === 0) {
+            return this.mapping;
         }
         else {
-            throw new Error("Path \"/\" can only set to object!");
+            var segments = path.getSegments();
+            var current = this.mapping;
+            var currentPath = new core_1.Path();
+            try {
+                for (var segments_1 = __values(segments), segments_1_1 = segments_1.next(); !segments_1_1.done; segments_1_1 = segments_1.next()) {
+                    var segment = segments_1_1.value;
+                    if (segment in current) {
+                        currentPath.child(segment);
+                        current = current[segment];
+                    }
+                    else {
+                        throw new Error('Path "' + segment + '" not found under "' + currentPath.toString() + '"!');
+                    }
+                }
+            }
+            catch (e_1_1) {
+                e_1 = {error: e_1_1};
+            }
+            finally {
+                try {
+                    if (segments_1_1 && !segments_1_1.done && (_a = segments_1.return)) _a.call(segments_1);
+                }
+                finally {
+                    if (e_1) throw e_1.error;
+                }
+            }
+            return current;
         }
+    };
+    Database.prototype.reference = function (path) {
+        if (path === void 0) {
+            path = [];
+        }
+        return new Reference_1.Reference(this, this.getPath(path));
+    };
+    Database.prototype.collection = function (path) {
+        if (path === void 0) {
+            path = [];
+        }
+        return new CollectionReference_1.CollectionReference(this, this.getPath(path));
     };
     return Database;
 }());

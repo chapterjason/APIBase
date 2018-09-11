@@ -7,68 +7,49 @@
  * File that was distributed with this source code.
  */
 
-import { expect } from 'chai';
+import {expect} from 'chai';
 import 'mocha';
-import {Database} from '../src';
-import {basename} from "../src";
+import {Database} from '../../src';
+import {Path} from "@apibase/core";
 
 describe('Database', () => {
 
+    const database = new Database();
+
+    const supportedTypes = [
+        'Foo',
+        123,
+        123.45,
+        Infinity,
+        -Infinity,
+        {'Foo': 'Bar'},
+        {},
+        new Date(),
+        new Path('/foo/bar'),
+        true,
+        false,
+        undefined,
+        null,
+        ['Foo'],
+        []
+    ];
+
     it('constructor', () => {
-        const message = 'Path "/" can only set to object!';
-
-        const database = new Database(undefined as any);
-        expect(database.get('/')).to.deep.equal({});
-
-        expect(() => {
-            new Database('Foo' as any);
-        }).to.throw(message);
-        expect(() => {
-            new Database(123 as any);
-        }).to.throw(message);
-        expect(() => {
-            new Database(123.45 as any);
-        }).to.throw(message);
-        expect(() => {
-            new Database(true as any);
-        }).to.throw(message);
-        expect(() => {
-            new Database(null as any);
-        }).to.throw(message);
-        expect(() => {
-            new Database(['Foo'] as any);
-        }).to.throw(message);
-        expect(() => {
-            new Database([] as any);
-        }).to.throw(message);
-        expect(() => {
-            new Database(Symbol() as any);
-        }).to.throw(message);
+        const database = new Database({'Foo': 'Bar'});
+        expect(database.get('/')).to.deep.equal({'Foo': 'Bar'});
     });
 
-    it('root', () => {
+    it('types', () => {
         const database = new Database();
-        database.set('/', { 'Foo': 'Bar' });
-        expect(database.get('/')).to.deep.equal({ 'Foo': 'Bar' });
-    });
 
-    it('root non object', () => {
-        const database = new Database();
-        const message = 'Path "/" can only set to object!';
-
-        expect(database.set.bind(database, '/', 'Foo')).to.throw(message);
-        expect(database.set.bind(database, '/', 123)).to.throw(message);
-        expect(database.set.bind(database, '/', 123.45)).to.throw(message);
-        expect(database.set.bind(database, '/', true)).to.throw(message);
-        expect(database.set.bind(database, '/', undefined)).to.throw(message);
-        expect(database.set.bind(database, '/', null)).to.throw(message);
-        expect(database.set.bind(database, '/', ['Foo'])).to.throw(message);
-        expect(database.set.bind(database, '/', [])).to.throw(message);
-        expect(database.set.bind(database, '/', Symbol())).to.throw(message);
+        for (let supportedType of supportedTypes) {
+            database.set('/', supportedType);
+            expect(database.get('/')).to.deep.equal(supportedType);
+        }
     });
 
     it('delete', () => {
-        const database = new Database({
+        database.set('/', {
             user: {
                 "id": 1,
                 "name": "Leanne Graham",
@@ -94,7 +75,7 @@ describe('Database', () => {
             }
         });
 
-        expect(database.delete('/user/address/zipcode')).to.equal(true);
+        database.delete('/user/address/zipcode');
 
         expect(database.get('/')).to.deep.equal({
             user: {
@@ -121,7 +102,7 @@ describe('Database', () => {
             }
         });
 
-        expect(database.delete('/user/company/bs')).to.equal(true);
+        database.delete('/user/company/bs');
 
         expect(database.get('/')).to.deep.equal({
             user: {
@@ -147,7 +128,7 @@ describe('Database', () => {
             }
         });
 
-        expect(database.delete('/user/address/geo')).to.equal(true);
+        database.delete('/user/address/geo');
 
         expect(database.get('/')).to.deep.equal({
             user: {
@@ -169,7 +150,7 @@ describe('Database', () => {
             }
         });
 
-        expect(database.delete('/')).to.equal(true);
+        database.delete('/');
 
         expect(database.get('/')).to.deep.equal({});
     });
@@ -244,17 +225,6 @@ describe('Database', () => {
             "zipcode": "92998-3874",
             "geo": {'Bar': 'Foo'}
         });
-    });
-
-    it('push', () => {
-        const database = new Database();
-
-        const id = database.push('/users', {'Foo': 'Bar'});
-
-        const exptected = {'users': {}};
-        exptected.users[basename(id)] = {'Foo': 'Bar'};
-
-        expect(database.get('/')).to.deep.equal(exptected);
     });
 
 });

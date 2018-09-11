@@ -8,7 +8,7 @@
  */
 
 export * from './Database/Database';
-export * from './Database/Reference';
-export * from './Common/Utils';
-export * from './Filesystem/Loader';
-export * from './Filesystem/Saver';
+export * from './Database/Reference/Reference';
+export * from './Database/Reference/CollectionReference';
+export * from './Database/Snapshot/Snapshot';
+export * from './Database/Snapshot/CollectionSnapshot';

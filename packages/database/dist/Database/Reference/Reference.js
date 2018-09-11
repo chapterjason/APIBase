@@ -17,37 +17,53 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", {value: true});
-var Utils_1 = require("../Common/Utils");
+var __1 = require("../..");
+var core_1 = require("@apibase/core");
 var Reference = /** @class */ (function () {
     function Reference(database, path) {
         this.database = database;
         this.path = path;
     }
 
-    Reference.prototype.key = function () {
-        return Utils_1.basename(this.path);
+    Reference.prototype.getPath = function () {
+        return this.path;
     };
-    Reference.prototype.toObject = function () {
-        return {path: this.path, value: this.get()};
+    Reference.prototype.key = function () {
+        return this.path.end();
+    };
+    Reference.prototype.toJSON = function () {
+        return {
+            path: this.path.toString(),
+            value: this.get().value()
+        };
     };
     Reference.prototype.parent = function () {
-        return new Reference(this.database, Utils_1.parentPath(this.path));
+        if (this.path.length() === 0) { // parent of root is null
+            return null;
+        }
+        else if (this.path.length() === 1) { // parent
+            return new Reference(this.database, new core_1.Path());
+        }
+        else {
+            return new Reference(this.database, this.path.parent());
+        }
     };
-    Reference.prototype.child = function (childPath) {
-        return new Reference(this.database, this.path + Utils_1.normalizeAsString(childPath));
+    Reference.prototype.reference = function (segment) {
+        return new Reference(this.database, this.path.child(segment));
+    };
+    Reference.prototype.collection = function (segment) {
+        return new __1.CollectionReference(this.database, this.path.child(segment));
     };
     Reference.prototype.set = function (value) {
         this.database.set(this.path, value);
+        return this;
     };
     Reference.prototype.get = function () {
-        return this.database.get(this.path);
-    };
-    Reference.prototype.push = function (value) {
-        var childPath = this.database.push(this.path, value || null);
-        return new Reference(this.database, childPath);
+        return new __1.Snapshot(this, this.database.get(this.path));
     };
     Reference.prototype.delete = function () {
         this.database.delete(this.path);
+        return this;
     };
     return Reference;
 }());
