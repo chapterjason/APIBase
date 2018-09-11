@@ -71,12 +71,10 @@ export class Database {
 
                     current = current[segment];
                 } else {
-                    throw new Error('Path "' + segment + '" not found under "' + currentPath.toString() + '"!');
+                    return false;
                 }
             }
         }
-
-        return false;
     }
 
     public set(segments: string[], value: any): this;
@@ -91,13 +89,13 @@ export class Database {
             const segments: string[] = path.getSegments();
 
             let current: DatabaseIndex = this.mapping;
-            let limitCounter = 0;
+            let limitCounter = 1;
 
             for (let segmentIndex = 0; segmentIndex < segments.length; segmentIndex++) {
                 const segment = segments[segmentIndex];
                 limitCounter++;
 
-                if (limitCounter > this.depthLimit) {
+                if (limitCounter >= this.depthLimit) {
                     throw new Error('Depth limit of ' + this.depthLimit + ' exceeded!');
                 }
 

@@ -1,12 +1,3 @@
-/*
- * This file is part of the APIBase package.
- *
- * (c) Jason Schilling <jason.schilling@sourecode.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * File that was distributed with this source code.
- */
-
 "use strict";
 /*
  * This file is part of the APIBase package.
@@ -33,7 +24,6 @@ var __extends = (this && this.__extends) || (function () {
         function __() {
             this.constructor = d;
         }
-
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
@@ -43,11 +33,9 @@ var core_1 = require("@apibase/core");
 var __1 = require("../..");
 var CollectionReference = /** @class */ (function (_super) {
     __extends(CollectionReference, _super);
-
     function CollectionReference() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-
     CollectionReference.prototype.push = function (value) {
         var id = core_1.generateIdentifier();
         var reference = new Reference_1.Reference(this.database, this.path.child(id));

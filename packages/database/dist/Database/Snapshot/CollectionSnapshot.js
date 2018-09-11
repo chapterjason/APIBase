@@ -1,12 +1,3 @@
-/*
- * This file is part of the APIBase package.
- *
- * (c) Jason Schilling <jason.schilling@sourecode.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * File that was distributed with this source code.
- */
-
 "use strict";
 /*
  * This file is part of the APIBase package.
@@ -33,7 +24,6 @@ var __extends = (this && this.__extends) || (function () {
         function __() {
             this.constructor = d;
         }
-
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
@@ -52,7 +42,6 @@ var Snapshot_1 = require("./Snapshot");
 var core_1 = require("@apibase/core");
 var CollectionSnapshot = /** @class */ (function (_super) {
     __extends(CollectionSnapshot, _super);
-
     function CollectionSnapshot(reference, data) {
         var e_1, _a;
         var _this = _super.call(this, reference, data) || this;
@@ -85,7 +74,6 @@ var CollectionSnapshot = /** @class */ (function (_super) {
         _this.map = map;
         return _this;
     }
-
     CollectionSnapshot.prototype.item = function (segment) {
         return this.database.reference(segment).get();
     };
