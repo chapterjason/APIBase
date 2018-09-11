@@ -6,5 +6,5 @@
     "../src/index.ts"
   ],
   "names": [],
-  "mappings": ";;;;;AAAA,qCAAgC;AAChC,qCAAgC;AAChC,yCAAoC;AACpC,qCAAgC;AAChC,8CAAyC"
+  "mappings": ";AAAA;;;;;;;GAOG;;;;;AAEH,qCAAgC;AAChC,yCAAoC;AACpC,qCAAgC;AAChC,mCAA8B;AAC9B,gDAA2C;AAE3C,sCAAiC;AACjC,8CAAyC"
 }

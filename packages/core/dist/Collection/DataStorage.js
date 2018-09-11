@@ -24,7 +24,6 @@ var DataStorage = /** @class */ (function () {
         }
         this.data = data;
     }
-
     DataStorage.prototype.has = function (key) {
         return key in this.data;
     };

@@ -10,15 +10,10 @@
 export interface DataStorageIndex {
     [key: string]: any;
 }
-
 export declare class DataStorage {
     protected data: DataStorageIndex;
-
     constructor(data?: DataStorageIndex);
-
     has(key: string): boolean;
-
     set(key: string, value: any): DataStorage;
-
     get(key: string): any;
 }

@@ -7,6 +7,8 @@
  * File that was distributed with this source code.
  */
 
+import {String} from "./String";
+
 export enum LogLevel {
     QUIET,
     L,
@@ -55,8 +57,16 @@ export class Logger {
 
     protected static getTimestamp() {
         const now = new Date();
+        let units = [
+            now.getHours(),
+            now.getMinutes(),
+            now.getSeconds()
+        ]
+            .map(unit => String.padLeft(unit.toString()));
 
-        return now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ':' + now.getMilliseconds();
+        units.push(String.padLeft(now.getMilliseconds().toString(), 3));
+
+        return units.join(':');
     }
 
     protected static internalLog(type: string, ...messages) {
