@@ -7,24 +7,20 @@
  * File that was distributed with this source code.
  */
 
-export namespace String {
-
-    export function padLeft(string: string, length: number = 2, char: string = '0') {
-        const diff = length - string.length;
-        if (diff > 0) {
-            string = char.repeat(diff) + string;
-        }
-
-        return string;
+export function padLeft(string: string, length: number = 2, char: string = '0') {
+    const diff = length - string.length;
+    if (diff > 0) {
+        string = char.repeat(diff) + string;
     }
 
-    export function padRight(string: string, length: number, char: string = '0') {
-        const diff = length - string.length;
-        if (diff > 0) {
-            string += char.repeat(length);
-        }
+    return string;
+}
 
-        return string;
+export function padRight(string: string, length: number, char: string = '0') {
+    const diff = length - string.length;
+    if (diff > 0) {
+        string += char.repeat(diff);
     }
 
+    return string;
 }

@@ -1,3 +1,5 @@
+import { padLeft } from "./String";
+
 /*
  * This file is part of the APIBase package.
  *
@@ -6,8 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * File that was distributed with this source code.
  */
-
-import {String} from "./String";
 
 export enum LogLevel {
     QUIET,
@@ -62,9 +62,9 @@ export class Logger {
             now.getMinutes(),
             now.getSeconds()
         ]
-            .map(unit => String.padLeft(unit.toString()));
+            .map(unit => padLeft(unit.toString()));
 
-        units.push(String.padLeft(now.getMilliseconds().toString(), 3));
+        units.push(padLeft(now.getMilliseconds().toString(), 3));
 
         return units.join(':');
     }
