@@ -31,8 +31,8 @@ var __values = (this && this.__values) || function (o) {
     };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var Snapshot_1 = require("./Snapshot");
 var core_1 = require("@apibase/core");
+var Snapshot_1 = require("./Snapshot");
 var CollectionSnapshot = /** @class */ (function (_super) {
     __extends(CollectionSnapshot, _super);
     function CollectionSnapshot(reference, data) {
@@ -60,11 +60,14 @@ var CollectionSnapshot = /** @class */ (function (_super) {
                 map.set(key, data[key]);
             }
         }
+        else {
+            throw new Error('The data at "' + reference.getPath().toString() + '" must be of type object or array.');
+        }
         _this.map = map;
         return _this;
     }
     CollectionSnapshot.prototype.item = function (segment) {
-        return this.database.reference(segment).get();
+        return new Snapshot_1.Snapshot(this.reference.reference(segment), this.map.get(segment));
     };
     CollectionSnapshot.prototype.forEach = function (callback) {
         var e_2, _a;

@@ -4,7 +4,7 @@ export * from './Database/Reference/ReferenceInterface';
 export * from './Database/Reference/Reference';
 export * from './Database/Reference/CollectionReferenceInterface';
 export * from './Database/Reference/CollectionReference';
-export * from './Database/Snapshot/Snapshotinterface';
+export * from './Database/Snapshot/SnapshotInterface';
 export * from './Database/Snapshot/Snapshot';
 export * from './Database/Snapshot/CollectionSnapshotInterface';
 export * from './Database/Snapshot/CollectionSnapshot';

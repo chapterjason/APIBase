@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "SnapshotInterface.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../src/Database/Snapshot/SnapshotInterface.ts"
+  ],
+  "names": [],
+  "mappings": ""
+}

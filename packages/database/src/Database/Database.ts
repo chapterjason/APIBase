@@ -10,9 +10,9 @@
 import {Path} from '@apibase/core';
 import {Reference} from "./Reference/Reference";
 import {CollectionReference} from "./Reference/CollectionReference";
-import { ReferenceInterface } from './Reference/ReferenceInterface';
-import { CollectionReferenceInterface } from './Reference/CollectionReferenceInterface';
-import { DatabaseInterface, DatabaseIndex } from './DatabaseInterface';
+import {ReferenceInterface} from './Reference/ReferenceInterface';
+import {CollectionReferenceInterface} from './Reference/CollectionReferenceInterface';
+import {DatabaseIndex, DatabaseInterface} from './DatabaseInterface';
 
 export class Database implements DatabaseInterface {
 
@@ -84,7 +84,6 @@ export class Database implements DatabaseInterface {
 
         if (path.length() === 0) {
             this.mapping = value;
-            return true;
             return true;
         } else {
             const segments: string[] = path.getSegments();

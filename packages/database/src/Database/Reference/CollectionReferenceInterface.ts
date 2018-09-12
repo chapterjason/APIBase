@@ -1,5 +1,5 @@
-import { ReferenceInterface } from "./ReferenceInterface";
-import { CollectionSnapshotInterface } from "../Snapshot/CollectionSnapshotInterface";
+import {ReferenceInterface} from "./ReferenceInterface";
+import {CollectionSnapshotInterface} from "../..";
 
 export interface CollectionIndex<ItemType = any> {
     [id: string]: ItemType;

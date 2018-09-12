@@ -8,11 +8,10 @@
  */
 
 import {Database} from "../Database";
-import {CollectionReference, Snapshot} from "../..";
+import {CollectionReference, Snapshot, SnapshotInterface} from "../..";
 import {Path} from "@apibase/core";
-import { ReferenceInterface } from "./ReferenceInterface";
-import { SnapshotInterface } from "../Snapshot/Snapshotinterface";
-import { CollectionReferenceInterface } from "./CollectionReferenceInterface";
+import {ReferenceInterface} from "./ReferenceInterface";
+import {CollectionReferenceInterface} from "./CollectionReferenceInterface";
 
 export class Reference<ReferenceType = any> implements ReferenceInterface<ReferenceType> {
 

@@ -7,12 +7,11 @@
  * File that was distributed with this source code.
  */
 
-import { Reference } from "./Reference";
-import { generateIdentifier } from "@apibase/core";
-import { CollectionSnapshot } from "../..";
-import { CollectionIndex, CollectionReferenceInterface } from "./CollectionReferenceInterface";
-import { CollectionSnapshotInterface } from "../Snapshot/CollectionSnapshotInterface";
-import { ReferenceInterface } from "./ReferenceInterface";
+import {Reference} from "./Reference";
+import {generateIdentifier} from "@apibase/core";
+import {CollectionSnapshot, CollectionSnapshotInterface} from "../..";
+import {CollectionIndex, CollectionReferenceInterface} from "./CollectionReferenceInterface";
+import {ReferenceInterface} from "./ReferenceInterface";
 
 export class CollectionReference<ReferenceType = any> extends Reference<CollectionIndex<ReferenceType>> implements CollectionReferenceInterface<ReferenceType> {
 

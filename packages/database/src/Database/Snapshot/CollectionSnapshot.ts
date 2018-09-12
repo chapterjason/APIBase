@@ -7,12 +7,11 @@
  * File that was distributed with this source code.
  */
 
+import {CollectionIndex, ReferenceInterface} from "../..";
+import {CollectionSnapshotInterface} from "./CollectionSnapshotInterface";
+import {SnapshotInterface} from "./SnapshotInterface";
+import {isObject, Map} from "@apibase/core";
 import {Snapshot} from "./Snapshot";
-import {Map, isObject} from "@apibase/core";
-import {  CollectionIndex } from "../Reference/CollectionReferenceInterface";
-import { ReferenceInterface } from "../Reference/ReferenceInterface";
-import { SnapshotInterface } from "./Snapshotinterface";
-import { CollectionSnapshotInterface } from "./CollectionSnapshotInterface";
 
 export class CollectionSnapshot<SnapshotType = any> extends Snapshot<CollectionIndex<SnapshotType>> implements CollectionSnapshotInterface<SnapshotType> {
 
@@ -32,16 +31,18 @@ export class CollectionSnapshot<SnapshotType = any> extends Snapshot<CollectionI
             for (let key in data) {
                 map.set(key, data[key]);
             }
+        } else {
+            throw new Error('The data at "' + reference.getPath().toString() + '" must be of type object or array.');
         }
 
         this.map = map;
     }
 
     public item(segment: string): SnapshotInterface<SnapshotType> {
-        return this.database.reference<SnapshotType>(segment).get() as any;
+        return new Snapshot<SnapshotType>(this.reference.reference<SnapshotType>(segment), this.map.get(segment));
     }
 
-    public forEach(callback: (childSnapshot: SnapshotInterface<SnapshotType>) => void): this {
+    public forEach(callback: (snapshot: SnapshotInterface<SnapshotType>) => void): this {
         for (let key of this.map.keys()) {
             callback(this.item(key));
         }

@@ -1,7 +1,6 @@
-import { Database } from "../..";
-import { Path } from "@apibase/core";
-import { CollectionReferenceInterface } from "./CollectionReferenceInterface";
-import { SnapshotInterface } from "../Snapshot/Snapshotinterface";
+import {Path} from "@apibase/core";
+import {CollectionReferenceInterface} from "./CollectionReferenceInterface";
+import {SnapshotInterface} from "../..";
 
 export interface ReferenceInterface<ReferenceType> {
 

@@ -71,7 +71,6 @@ var Database = /** @class */ (function () {
         if (path.length() === 0) {
             this.mapping = value;
             return true;
-            return true;
         }
         else {
             var segments = path.getSegments();

@@ -1,8 +1,8 @@
-import { Database } from "../Database";
-import { SnapshotInterface } from "./Snapshotinterface";
-import { ReferenceInterface } from "../Reference/ReferenceInterface";
+import {SnapshotInterface} from "./SnapshotInterface";
+import {ReferenceInterface} from "../..";
+
 export declare class Snapshot<SnapshotType = any> implements SnapshotInterface<SnapshotType> {
-    protected database: Database;
+    protected data: SnapshotType;
     protected reference: ReferenceInterface<SnapshotType>;
     constructor(reference: ReferenceInterface<SnapshotType>, data: SnapshotType);
     value(): SnapshotType;

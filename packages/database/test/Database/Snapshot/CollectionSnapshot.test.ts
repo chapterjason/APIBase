@@ -98,10 +98,9 @@ describe('CollectionSnapshot', () => {
         expect(snapshot.length()).to.equal(2);
     });
 
-    it('keys non object or array', () => {
+    it('path non object or array', () => {
         const reference = database.collection<string>('/posts/two/title');
-        const snapshot = reference.get();
-        expect(snapshot.length()).to.equal(0);
+        expect(reference.get.bind(reference)).to.throw('The data at "/posts/two/title" must be of type object or array.');
     });
 
     it('forEach', () => {
@@ -122,7 +121,7 @@ describe('CollectionSnapshot', () => {
         expect(values).to.deep.equal(expectedValues);
     });
 
-    it('forEach', () => {
+    it('sortedByKey', () => {
         const reference = database.collection<Post>('/posts');
         const snapshot = reference.get();
 
@@ -143,7 +142,7 @@ describe('CollectionSnapshot', () => {
         expect(values).to.deep.equal(expectedValues);
     });
 
-    it('forEach', () => {
+    it('sortedByProperty', () => {
         const reference = database.collection<Post>('/posts');
         const snapshot = reference.get();
 
