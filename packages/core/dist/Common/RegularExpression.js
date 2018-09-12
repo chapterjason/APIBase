@@ -8,19 +8,14 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", {value: true});
-
 function escape(string) {
     return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }
-
 exports.escape = escape;
-
 function match(string, regexp) {
     return !!regexp.exec(string);
 }
-
 exports.match = match;
-
 function matchAll(string, regexp) {
     var matches = [];
     var currentMatch;
@@ -40,6 +35,5 @@ function matchAll(string, regexp) {
     }
     return matches;
 }
-
 exports.matchAll = matchAll;
 //# sourceMappingURL=RegularExpression.js.map

@@ -65,11 +65,10 @@ var Database = /** @class */ (function () {
                     current = current[segment];
                 }
                 else {
-                    throw new Error('Path "' + segment + '" not found under "' + currentPath.toString() + '"!');
+                    return false;
                 }
             }
         }
-        return false;
     };
     Database.prototype.set = function (path, value) {
         path = this.getPath(path);
@@ -79,11 +78,11 @@ var Database = /** @class */ (function () {
         else {
             var segments = path.getSegments();
             var current = this.mapping;
-            var limitCounter = 0;
+            var limitCounter = 1;
             for (var segmentIndex = 0; segmentIndex < segments.length; segmentIndex++) {
                 var segment = segments[segmentIndex];
                 limitCounter++;
-                if (limitCounter > this.depthLimit) {
+                if (limitCounter >= this.depthLimit) {
                     throw new Error('Depth limit of ' + this.depthLimit + ' exceeded!');
                 }
                 if (!current[segment]) {

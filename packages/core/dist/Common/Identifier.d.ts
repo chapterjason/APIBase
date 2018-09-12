@@ -4,7 +4,6 @@
  * @param id
  */
 export declare function createdAt(id: string): Date;
-
 /**
  * Generates a unique id
  *

@@ -8,7 +8,6 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-
 /**
  * Returns the createTimestamp from the id
  *
@@ -17,9 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function createdAt(id) {
     return new Date(parseInt(id.substring(0, 8), 16) * 1000);
 }
-
 exports.createdAt = createdAt;
-
 /**
  * Generates a unique id
  *

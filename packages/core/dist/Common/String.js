@@ -8,7 +8,6 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", {value: true});
-
 function padLeft(string, length, char) {
     if (length === void 0) {
         length = 2;
@@ -22,9 +21,7 @@ function padLeft(string, length, char) {
     }
     return string;
 }
-
 exports.padLeft = padLeft;
-
 function padRight(string, length, char) {
     if (char === void 0) {
         char = '0';
@@ -35,6 +32,5 @@ function padRight(string, length, char) {
     }
     return string;
 }
-
 exports.padRight = padRight;
 //# sourceMappingURL=String.js.map
