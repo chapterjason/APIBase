@@ -1,7 +1,7 @@
 import {Database} from "../Database";
+import {SnapshotInterface} from "../..";
 import {Path} from "@apibase/core";
 import {ReferenceInterface} from "./ReferenceInterface";
-import {SnapshotInterface} from "../..";
 import {CollectionReferenceInterface} from "./CollectionReferenceInterface";
 
 export declare class Reference<ReferenceType = any> implements ReferenceInterface<ReferenceType> {

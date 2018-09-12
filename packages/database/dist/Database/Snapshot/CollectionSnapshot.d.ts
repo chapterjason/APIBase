@@ -8,7 +8,6 @@ export declare class CollectionSnapshot<SnapshotType = any> extends Snapshot<Col
     protected map: Map<string, SnapshotType>;
     constructor(reference: ReferenceInterface<CollectionIndex<SnapshotType>>, data: CollectionIndex<SnapshotType>);
     item(segment: string): SnapshotInterface<SnapshotType>;
-
     forEach(callback: (snapshot: SnapshotInterface<SnapshotType>) => void): this;
     length(): number;
     reverse(): this;

@@ -24,11 +24,7 @@ export class Database implements DatabaseInterface {
         this.mapping = mapping;
     }
 
-    public getPath(): Path;
-    public getPath(segments: string[]): Path;
-    public getPath(path: string): Path;
-    public getPath(path: Path): Path;
-    public getPath(path: any = []): any {
+    public getPath(path: Path | string | string[] = []): Path {
         if (typeof path === "string") {
             path = new Path(path);
         } else if (Array.isArray(path)) {
@@ -38,11 +34,7 @@ export class Database implements DatabaseInterface {
         return path;
     }
 
-    public delete(): boolean;
-    public delete(segments: string[]): boolean;
-    public delete(path: string): boolean;
-    public delete(path: Path): boolean;
-    public delete(path: any = []): any {
+    public delete(path?: Path | string | string[]): boolean {
         path = this.getPath(path);
 
         if (path.length() === 0) {
@@ -76,10 +68,7 @@ export class Database implements DatabaseInterface {
         }
     }
 
-    public set(segments: string[], value: any): boolean;
-    public set(path: string, value: any): boolean;
-    public set(path: Path, value: any): boolean;
-    public set(path: any, value: any): any {
+    public set(path: Path | string | string[], value: any): boolean {
         path = this.getPath(path);
 
         if (path.length() === 0) {
@@ -115,11 +104,7 @@ export class Database implements DatabaseInterface {
         return false;
     }
 
-    public get<T>(): T;
-    public get<T>(segments: string[]): T;
-    public get<T>(path: string): T;
-    public get<T>(path: Path): T;
-    public get<T>(path: any = []): any {
+    public get<T>(path?: Path | string | string[]): T {
         path = this.getPath(path);
 
         if (path.length() === 0) {
@@ -142,19 +127,11 @@ export class Database implements DatabaseInterface {
         }
     }
 
-    public reference<ReferenceType = any>(): ReferenceInterface<ReferenceType>;
-    public reference<ReferenceType = any>(segments: string[]): ReferenceInterface<ReferenceType>;
-    public reference<ReferenceType = any>(path: string): ReferenceInterface<ReferenceType>;
-    public reference<ReferenceType = any>(path: Path): ReferenceInterface<ReferenceType>;
-    public reference<ReferenceType = any>(path: any = []): any {
+    public reference<ReferenceType = any>(path?: Path | string | string[]): ReferenceInterface<ReferenceType> {
         return new Reference<ReferenceType>(this, this.getPath(path));
     }
 
-    public collection<ReferenceType = any>(): CollectionReferenceInterface<ReferenceType>;
-    public collection<ReferenceType = any>(segments: string[]): CollectionReferenceInterface<ReferenceType>;
-    public collection<ReferenceType = any>(path: string): CollectionReferenceInterface<ReferenceType>;
-    public collection<ReferenceType = any>(path: Path): CollectionReferenceInterface<ReferenceType>;
-    public collection<ReferenceType = any>(path: any = []): any {
+    public collection<ReferenceType = any>(path?: Path | string | string[]): CollectionReferenceInterface<ReferenceType> {
         return new CollectionReference<ReferenceType>(this, this.getPath(path));
     }
 

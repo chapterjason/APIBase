@@ -38,7 +38,6 @@ var Database = /** @class */ (function () {
         return path;
     };
     Database.prototype.delete = function (path) {
-        if (path === void 0) { path = []; }
         path = this.getPath(path);
         if (path.length() === 0) {
             this.mapping = {};
@@ -97,7 +96,6 @@ var Database = /** @class */ (function () {
         return false;
     };
     Database.prototype.get = function (path) {
-        if (path === void 0) { path = []; }
         var e_1, _a;
         path = this.getPath(path);
         if (path.length() === 0) {
@@ -130,11 +128,9 @@ var Database = /** @class */ (function () {
         }
     };
     Database.prototype.reference = function (path) {
-        if (path === void 0) { path = []; }
         return new Reference_1.Reference(this, this.getPath(path));
     };
     Database.prototype.collection = function (path) {
-        if (path === void 0) { path = []; }
         return new CollectionReference_1.CollectionReference(this, this.getPath(path));
     };
     return Database;
