@@ -7,75 +7,27 @@
  * File that was distributed with this source code.
  */
 
-import {Client} from '@apibase/client';
-import {Logger, LogLevel} from '@apibase/core';
+import {createdAt, Logger, LogLevel} from '@apibase/core';
+import Axios from "axios";
+import {Database} from "@apibase/database";
 
 Logger.setLogLevel(LogLevel.LLLL);
 
-const client = new Client({
-    uri: 'https://127.0.0.1:7955',
-    client: {
-        rejectUnauthorized: false,
-        ca: ['../example-server/certs/server-cert.pem'],
-        path: '/apibase',
-        secure: true,
-        extraHeaders: {
-            'Authorization': 'Bearer wfnio9w3j9r38t49fu',
-        }
-    } as any
-});
+Logger.debug('Init');
 
-client.on('connect', () => {
-    Logger.info('Connected!');
-    client.emit('associate');
-    client.emit('test', 8, (result) => {
-        if (result.success) {
-            Logger.debug(result.data.result);
-        }
-        // Logger.debug(result);
+const baseUrl = 'http://localhost:3000/';
+
+const database = new Database();
+
+Axios.get(baseUrl)
+    .then((response) => {
+        database.set('/', response.data.result);
+
+        const reference = database.collection<{ name: string }>('/users');
+        const users = reference.get();
+
+        users.forEach((user) => {
+            const id = user.key();
+            Logger.debug(createdAt(id), id, user.value());
+        });
     });
-});
-
-/*
-// Event: 'connect'
-// Event: 'connect_error'
-// Event: 'connect_timeout'
-// Event: 'error'
-// Event: 'disconnect'
-// Event: 'reconnect'
-// Event: 'reconnect_attempt'
-Event: 'reconnecting'
-// Event: 'reconnect_error'
-// Event: 'reconnect_failed'
-Event: 'ping'
-Event: 'pong'
- */
-
-// Some basics events!
-client.on('error', (error) => {
-    Logger.error('Something went wrong...', error.message);
-});
-
-client.on('connect_error', (error) => {
-    Logger.error('Something went wrong while trying to connect...', error.message);
-});
-
-client.on('connect_timeout', (timeout) => {
-    Logger.error('Connection timeout...', timeout);
-});
-
-client.on('reconnect', (attemptNumber) => {
-    Logger.info('Reconnected after', attemptNumber, 'attempts');
-});
-
-client.on('reconnect_attempt', (attempt) => {
-    Logger.info('Trying to reconnect...', attempt);
-});
-
-client.on('reconnect_error', (error) => {
-    Logger.error('Erorr while reconnecting!', error.message);
-});
-
-client.on('disconnect', (message) => {
-    Logger.info('Disconnected!', message);
-});

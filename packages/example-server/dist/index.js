@@ -1,12 +1,3 @@
-/*
- * This file is part of the APIBase package.
- *
- * (c) Jason Schilling <jason.schilling@sourecode.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * File that was distributed with this source code.
- */
-
 "use strict";
 /*
  * This file is part of the APIBase package.
@@ -17,79 +8,70 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", {value: true});
-var server_1 = require("@apibase/server");
 var core_1 = require("@apibase/core");
-var database_1 = require("@apibase/database");
-var fs = require("fs");
+var Database_1 = require("./Database");
+var express = require("express");
+var cors = require("cors");
+var ResponseError_1 = require("./Response/ResponseError");
 var ResponseSuccess_1 = require("./Response/ResponseSuccess");
 core_1.Logger.setLogLevel(core_1.LogLevel.LLLL);
-var usersDatabase = new database_1.Database({
-    'users': {}
+var server = express();
+// body will be parsed as json
+server.use(express.json());
+// response json as default
+server.use(function (request, response, next) {
+    response.header('Content-Type', 'application/json');
+    next();
 });
-// const userRepository = usersDatabase.repository<User>('/users');
-// userRepository.push({username: 'chapterjason', password: 'EXAMPLE321', token: 'wfnio9w3j9r38t49fu'});
-var server = new server_1.Server({
-    webServer: {
-        key: fs.readFileSync('./certs/server-key.pem'),
-        cert: fs.readFileSync('./certs/server-cert.pem'),
-        rejectUnauthorized: false,
-        requestCert: false
-    },
-    server: {
-        cookie: 'apibase',
-        path: '/apibase',
+// set cors header
+server.use(cors());
+server.use(function (request, response, next) {
+    var path = new core_1.Path(request.path);
+    if (request.method === 'GET') { // get
+        try {
+            var data = Database_1.database.get(path);
+            response.send(new ResponseSuccess_1.ResponseSuccess(data));
+        }
+        catch (error) {
+            response.status(500);
+            response.send(new ResponseError_1.ResponseError(error.message));
+        }
     }
-});
-// @note authserver
-// const authenticationNamespace = server.getServer().of('/authentication');
-// authenticationNamespace.on('authenticate', (client, username, password, fn) => {
-//     const user = userRepository.findOneBy({"username": username});
-//
-//     if (user) {
-//         if (user.password === password) {
-//             fn(new ResponseSuccess(user.token));
-//         } else {
-//             fn(new ResponseError('Incorrect password!'));
-//         }
-//     } else {
-//         fn(new ResponseError('User not found!'));
-//     }
-// });
-function parseToken(header) {
-    var regex = /^Bearer (.*)$/;
-    var match;
-    if ((match = regex.exec(header)) !== null) {
-        var token = match[1];
-        // return userRepository.findOneBy({"token": token});
+    else if (request.method === 'POST') { // set
+        try {
+            var collectionReference = Database_1.database.collection(path);
+            var reference = collectionReference.push(request.body);
+            response.send(new ResponseSuccess_1.ResponseSuccess(Database_1.database.get(reference.getPath())));
+        }
+        catch (error) {
+            response.status(500);
+            response.send(new ResponseError_1.ResponseError(error.message));
+        }
     }
-    return null;
-}
-
-server.getServer().use(function (socket, next) {
-    var authorization = socket.request.headers['authorization'] || '';
-    var user = parseToken(authorization);
-    if (user) {
-        next();
-        return;
+    else if (request.method === 'PUT') { // set
+        try {
+            Database_1.database.set(path, request.body);
+            response.send(new ResponseSuccess_1.ResponseSuccess(Database_1.database.get(path)));
+        }
+        catch (error) {
+            response.status(500);
+            response.send(new ResponseError_1.ResponseError(error.message));
+        }
     }
-    next(new Error('Authentication error'));
-});
-server.on('connect', function (client) {
-    core_1.Logger.info(client.getHostname(), 'connected!');
-    server.addClient(client);
-});
-server.on('associate', function (client) {
-    var authorization = client.getSocket().request.headers['authorization'] || '';
-    var user = parseToken(authorization);
-    if (user) {
-        client.getStorage().set('user', user);
+    else if (request.method === 'DELETE') { // delete
+        try {
+            response.send(new ResponseSuccess_1.ResponseSuccess(Database_1.database.delete(path)));
+        }
+        catch (error) {
+            response.status(500);
+            response.send(new ResponseError_1.ResponseError(error.message));
+        }
     }
+    Database_1.save();
 });
-server.on('test', function (client, value, fn) {
-    fn(new ResponseSuccess_1.ResponseSuccess({'user': client.getStorage().get('user'), 'result': value * 8}));
+server.all('*', function (request, response) {
 });
-server.on('disconnect', function (client) {
-    core_1.Logger.info(client.getHostname(), 'disconnected!');
-    server.removeClient(client);
+server.listen(3000, function () {
+    return console.log('Example-server listening on port 3000!');
 });
 //# sourceMappingURL=index.js.map

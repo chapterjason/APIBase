@@ -7,99 +7,69 @@
  * File that was distributed with this source code.
  */
 
-import {Server, ServerClient} from '@apibase/server';
-import {Logger, LogLevel} from '@apibase/core';
-import {Database} from '@apibase/database';
-import * as fs from 'fs';
+import {Logger, LogLevel, Path} from '@apibase/core';
+import {database, save} from "./Database";
+import * as express from 'express';
+import * as cors from 'cors';
 import {ResponseError} from "./Response/ResponseError";
 import {ResponseSuccess} from "./Response/ResponseSuccess";
 
 Logger.setLogLevel(LogLevel.LLLL);
 
-interface User {
-    username: string;
-    password: string;
-    token: string;
-}
+const server = express();
 
-const usersDatabase = new Database({
-    'users': {}
+// body will be parsed as json
+server.use(express.json());
+
+// response json as default
+server.use((request, response, next) => {
+    response.header('Content-Type', 'application/json');
+    next();
 });
 
-// const userRepository = usersDatabase.repository<User>('/users');
-// userRepository.push({username: 'chapterjason', password: 'EXAMPLE321', token: 'wfnio9w3j9r38t49fu'});
+// set cors header
+server.use(cors());
 
-const server = new Server({
-    webServer: {
-        key: fs.readFileSync('./certs/server-key.pem'),
-        cert: fs.readFileSync('./certs/server-cert.pem'),
-        rejectUnauthorized: false,
-        requestCert: false
-    },
-    server: {
-        cookie: 'apibase',
-        path: '/apibase',
-    }
-});
-
-// @note authserver
-// const authenticationNamespace = server.getServer().of('/authentication');
-// authenticationNamespace.on('authenticate', (client, username, password, fn) => {
-//     const user = userRepository.findOneBy({"username": username});
-//
-//     if (user) {
-//         if (user.password === password) {
-//             fn(new ResponseSuccess(user.token));
-//         } else {
-//             fn(new ResponseError('Incorrect password!'));
-//         }
-//     } else {
-//         fn(new ResponseError('User not found!'));
-//     }
-// });
-
-function parseToken(header: string) {
-    const regex = /^Bearer (.*)$/;
-    let match;
-
-    if ((match = regex.exec(header)) !== null) {
-        const token = match[1];
-        // return userRepository.findOneBy({"token": token});
-    }
-
-    return null;
-}
-
-server.getServer().use((socket, next) => {
-    const authorization = socket.request.headers['authorization'] || '';
-    const user = parseToken(authorization);
-
-    if (user) {
-        next();
-        return;
+server.use((request, response, next) => {
+    const path = new Path(request.path);
+    if (request.method === 'GET') { // get
+        try {
+            const data = database.get(path);
+            response.send(new ResponseSuccess(data));
+        } catch (error) {
+            response.status(500);
+            response.send(new ResponseError(error.message));
+        }
+    } else if (request.method === 'POST') { // set
+        try {
+            const collectionReference = database.collection(path);
+            const reference = collectionReference.push(request.body);
+            response.send(new ResponseSuccess(database.get(reference.getPath())));
+        } catch (error) {
+            response.status(500);
+            response.send(new ResponseError(error.message));
+        }
+    } else if (request.method === 'PUT') { // set
+        try {
+            database.set(path, request.body);
+            response.send(new ResponseSuccess(database.get(path)));
+        } catch (error) {
+            response.status(500);
+            response.send(new ResponseError(error.message));
+        }
+    } else if (request.method === 'DELETE') { // delete
+        try {
+            response.send(new ResponseSuccess(database.delete(path)));
+        } catch (error) {
+            response.status(500);
+            response.send(new ResponseError(error.message));
+        }
     }
 
-    next(new Error('Authentication error'));
+    save();
 });
 
-server.on('connect', (client) => {
-    Logger.info(client.getHostname(), 'connected!');
-    server.addClient(client);
+server.all('*', (request, response) => {
 });
 
-server.on('associate', (client: ServerClient) => {
-    const authorization = client.getSocket().request.headers['authorization'] || '';
-    const user = parseToken(authorization);
-    if (user) {
-        client.getStorage().set('user', user);
-    }
-});
-
-server.on('test', (client, value, fn) => {
-    fn(new ResponseSuccess({'user': client.getStorage().get('user'), 'result': value * 8}));
-});
-
-server.on('disconnect', client => {
-    Logger.info(client.getHostname(), 'disconnected!');
-    server.removeClient(client);
-});
+server.listen(3000, () => console.log('Example-server listening on port 3000!'));

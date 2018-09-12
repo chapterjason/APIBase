@@ -11,9 +11,9 @@
 export class ResponseError {
 
     protected success: boolean = false;
-    protected errorMessage: string;
+    protected result: any;
 
-    public constructor(message: string) {
-        this.errorMessage = message;
+    public constructor(result: any) {
+        this.result = result;
     }
 }

@@ -11,9 +11,9 @@
 export class ResponseSuccess {
 
     protected success: boolean = true;
-    protected data: any;
+    protected result: any;
 
-    public constructor(data: any) {
-        this.data = data;
+    public constructor(result: any) {
+        this.result = result;
     }
 }

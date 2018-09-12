@@ -1,12 +1,3 @@
-/*
- * This file is part of the APIBase package.
- *
- * (c) Jason Schilling <jason.schilling@sourecode.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * File that was distributed with this source code.
- */
-
 "use strict";
 /*
  * This file is part of the APIBase package.
@@ -18,11 +9,10 @@
  */
 Object.defineProperty(exports, "__esModule", {value: true});
 var ResponseSuccess = /** @class */ (function () {
-    function ResponseSuccess(data) {
+    function ResponseSuccess(result) {
         this.success = true;
-        this.data = data;
+        this.result = result;
     }
-
     return ResponseSuccess;
 }());
 exports.ResponseSuccess = ResponseSuccess;
