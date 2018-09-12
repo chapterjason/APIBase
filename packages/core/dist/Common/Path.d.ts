@@ -1,10 +1,11 @@
 export declare class Path {
     protected segments: string[];
-    constructor();
-    constructor(segments: string[]);
-    constructor(path: string);
-    protected static normalize(segments: string[]): string[];
-    protected static normalize(segment: string): string[];
+
+    constructor(path?: string | string[]);
+
+    static ensurePath(path: Path | string | string[]): Path;
+
+    protected static normalize(segment: string | string[]): string[];
     toString(): string;
     getSegments(): string[];
     parent(): Path | null;

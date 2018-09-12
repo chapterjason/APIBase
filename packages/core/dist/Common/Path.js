@@ -23,6 +23,15 @@ var Path = /** @class */ (function () {
             this.segments = [];
         }
     }
+
+    Path.ensurePath = function (path) {
+        if (path instanceof Path) {
+            return path;
+        }
+        else {
+            return new Path(path);
+        }
+    };
     Path.normalize = function (segment) {
         if (typeof segment === "string") {
             segment = segment.split('/');
