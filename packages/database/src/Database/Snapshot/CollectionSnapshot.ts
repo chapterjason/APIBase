@@ -9,13 +9,16 @@
 
 import {Snapshot} from "./Snapshot";
 import {Map, isObject} from "@apibase/core";
-import {CollectionIndex, Reference} from "../..";
+import {  CollectionIndex } from "../Reference/CollectionReferenceInterface";
+import { ReferenceInterface } from "../Reference/ReferenceInterface";
+import { SnapshotInterface } from "./Snapshotinterface";
+import { CollectionSnapshotInterface } from "./CollectionSnapshotInterface";
 
-export class CollectionSnapshot<SnapshotType = any> extends Snapshot<CollectionIndex<SnapshotType>> {
+export class CollectionSnapshot<SnapshotType = any> extends Snapshot<CollectionIndex<SnapshotType>> implements CollectionSnapshotInterface<SnapshotType> {
 
     protected map: Map<string, SnapshotType>;
 
-    constructor(reference: Reference<CollectionIndex<SnapshotType>>, data: CollectionIndex<SnapshotType>) {
+    constructor(reference: ReferenceInterface<CollectionIndex<SnapshotType>>, data: CollectionIndex<SnapshotType>) {
         super(reference, data);
 
         const map: Map<string, SnapshotType> = new Map<string, SnapshotType>();
@@ -34,34 +37,42 @@ export class CollectionSnapshot<SnapshotType = any> extends Snapshot<CollectionI
         this.map = map;
     }
 
-    public item(segment: string): Snapshot<SnapshotType> {
-        return this.database.reference<SnapshotType>(segment).get();
+    public item(segment: string): SnapshotInterface<SnapshotType> {
+        return this.database.reference<SnapshotType>(segment).get() as any;
     }
 
-    public forEach(callback: (childSnapshot: Snapshot<SnapshotType>) => void) {
+    public forEach(callback: (childSnapshot: SnapshotInterface<SnapshotType>) => void): this {
         for (let key of this.map.keys()) {
             callback(this.item(key));
         }
+
+        return this;
     }
 
     public length() {
         return this.map.size();
     }
 
-    public reverse() {
+    public reverse(): this {
         this.map.reverse();
+
+        return this;
     }
 
-    public sortByKey() {
+    public sortByKey(): this {
         this.map = this.map.sort((a, b) => {
             return a[0].localeCompare(b[0]);
         });
+
+        return this;
     }
 
-    public sortByProperty(property: string) {
+    public sortByProperty(property: string): this {
         this.map = this.map.sort((a, b) => {
             return a[1][property].localeCompare(b[1][property]);
         });
+
+        return this;
     }
 
 }

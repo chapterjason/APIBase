@@ -10,8 +10,11 @@
 import {Database} from "../Database";
 import {CollectionReference, Snapshot} from "../..";
 import {Path} from "@apibase/core";
+import { ReferenceInterface } from "./ReferenceInterface";
+import { SnapshotInterface } from "../Snapshot/Snapshotinterface";
+import { CollectionReferenceInterface } from "./CollectionReferenceInterface";
 
-export class Reference<ReferenceType = any> {
+export class Reference<ReferenceType = any> implements ReferenceInterface<ReferenceType> {
 
     protected database: Database;
 
@@ -33,11 +36,11 @@ export class Reference<ReferenceType = any> {
     public toJSON() {
         return {
             path: this.path.toString(),
-            value: this.get().value()
+            value: (this.get() as any).value()
         };
     }
 
-    public parent<ParentReferenceType = any>(): Reference<ParentReferenceType> | null {
+    public parent<ParentReferenceType = any>(): ReferenceInterface<ParentReferenceType> | null {
         if (this.path.length() === 0) { // parent of root is null
             return null;
         } else if (this.path.length() === 1) { // parent
@@ -47,11 +50,11 @@ export class Reference<ReferenceType = any> {
         }
     }
 
-    public reference<ReferenceType = any>(segment: string): Reference<ReferenceType> {
+    public reference<ReferenceType = any>(segment: string): ReferenceInterface<ReferenceType> {
         return new Reference<ReferenceType>(this.database, this.path.child(segment));
     }
 
-    public collection<ReferenceType = any>(segment: string): CollectionReference<ReferenceType> {
+    public collection<ReferenceType = any>(segment: string): CollectionReferenceInterface<ReferenceType> {
         return new CollectionReference<ReferenceType>(this.database, this.path.child(segment));
     }
 
@@ -60,7 +63,7 @@ export class Reference<ReferenceType = any> {
         return this;
     }
 
-    public get(): Snapshot<ReferenceType> {
+    public get(): SnapshotInterface<ReferenceType> {
         return new Snapshot<ReferenceType>(this, this.database.get<ReferenceType>(this.path));
     }
 

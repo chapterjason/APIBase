@@ -8,15 +8,16 @@
  */
 
 import {Database} from "../Database";
-import {Reference} from "../..";
+import { SnapshotInterface } from "./Snapshotinterface";
+import { ReferenceInterface } from "../Reference/ReferenceInterface";
 
-export class Snapshot<SnapshotType = any> {
+export class Snapshot<SnapshotType = any> implements SnapshotInterface<SnapshotType> {
 
     protected database: Database;
 
-    protected reference: Reference<SnapshotType>;
+    protected reference: ReferenceInterface<SnapshotType>;
 
-    public constructor(reference: Reference<SnapshotType>, data: SnapshotType) {
+    public constructor(reference: ReferenceInterface<SnapshotType>, data: SnapshotType) {
         this.reference = reference;
         this.database = new Database(data);
     }

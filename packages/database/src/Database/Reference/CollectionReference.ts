@@ -7,17 +7,16 @@
  * File that was distributed with this source code.
  */
 
-import {Reference} from "./Reference";
-import {generateIdentifier} from "@apibase/core";
-import {CollectionSnapshot} from "../..";
+import { Reference } from "./Reference";
+import { generateIdentifier } from "@apibase/core";
+import { CollectionSnapshot } from "../..";
+import { CollectionIndex, CollectionReferenceInterface } from "./CollectionReferenceInterface";
+import { CollectionSnapshotInterface } from "../Snapshot/CollectionSnapshotInterface";
+import { ReferenceInterface } from "./ReferenceInterface";
 
-export interface CollectionIndex<ItemType = any> {
-    [id: string]: ItemType;
-}
+export class CollectionReference<ReferenceType = any> extends Reference<CollectionIndex<ReferenceType>> implements CollectionReferenceInterface<ReferenceType> {
 
-export class CollectionReference<ReferenceType = any> extends Reference<CollectionIndex<ReferenceType>> {
-
-    public push(value?: ReferenceType) {
+    public push(value?: ReferenceType): ReferenceInterface<ReferenceType> {
         const id = generateIdentifier();
         const reference = new Reference<ReferenceType>(this.database, this.path.child(id));
 
@@ -28,7 +27,7 @@ export class CollectionReference<ReferenceType = any> extends Reference<Collecti
         return reference;
     }
 
-    public get(): CollectionSnapshot<ReferenceType> {
+    public get(): CollectionSnapshotInterface<ReferenceType> {
         return new CollectionSnapshot<ReferenceType>(this, this.database.get<CollectionIndex<ReferenceType>>(this.path));
     }
 }

@@ -18,34 +18,46 @@ const database = new ClientDatabase('http://localhost:3000');
 
 /*
 not working --- need to reimplement references and snapshots --- performance ---> get all values than localy do the collection thing
-
-database
-    .collection('users')
-    .get()
-    .forEach(user => {
-        user
-            .value()
-            .then(users => {
-                Logger.debug(users);
-            })
-            .catch(error => {
-                Logger.error(error);
-            });
-    });
 */
 
 /*
-database
-    .reference('users')
-    .get()
-    .value()
-    .then(users => {
-        Logger.debug(users);
-    })
-    .catch(error => {
-        Logger.error(error);
-    });
+const collection = database.collection('users');
+const snapshot = collection.get();
+
+Logger.log(snapshot);
 */
+    // .get()
+    // .forEach(user => {
+    //     user
+    //         .value()
+    //         .then(users => {
+    //             Logger.debug(users);
+    //         })
+    //         .catch(error => {
+    //             Logger.error(error);
+    //         });
+    // });
+
+    
+interface CollectionIndex<CollectionType> {
+    [id: string]: CollectionType;
+}
+
+interface User {
+    name: string;
+}
+
+const reference = database.reference<User>('users');
+const snapshot = reference.get();
+
+// snapshot
+//     .value()
+//     .then(users => {
+//         Logger.debug(users);
+//     })
+//     .catch(error => {
+//         Logger.error(error);
+//     });
 
 /*
 database
@@ -57,3 +69,14 @@ database
         Logger.error(error);
     });
 */
+
+/*
+database
+    .set('users')
+    .then(users => {
+        Logger.debug(users);
+    })
+    .catch(error => {
+        Logger.error(error);
+    });
+    */

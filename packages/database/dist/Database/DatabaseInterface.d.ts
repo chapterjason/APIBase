@@ -1,11 +1,10 @@
-import { Path } from '@apibase/core';
-import { ReferenceInterface } from './Reference/ReferenceInterface';
-import { CollectionReferenceInterface } from './Reference/CollectionReferenceInterface';
-import { DatabaseInterface, DatabaseIndex } from './DatabaseInterface';
-export declare class Database implements DatabaseInterface {
-    protected mapping: DatabaseIndex;
-    protected depthLimit: number;
-    constructor(mapping?: DatabaseIndex);
+import { ReferenceInterface } from "./Reference/ReferenceInterface";
+import { CollectionReferenceInterface } from "./Reference/CollectionReferenceInterface";
+import { Path } from "@apibase/core";
+export interface DatabaseIndex {
+    [key: string]: any;
+}
+export interface DatabaseInterface {
     getPath(): Path;
     getPath(segments: string[]): Path;
     getPath(path: string): Path;

@@ -1,13 +1,16 @@
-import {Snapshot} from "./Snapshot";
-import {Map} from "@apibase/core";
-import {CollectionIndex, Reference} from "../..";
-export declare class CollectionSnapshot<SnapshotType = any> extends Snapshot<CollectionIndex<SnapshotType>> {
+import { Snapshot } from "./Snapshot";
+import { Map } from "@apibase/core";
+import { CollectionIndex } from "../Reference/CollectionReferenceInterface";
+import { ReferenceInterface } from "../Reference/ReferenceInterface";
+import { SnapshotInterface } from "./Snapshotinterface";
+import { CollectionSnapshotInterface } from "./CollectionSnapshotInterface";
+export declare class CollectionSnapshot<SnapshotType = any> extends Snapshot<CollectionIndex<SnapshotType>> implements CollectionSnapshotInterface<SnapshotType> {
     protected map: Map<string, SnapshotType>;
-    constructor(reference: Reference<CollectionIndex<SnapshotType>>, data: CollectionIndex<SnapshotType>);
-    item(segment: string): Snapshot<SnapshotType>;
-    forEach(callback: (childSnapshot: Snapshot<SnapshotType>) => void): void;
+    constructor(reference: ReferenceInterface<CollectionIndex<SnapshotType>>, data: CollectionIndex<SnapshotType>);
+    item(segment: string): SnapshotInterface<SnapshotType>;
+    forEach(callback: (childSnapshot: SnapshotInterface<SnapshotType>) => void): this;
     length(): number;
-    reverse(): void;
-    sortByKey(): void;
-    sortByProperty(property: string): void;
+    reverse(): this;
+    sortByKey(): this;
+    sortByProperty(property: string): this;
 }
