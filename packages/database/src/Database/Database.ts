@@ -43,7 +43,7 @@ export class Database {
     public delete(segments: string[]): boolean;
     public delete(path: string): boolean;
     public delete(path: Path): boolean;
-    public delete(path: any = []) {
+    public delete(path: any = []): boolean {
         path = this.getPath(path);
 
         if (path.length() === 0) {

@@ -8,26 +8,52 @@
  */
 
 import {createdAt, Logger, LogLevel} from '@apibase/core';
-import Axios from "axios";
-import {Database} from "@apibase/database";
+import {ClientDatabase} from "./Database/Database";
 
 Logger.setLogLevel(LogLevel.LLLL);
 
 Logger.debug('Init');
 
-const baseUrl = 'http://localhost:3000/';
+const database = new ClientDatabase('http://localhost:3000');
 
-const database = new Database();
+/*
+not working --- need to reimplement references and snapshots --- performance ---> get all values than localy do the collection thing
 
-Axios.get(baseUrl)
-    .then((response) => {
-        database.set('/', response.data.result);
-
-        const reference = database.collection<{ name: string }>('/users');
-        const users = reference.get();
-
-        users.forEach((user) => {
-            const id = user.key();
-            Logger.debug(createdAt(id), id, user.value());
-        });
+database
+    .collection('users')
+    .get()
+    .forEach(user => {
+        user
+            .value()
+            .then(users => {
+                Logger.debug(users);
+            })
+            .catch(error => {
+                Logger.error(error);
+            });
     });
+*/
+
+/*
+database
+    .reference('users')
+    .get()
+    .value()
+    .then(users => {
+        Logger.debug(users);
+    })
+    .catch(error => {
+        Logger.error(error);
+    });
+*/
+
+/*
+database
+    .get('users')
+    .then(users => {
+        Logger.debug(users);
+    })
+    .catch(error => {
+        Logger.error(error);
+    });
+*/
