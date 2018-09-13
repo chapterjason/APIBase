@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Snapshot, CollectionSnapshot, CollectionReference } from '@apibase/database';
-import { ClientDatabase } from '../Database/ClientDatabase';
-import { Logger, createdAt } from '@apibase/core';
-import { ClientCollectionReference } from '../Database/Reference/ClientCollectionReference';
-import { create } from 'domain';
+import {CollectionSnapshot, Snapshot} from '@apibase/database';
+import {ClientDatabase} from '../Database/ClientDatabase';
+import {createdAt, Logger} from '@apibase/core';
+import {ClientCollectionReference} from '../Database/Reference/ClientCollectionReference';
 
 export interface User {
     name: string;
@@ -95,17 +94,17 @@ export class Example extends React.Component<ExampleProps, ExampleState> {
         } else {
             this.setState({ sortOrder: false, sortBy: type });
         }
-    }
+    };
 
     protected handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({ inputText: event.target.value });
-    }
+    };
 
     protected handleKeyPress = (event) => {
         if (event.key == 'Enter') {
             this.addUser();
         }
-    }
+    };
 
     protected addUser = () => {
         this.reference
@@ -117,7 +116,7 @@ export class Example extends React.Component<ExampleProps, ExampleState> {
             .catch(error => {
                 Logger.error(error);
             });
-    }
+    };
 
     public render() {
         let debug: string = '';

@@ -6,6 +6,9 @@
   "author": "Jason Schilling <jason.schilling@sourecode.de>",
   "license": "MIT",
   "scripts": {
+    "clean:dist": "rm -rf dist",
+    "clean:git": "git clean -dXf",
+    "clean": "npm run clean:dist && npm run clean:git",
     "test": "nyc mocha",
     "build": "tsc",
     "watch": "tsc --watch"

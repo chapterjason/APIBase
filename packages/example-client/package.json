@@ -5,10 +5,12 @@
   "author": "Jason Schilling <jason.schilling@sourecode.de>",
   "license": "MIT",
   "scripts": {
+    "clean:dist": "rm -rf dist",
+    "clean:git": "git clean -dXf",
+    "clean": "npm run clean:dist && npm run clean:git",
     "test": "mocha -r ts-node/register tests/**/*.test.ts",
-    "start": "webpack-dev-server",
     "build": "webpack",
-    "watch": "tsc --watch"
+    "watch": "webpack-dev-server"
   },
   "dependencies": {
     "@apibase/core": "^1.0.0",
