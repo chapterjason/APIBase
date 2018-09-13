@@ -7,19 +7,18 @@
  * File that was distributed with this source code.
  */
 
-import {Database} from "../Database";
-import {CollectionReference, Snapshot, SnapshotInterface} from "../..";
+import {CollectionReference, DatabaseInterface, Snapshot, SnapshotInterface} from "../..";
 import {Path} from "@apibase/core";
 import {ReferenceInterface} from "./ReferenceInterface";
 import {CollectionReferenceInterface} from "./CollectionReferenceInterface";
 
 export class Reference<ReferenceType = any> implements ReferenceInterface<ReferenceType> {
 
-    protected database: Database;
+    protected database: DatabaseInterface;
 
     protected path: Path;
 
-    public constructor(database: Database, path: Path) {
+    public constructor(database: DatabaseInterface, path: Path) {
         this.database = database;
         this.path = path;
     }

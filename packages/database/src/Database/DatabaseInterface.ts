@@ -8,8 +8,6 @@ export interface DatabaseIndex {
 
 export interface DatabaseInterface {
 
-    getPath(path?: Path | string | string[]): Path;
-
     delete(path?: Path | string | string[]): boolean;
 
     set(path: Path | string | string[], value: any): boolean;

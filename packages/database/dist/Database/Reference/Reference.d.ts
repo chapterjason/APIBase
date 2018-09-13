@@ -1,13 +1,13 @@
-import {Database} from "../Database";
-import {SnapshotInterface} from "../..";
+import {DatabaseInterface, SnapshotInterface} from "../..";
 import {Path} from "@apibase/core";
 import {ReferenceInterface} from "./ReferenceInterface";
 import {CollectionReferenceInterface} from "./CollectionReferenceInterface";
 
 export declare class Reference<ReferenceType = any> implements ReferenceInterface<ReferenceType> {
-    protected database: Database;
+    protected database: DatabaseInterface;
     protected path: Path;
-    constructor(database: Database, path: Path);
+
+    constructor(database: DatabaseInterface, path: Path);
     getPath(): Path;
     key(): string;
     toJSON(): {

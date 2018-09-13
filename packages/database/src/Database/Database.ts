@@ -24,18 +24,8 @@ export class Database implements DatabaseInterface {
         this.mapping = mapping;
     }
 
-    public getPath(path: Path | string | string[] = []): Path {
-        if (typeof path === "string") {
-            path = new Path(path);
-        } else if (Array.isArray(path)) {
-            path = new Path(path);
-        }
-
-        return path;
-    }
-
     public delete(path?: Path | string | string[]): boolean {
-        path = this.getPath(path);
+        path = Path.ensurePath(path);
 
         if (path.length() === 0) {
             this.mapping = {};
@@ -69,7 +59,7 @@ export class Database implements DatabaseInterface {
     }
 
     public set(path: Path | string | string[], value: any): boolean {
-        path = this.getPath(path);
+        path = Path.ensurePath(path);
 
         if (path.length() === 0) {
             this.mapping = value;
@@ -105,7 +95,7 @@ export class Database implements DatabaseInterface {
     }
 
     public get<T>(path?: Path | string | string[]): T {
-        path = this.getPath(path);
+        path = Path.ensurePath(path);
 
         if (path.length() === 0) {
             return this.mapping as T;
@@ -128,11 +118,11 @@ export class Database implements DatabaseInterface {
     }
 
     public reference<ReferenceType = any>(path?: Path | string | string[]): ReferenceInterface<ReferenceType> {
-        return new Reference<ReferenceType>(this, this.getPath(path));
+        return new Reference<ReferenceType>(this, Path.ensurePath(path));
     }
 
     public collection<ReferenceType = any>(path?: Path | string | string[]): CollectionReferenceInterface<ReferenceType> {
-        return new CollectionReference<ReferenceType>(this, this.getPath(path));
+        return new CollectionReference<ReferenceType>(this, Path.ensurePath(path));
     }
 
 }

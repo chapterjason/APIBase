@@ -1,35 +1,79 @@
-import {Database, ReferenceInterface, CollectionReferenceInterface} from "@apibase/database";
-import {createdAt, Logger, Path} from "@apibase/core";
-import Axios from "axios";
+import {Path} from "@apibase/core";
 
-export class ClientDatabase extends Database {
+interface DatabaseResponse<Type> {
+    success: boolean;
+    result: Type;
+}
+
+export class ClientDatabase {
 
     protected service: string;
 
     public constructor(service: string) {
-        super();
-
         this.service = service;
     }
 
-    
-
-    // public get<T>(): Promise<T>;
-    // public get<T>(segments: string[]): Promise<T>;
-    // public get<T>(path: string): Promise<T>;
-    // public get<T>(path: Path): Promise<T>;
-    // public get<T>(path: any = []): Promise<T> {
-    //     path = this.getPath(path);
-
-    //     return Axios
-    //         .get(this.service + path.toString())
-    //         .then((response) => {
-    //             if (response.data.success) {
-    //                 return response.data.result as T;
-    //             } else {
-    //                 throw new Error(response.data.result);
+    // async delete(path: Path | string | string[]): Promise<boolean> {
+    //     return new Promise<boolean>(async (resolve, reject) => {
+    //         try {
+    //             const response: AxiosResponse<DatabaseResponse<boolean>> = await Axios.delete(this.getService(path));
+    //             const data = response.data;
+    //             if(data.success){
+    //                 resolve(data.result)
+    //             }else{
+    //                 reject(data.result);
     //             }
-    //         });
+    //         }catch(error){
+    //             Logger.error(error);
+    //             reject(false);
+    //         }
+    //     });
     // }
+    //
+    // async set(path: Path | string | string[], value: any): Promise<boolean> {
+    //     return new Promise<boolean>(async (resolve, reject) => {
+    //         try {
+    //             const response: AxiosResponse<DatabaseResponse<boolean>> = await Axios.put(this.getService(path), value);
+    //             const data = response.data;
+    //             if(data.success){
+    //                 resolve(data.result)
+    //             }else{
+    //                 reject(data.result);
+    //             }
+    //         }catch(error){
+    //             Logger.error(error);
+    //             reject(false);
+    //         }
+    //     });
+    // }
+    //
+    // async get<T>(path: Path | string | string[]): Promise<T> {
+    //     return new Promise<T>(async (resolve, reject) => {
+    //         try {
+    //             const response: AxiosResponse<DatabaseResponse<T>> = await Axios.get(this.getService(path));
+    //             const data = response.data;
+    //             if(data.success){
+    //                 resolve(data.result)
+    //             }else{
+    //                 reject(data.result);
+    //             }
+    //         }catch(error){
+    //             Logger.error(error);
+    //             reject(false);
+    //         }
+    //     });
+    // }
+    //
+    // reference<ReferenceType = any>(path: Path | string | string[]): ReferenceInterface<Promise<ReferenceType>> {
+    //     return new Reference(this, this.get(path));
+    // }
+    //
+    // collection<ReferenceType = any>(path: Path | string | string[]): CollectionReferenceInterface<ReferenceType> {
+    //
+    // }
+
+    protected getService(path: Path | string | string[]) {
+        return this.service.replace(/[\/]*$/m, '') + path.toString();
+    }
 
 }

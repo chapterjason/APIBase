@@ -7,16 +7,9 @@ export declare class Database implements DatabaseInterface {
     protected mapping: DatabaseIndex;
     protected depthLimit: number;
     constructor(mapping?: DatabaseIndex);
-
-    getPath(path?: Path | string | string[]): Path;
-
     delete(path?: Path | string | string[]): boolean;
-
     set(path: Path | string | string[], value: any): boolean;
-
     get<T>(path?: Path | string | string[]): T;
-
     reference<ReferenceType = any>(path?: Path | string | string[]): ReferenceInterface<ReferenceType>;
-
     collection<ReferenceType = any>(path?: Path | string | string[]): CollectionReferenceInterface<ReferenceType>;
 }

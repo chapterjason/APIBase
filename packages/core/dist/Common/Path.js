@@ -23,7 +23,6 @@ var Path = /** @class */ (function () {
             this.segments = [];
         }
     }
-
     Path.ensurePath = function (path) {
         if (path instanceof Path) {
             return path;
