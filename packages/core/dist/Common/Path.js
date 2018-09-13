@@ -7,12 +7,10 @@
  * For the full copyright and license information, please view the LICENSE
  * File that was distributed with this source code.
  */
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 var Path = /** @class */ (function () {
     function Path(path) {
-        if (path === void 0) {
-            path = [];
-        }
+        if (path === void 0) { path = []; }
         if (Array.isArray(path)) {
             this.segments = Path.normalize(path);
         }
@@ -37,12 +35,8 @@ var Path = /** @class */ (function () {
         }
         if (Array.isArray(segment)) {
             return segment
-                .map(function (segment) {
-                    return segment.trim();
-                })
-                .filter(function (segment) {
-                    return segment.length;
-                });
+                .map(function (segment) { return segment.trim(); })
+                .filter(function (segment) { return segment.length; });
         }
         return [];
     };

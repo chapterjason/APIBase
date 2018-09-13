@@ -1,6 +1,5 @@
-import {SnapshotInterface} from "./SnapshotInterface";
-import {ReferenceInterface} from "../..";
-
+import { SnapshotInterface } from "./SnapshotInterface";
+import { ReferenceInterface } from "../..";
 export declare class Snapshot<SnapshotType = any> implements SnapshotInterface<SnapshotType> {
     protected data: SnapshotType;
     protected reference: ReferenceInterface<SnapshotType>;

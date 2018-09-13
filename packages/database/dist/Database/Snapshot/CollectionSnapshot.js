@@ -105,6 +105,10 @@ var CollectionSnapshot = /** @class */ (function (_super) {
         });
         return this;
     };
+    CollectionSnapshot.prototype.sort = function (compare) {
+        this.map = this.map.sort(compare);
+        return this;
+    };
     return CollectionSnapshot;
 }(Snapshot_1.Snapshot));
 exports.CollectionSnapshot = CollectionSnapshot;

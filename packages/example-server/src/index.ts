@@ -51,8 +51,7 @@ server.use((request, response, next) => {
         }
     } else if (request.method === 'PUT') { // set
         try {
-            database.set(path, request.body);
-            response.send(new ResponseSuccess(database.get(path)));
+            response.send(new ResponseSuccess(database.set(path, request.body)));
         } catch (error) {
             response.status(500);
             response.send(new ResponseError(error.message));

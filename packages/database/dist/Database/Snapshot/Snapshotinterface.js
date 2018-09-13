@@ -1,3 +1,3 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=Snapshotinterface.js.map
+//# sourceMappingURL=SnapshotInterface.js.map

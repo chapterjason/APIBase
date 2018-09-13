@@ -7,18 +7,18 @@
  * File that was distributed with this source code.
  */
 
-import {CollectionReference, DatabaseInterface, Snapshot, SnapshotInterface} from "../..";
+import {CollectionReference, Snapshot} from "../..";
 import {Path} from "@apibase/core";
-import {ReferenceInterface} from "./ReferenceInterface";
-import {CollectionReferenceInterface} from "./CollectionReferenceInterface";
+import {ReferenceInterface, ReferenceJSON} from "./ReferenceInterface";
+import { Database } from "../Database";
 
 export class Reference<ReferenceType = any> implements ReferenceInterface<ReferenceType> {
 
-    protected database: DatabaseInterface;
+    protected database: Database;
 
     protected path: Path;
 
-    public constructor(database: DatabaseInterface, path: Path) {
+    public constructor(database: Database, path: Path) {
         this.database = database;
         this.path = path;
     }
@@ -31,14 +31,14 @@ export class Reference<ReferenceType = any> implements ReferenceInterface<Refere
         return this.path.end();
     }
 
-    public toJSON() {
+    public toJSON(): ReferenceJSON {
         return {
             path: this.path.toString(),
-            value: (this.get() as any).value()
+            value: this.get().value()
         };
     }
 
-    public parent<ParentReferenceType = any>(): ReferenceInterface<ParentReferenceType> | null {
+    public parent<ParentReferenceType = any>(): Reference<ParentReferenceType> | null {
         if (this.path.length() === 0) { // parent of root is null
             return null;
         } else if (this.path.length() === 1) { // parent
@@ -48,27 +48,24 @@ export class Reference<ReferenceType = any> implements ReferenceInterface<Refere
         }
     }
 
-    public reference<ReferenceType = any>(segment: string): ReferenceInterface<ReferenceType> {
+    public reference<ReferenceType = any>(segment: string): Reference<ReferenceType> {
         return new Reference<ReferenceType>(this.database, this.path.child(segment));
     }
 
-    public collection<ReferenceType = any>(segment: string): CollectionReferenceInterface<ReferenceType> {
+    public collection<ReferenceType = any>(segment: string): CollectionReference<ReferenceType> {
         return new CollectionReference<ReferenceType>(this.database, this.path.child(segment));
     }
 
-    public set(value: ReferenceType): this {
-        this.database.set(this.path, value);
-        return this;
+    public set(value: ReferenceType): boolean {
+        return this.database.set(this.path, value);
     }
 
-    public get(): SnapshotInterface<ReferenceType> {
+    public get(): Snapshot<ReferenceType> {
         return new Snapshot<ReferenceType>(this, this.database.get<ReferenceType>(this.path));
     }
 
-    public delete(): this {
-        this.database.delete(this.path);
-
-        return this;
+    public delete(): boolean {
+        return this.database.delete(this.path);
     }
 
 }

@@ -10,7 +10,7 @@
 import {CollectionIndex, ReferenceInterface} from "../..";
 import {CollectionSnapshotInterface} from "./CollectionSnapshotInterface";
 import {SnapshotInterface} from "./SnapshotInterface";
-import {isObject, Map} from "@apibase/core";
+import {isObject, Map, MapTupel} from "@apibase/core";
 import {Snapshot} from "./Snapshot";
 
 export class CollectionSnapshot<SnapshotType = any> extends Snapshot<CollectionIndex<SnapshotType>> implements CollectionSnapshotInterface<SnapshotType> {
@@ -38,11 +38,11 @@ export class CollectionSnapshot<SnapshotType = any> extends Snapshot<CollectionI
         this.map = map;
     }
 
-    public item(segment: string): SnapshotInterface<SnapshotType> {
+    public item(segment: string): Snapshot<SnapshotType> {
         return new Snapshot<SnapshotType>(this.reference.reference<SnapshotType>(segment), this.map.get(segment));
     }
 
-    public forEach(callback: (snapshot: SnapshotInterface<SnapshotType>) => void): this {
+    public forEach(callback: (snapshot: Snapshot<SnapshotType>) => void): this {
         for (let key of this.map.keys()) {
             callback(this.item(key));
         }
@@ -72,6 +72,12 @@ export class CollectionSnapshot<SnapshotType = any> extends Snapshot<CollectionI
         this.map = this.map.sort((a, b) => {
             return a[1][property].localeCompare(b[1][property]);
         });
+
+        return this;
+    }
+
+    public sort(compare: (a: MapTupel<string, SnapshotType>, b: MapTupel<string, SnapshotType>) => number): this {
+        this.map = this.map.sort(compare);
 
         return this;
     }

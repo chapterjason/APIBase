@@ -45,15 +45,13 @@ var Reference = /** @class */ (function () {
         return new __1.CollectionReference(this.database, this.path.child(segment));
     };
     Reference.prototype.set = function (value) {
-        this.database.set(this.path, value);
-        return this;
+        return this.database.set(this.path, value);
     };
     Reference.prototype.get = function () {
         return new __1.Snapshot(this, this.database.get(this.path));
     };
     Reference.prototype.delete = function () {
-        this.database.delete(this.path);
-        return this;
+        return this.database.delete(this.path);
     };
     return Reference;
 }());

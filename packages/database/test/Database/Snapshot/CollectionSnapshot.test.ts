@@ -9,7 +9,7 @@
 
 import {expect} from 'chai';
 import 'mocha';
-import {Database} from "../../../src";
+import {Database, CollectionSnapshotInterface, SnapshotInterface} from "../../../src";
 
 describe('CollectionSnapshot', () => {
 

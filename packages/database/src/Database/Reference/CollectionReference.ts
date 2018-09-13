@@ -9,13 +9,12 @@
 
 import {Reference} from "./Reference";
 import {generateIdentifier} from "@apibase/core";
-import {CollectionSnapshot, CollectionSnapshotInterface} from "../..";
+import {CollectionSnapshot} from "../..";
 import {CollectionIndex, CollectionReferenceInterface} from "./CollectionReferenceInterface";
-import {ReferenceInterface} from "./ReferenceInterface";
 
 export class CollectionReference<ReferenceType = any> extends Reference<CollectionIndex<ReferenceType>> implements CollectionReferenceInterface<ReferenceType> {
 
-    public push(value?: ReferenceType): ReferenceInterface<ReferenceType> {
+    public push(value?: ReferenceType): Reference<ReferenceType> {
         const id = generateIdentifier();
         const reference = new Reference<ReferenceType>(this.database, this.path.child(id));
 
@@ -26,7 +25,7 @@ export class CollectionReference<ReferenceType = any> extends Reference<Collecti
         return reference;
     }
 
-    public get(): CollectionSnapshotInterface<ReferenceType> {
+    public get(): CollectionSnapshot<ReferenceType> {
         return new CollectionSnapshot<ReferenceType>(this, this.database.get<CollectionIndex<ReferenceType>>(this.path));
     }
 }

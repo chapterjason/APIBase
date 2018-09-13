@@ -10,8 +10,6 @@
 import {Path} from '@apibase/core';
 import {Reference} from "./Reference/Reference";
 import {CollectionReference} from "./Reference/CollectionReference";
-import {ReferenceInterface} from './Reference/ReferenceInterface';
-import {CollectionReferenceInterface} from './Reference/CollectionReferenceInterface';
 import {DatabaseIndex, DatabaseInterface} from './DatabaseInterface';
 
 export class Database implements DatabaseInterface {
@@ -117,11 +115,11 @@ export class Database implements DatabaseInterface {
         }
     }
 
-    public reference<ReferenceType = any>(path?: Path | string | string[]): ReferenceInterface<ReferenceType> {
+    public reference<ReferenceType = any>(path?: Path | string | string[]): Reference<ReferenceType> {
         return new Reference<ReferenceType>(this, Path.ensurePath(path));
     }
 
-    public collection<ReferenceType = any>(path?: Path | string | string[]): CollectionReferenceInterface<ReferenceType> {
+    public collection<ReferenceType = any>(path?: Path | string | string[]): CollectionReference<ReferenceType> {
         return new CollectionReference<ReferenceType>(this, Path.ensurePath(path));
     }
 
