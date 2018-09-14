@@ -7,22 +7,22 @@
  * File that was distributed with this source code.
  */
 
-import {Database} from "../Database";
-import {Reference} from "../..";
+import {SnapshotInterface} from "./SnapshotInterface";
+import {ReferenceInterface} from "../..";
 
-export class Snapshot<SnapshotType = any> {
+export class Snapshot<SnapshotType = any> implements SnapshotInterface<SnapshotType> {
 
-    protected database: Database;
+    protected data: SnapshotType;
 
-    protected reference: Reference<SnapshotType>;
+    protected reference: ReferenceInterface<SnapshotType>;
 
-    public constructor(reference: Reference<SnapshotType>, data: SnapshotType) {
+    public constructor(reference: ReferenceInterface<SnapshotType>, data: SnapshotType) {
         this.reference = reference;
-        this.database = new Database(data);
+        this.data = data;
     }
 
     public value(): SnapshotType {
-        return this.database.get<SnapshotType>();
+        return this.data;
     }
 
     public key(): string {

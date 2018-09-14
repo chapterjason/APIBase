@@ -1,10 +1,1 @@
-{
-  "version": 3,
-  "file": "ResponseSuccess.js",
-  "sourceRoot": "",
-  "sources": [
-    "../../src/Response/ResponseSuccess.ts"
-  ],
-  "names": [],
-  "mappings": ";AAAA;;;;;;;GAOG;;AAGH;IAKI,yBAAmB,MAAW;QAHpB,YAAO,GAAY,IAAI,CAAC;QAI9B,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;IACzB,CAAC;IACL,sBAAC;AAAD,CAAC,AARD,IAQC;AARY,0CAAe"
-}
+{"version":3,"file":"ResponseSuccess.js","sourceRoot":"","sources":["../../src/Response/ResponseSuccess.ts"],"names":[],"mappings":";AAAA;;;;;;;GAOG;;AAGH;IAKI,yBAAmB,MAAW;QAHpB,YAAO,GAAY,IAAI,CAAC;QAI9B,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;IACzB,CAAC;IACL,sBAAC;AAAD,CAAC,AARD,IAQC;AARY,0CAAe"}

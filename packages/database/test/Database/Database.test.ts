@@ -74,13 +74,6 @@ describe('Database', () => {
         }
     });
 
-    it('getPath', () => {
-        expect(database.getPath(['user', 'name']).toString()).to.equal('/user/name');
-        expect(database.getPath('/user/name').toString()).to.equal('/user/name');
-        expect(database.getPath(new Path('/user/name')).toString()).to.equal('/user/name');
-        expect(database.getPath().toString()).to.equal('/');
-    });
-
     it('delete', () => {
         expect(database.delete('/user/address/zipcode')).to.equal(true);
 

@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * File that was distributed with this source code.
  */
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 var __1 = require("../..");
 var core_1 = require("@apibase/core");
 var Reference = /** @class */ (function () {
@@ -45,15 +45,13 @@ var Reference = /** @class */ (function () {
         return new __1.CollectionReference(this.database, this.path.child(segment));
     };
     Reference.prototype.set = function (value) {
-        this.database.set(this.path, value);
-        return this;
+        return this.database.set(this.path, value);
     };
     Reference.prototype.get = function () {
         return new __1.Snapshot(this, this.database.get(this.path));
     };
     Reference.prototype.delete = function () {
-        this.database.delete(this.path);
-        return this;
+        return this.database.delete(this.path);
     };
     return Reference;
 }());

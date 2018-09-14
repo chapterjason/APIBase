@@ -6,16 +6,12 @@ var __read = (this && this.__read) || function (o, n) {
     try {
         while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
     }
-    catch (error) {
-        e = {error: error};
-    }
+    catch (error) { e = { error: error }; }
     finally {
         try {
             if (r && !r.done && (m = i["return"])) m.call(i);
         }
-        finally {
-            if (e) throw e.error;
-        }
+        finally { if (e) throw e.error; }
     }
     return ar;
 };
@@ -23,7 +19,7 @@ var __spread = (this && this.__spread) || function () {
     for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
     return ar;
 };
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 var String_1 = require("./String");
 /*
  * This file is part of the APIBase package.
@@ -99,9 +95,7 @@ var Logger = /** @class */ (function () {
             now.getMinutes(),
             now.getSeconds()
         ]
-            .map(function (unit) {
-                return String_1.padLeft(unit.toString());
-            });
+            .map(function (unit) { return String_1.padLeft(unit.toString()); });
         units.push(String_1.padLeft(now.getMilliseconds().toString(), 3));
         return units.join(':');
     };

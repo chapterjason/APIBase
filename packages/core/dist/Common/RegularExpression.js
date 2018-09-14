@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * File that was distributed with this source code.
  */
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 function escape(string) {
     return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }

@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * File that was distributed with this source code.
  */
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@apibase/core");
 var Database_1 = require("./Database");
 var express = require("express");
@@ -50,8 +50,7 @@ server.use(function (request, response, next) {
     }
     else if (request.method === 'PUT') { // set
         try {
-            Database_1.database.set(path, request.body);
-            response.send(new ResponseSuccess_1.ResponseSuccess(Database_1.database.get(path)));
+            response.send(new ResponseSuccess_1.ResponseSuccess(Database_1.database.set(path, request.body)));
         }
         catch (error) {
             response.status(500);
@@ -71,7 +70,5 @@ server.use(function (request, response, next) {
 });
 server.all('*', function (request, response) {
 });
-server.listen(3000, function () {
-    return console.log('Example-server listening on port 3000!');
-});
+server.listen(3000, function () { return console.log('Example-server listening on port 3000!'); });
 //# sourceMappingURL=index.js.map

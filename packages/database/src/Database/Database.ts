@@ -10,12 +10,9 @@
 import {Path} from '@apibase/core';
 import {Reference} from "./Reference/Reference";
 import {CollectionReference} from "./Reference/CollectionReference";
+import {DatabaseIndex, DatabaseInterface} from './DatabaseInterface';
 
-export interface DatabaseIndex {
-    [key: string]: any;
-}
-
-export class Database {
+export class Database implements DatabaseInterface {
 
     protected mapping: DatabaseIndex;
 
@@ -25,26 +22,8 @@ export class Database {
         this.mapping = mapping;
     }
 
-    public getPath(): Path;
-    public getPath(segments: string[]): Path;
-    public getPath(path: string): Path;
-    public getPath(path: Path): Path;
-    public getPath(path: any = []): Path {
-        if (typeof path === "string") {
-            path = new Path(path);
-        } else if (Array.isArray(path)) {
-            path = new Path(path);
-        }
-
-        return path;
-    }
-
-    public delete(): boolean;
-    public delete(segments: string[]): boolean;
-    public delete(path: string): boolean;
-    public delete(path: Path): boolean;
-    public delete(path: any = []): boolean {
-        path = this.getPath(path);
+    public delete(path?: Path | string | string[]): boolean {
+        path = Path.ensurePath(path);
 
         if (path.length() === 0) {
             this.mapping = {};
@@ -77,14 +56,12 @@ export class Database {
         }
     }
 
-    public set(segments: string[], value: any): this;
-    public set(path: string, value: any): this;
-    public set(path: Path, value: any): this;
-    public set(path: any, value: any): this {
-        path = this.getPath(path);
+    public set(path: Path | string | string[], value: any): boolean {
+        path = Path.ensurePath(path);
 
         if (path.length() === 0) {
             this.mapping = value;
+            return true;
         } else {
             const segments: string[] = path.getSegments();
 
@@ -107,19 +84,16 @@ export class Database {
                     current = current[segment];
                 } else {
                     current[segment] = value;
+                    return true;
                 }
             }
         }
 
-        return this;
+        return false;
     }
 
-    public get<T>(): T;
-    public get<T>(segments: string[]): T;
-    public get<T>(path: string): T;
-    public get<T>(path: Path): T;
-    public get<T>(path: any = []): T {
-        path = this.getPath(path);
+    public get<T>(path?: Path | string | string[]): T {
+        path = Path.ensurePath(path);
 
         if (path.length() === 0) {
             return this.mapping as T;
@@ -141,20 +115,12 @@ export class Database {
         }
     }
 
-    public reference<ReferenceType = any>(): Reference<ReferenceType>;
-    public reference<ReferenceType = any>(segments: string[]): Reference<ReferenceType>;
-    public reference<ReferenceType = any>(path: string): Reference<ReferenceType>;
-    public reference<ReferenceType = any>(path: Path): Reference<ReferenceType>;
-    public reference<ReferenceType = any>(path: any = []): Reference<ReferenceType> {
-        return new Reference<ReferenceType>(this, this.getPath(path));
+    public reference<ReferenceType = any>(path?: Path | string | string[]): Reference<ReferenceType> {
+        return new Reference<ReferenceType>(this, Path.ensurePath(path));
     }
 
-    public collection<ReferenceType = any>(): CollectionReference<ReferenceType>;
-    public collection<ReferenceType = any>(segments: string[]): CollectionReference<ReferenceType>;
-    public collection<ReferenceType = any>(path: string): CollectionReference<ReferenceType>;
-    public collection<ReferenceType = any>(path: Path): CollectionReference<ReferenceType>;
-    public collection<ReferenceType = any>(path: any = []): CollectionReference<ReferenceType> {
-        return new CollectionReference<ReferenceType>(this, this.getPath(path));
+    public collection<ReferenceType = any>(path?: Path | string | string[]): CollectionReference<ReferenceType> {
+        return new CollectionReference<ReferenceType>(this, Path.ensurePath(path));
     }
 
 }

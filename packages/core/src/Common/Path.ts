@@ -12,10 +12,7 @@ export class Path {
 
     protected segments: string[];
 
-    public constructor();
-    public constructor(segments: string[]);
-    public constructor(path: string);
-    public constructor(path: any = []) {
+    public constructor(path: string | string[] = []) {
         if (Array.isArray(path)) {
             this.segments = Path.normalize(path);
         } else if (typeof path === "string") {
@@ -25,9 +22,15 @@ export class Path {
         }
     }
 
-    protected static normalize(segments: string[]): string[]
-    protected static normalize(segment: string): string[]
-    protected static normalize(segment: any): string[] {
+    public static ensurePath(path: Path | string | string[]) {
+        if (path instanceof Path) {
+            return path;
+        } else {
+            return new Path(path);
+        }
+    }
+
+    protected static normalize(segment: string | string[]): string[] {
         if (typeof segment === "string") {
             segment = segment.split('/');
         }

@@ -13,7 +13,7 @@ var __values = (this && this.__values) || function (o) {
     return {
         next: function () {
             if (o && i >= o.length) o = void 0;
-            return {value: o && o[i++], done: !o};
+            return { value: o && o[i++], done: !o };
         }
     };
 };
@@ -27,23 +27,8 @@ var Database = /** @class */ (function () {
         this.depthLimit = 32;
         this.mapping = mapping;
     }
-    Database.prototype.getPath = function (path) {
-        if (path === void 0) {
-            path = [];
-        }
-        if (typeof path === "string") {
-            path = new core_1.Path(path);
-        }
-        else if (Array.isArray(path)) {
-            path = new core_1.Path(path);
-        }
-        return path;
-    };
     Database.prototype.delete = function (path) {
-        if (path === void 0) {
-            path = [];
-        }
-        path = this.getPath(path);
+        path = core_1.Path.ensurePath(path);
         if (path.length() === 0) {
             this.mapping = {};
             return true;
@@ -71,9 +56,10 @@ var Database = /** @class */ (function () {
         }
     };
     Database.prototype.set = function (path, value) {
-        path = this.getPath(path);
+        path = core_1.Path.ensurePath(path);
         if (path.length() === 0) {
             this.mapping = value;
+            return true;
         }
         else {
             var segments = path.getSegments();
@@ -93,17 +79,15 @@ var Database = /** @class */ (function () {
                 }
                 else {
                     current[segment] = value;
+                    return true;
                 }
             }
         }
-        return this;
+        return false;
     };
     Database.prototype.get = function (path) {
-        if (path === void 0) {
-            path = [];
-        }
         var e_1, _a;
-        path = this.getPath(path);
+        path = core_1.Path.ensurePath(path);
         if (path.length() === 0) {
             return this.mapping;
         }
@@ -123,31 +107,21 @@ var Database = /** @class */ (function () {
                     }
                 }
             }
-            catch (e_1_1) {
-                e_1 = {error: e_1_1};
-            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
             finally {
                 try {
                     if (segments_1_1 && !segments_1_1.done && (_a = segments_1.return)) _a.call(segments_1);
                 }
-                finally {
-                    if (e_1) throw e_1.error;
-                }
+                finally { if (e_1) throw e_1.error; }
             }
             return current;
         }
     };
     Database.prototype.reference = function (path) {
-        if (path === void 0) {
-            path = [];
-        }
-        return new Reference_1.Reference(this, this.getPath(path));
+        return new Reference_1.Reference(this, core_1.Path.ensurePath(path));
     };
     Database.prototype.collection = function (path) {
-        if (path === void 0) {
-            path = [];
-        }
-        return new CollectionReference_1.CollectionReference(this, this.getPath(path));
+        return new CollectionReference_1.CollectionReference(this, core_1.Path.ensurePath(path));
     };
     return Database;
 }());

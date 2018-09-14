@@ -5,20 +5,26 @@
   "author": "Jason Schilling <jason.schilling@sourecode.de>",
   "license": "MIT",
   "scripts": {
+    "clean:dist": "rm -rf dist",
+    "clean:git": "git clean -dXf",
+    "clean": "npm run clean:dist && npm run clean:git",
     "test": "mocha -r ts-node/register tests/**/*.test.ts",
-    "start": "webpack-dev-server",
     "build": "webpack",
-    "watch": "tsc --watch"
+    "watch": "webpack-dev-server"
   },
   "dependencies": {
     "@apibase/core": "^1.0.0",
     "@apibase/database": "^1.0.0",
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.4",
     "@types/mocha": "^5.2.5",
     "@types/axios": "^0.14.0",
+    "@types/react": "^16.4.14",
+    "@types/react-dom": "^16.0.7",
     "typescript": "^3.0.1",
     "chai": "^4.1.2",
     "mocha": "^5.2.0",

@@ -7,11 +7,12 @@
  * File that was distributed with this source code.
  */
 
-import {Database} from "../Database";
 import {CollectionReference, Snapshot} from "../..";
 import {Path} from "@apibase/core";
+import {ReferenceInterface, ReferenceJSON} from "./ReferenceInterface";
+import { Database } from "../Database";
 
-export class Reference<ReferenceType = any> {
+export class Reference<ReferenceType = any> implements ReferenceInterface<ReferenceType> {
 
     protected database: Database;
 
@@ -30,7 +31,7 @@ export class Reference<ReferenceType = any> {
         return this.path.end();
     }
 
-    public toJSON() {
+    public toJSON(): ReferenceJSON {
         return {
             path: this.path.toString(),
             value: this.get().value()
@@ -55,19 +56,16 @@ export class Reference<ReferenceType = any> {
         return new CollectionReference<ReferenceType>(this.database, this.path.child(segment));
     }
 
-    public set(value: ReferenceType): this {
-        this.database.set(this.path, value);
-        return this;
+    public set(value: ReferenceType): boolean {
+        return this.database.set(this.path, value);
     }
 
     public get(): Snapshot<ReferenceType> {
         return new Snapshot<ReferenceType>(this, this.database.get<ReferenceType>(this.path));
     }
 
-    public delete(): this {
-        this.database.delete(this.path);
-
-        return this;
+    public delete(): boolean {
+        return this.database.delete(this.path);
     }
 
 }

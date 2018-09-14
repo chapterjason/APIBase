@@ -7,15 +7,14 @@
  * For the full copyright and license information, please view the LICENSE
  * File that was distributed with this source code.
  */
-Object.defineProperty(exports, "__esModule", {value: true});
-var Database_1 = require("../Database");
+Object.defineProperty(exports, "__esModule", { value: true });
 var Snapshot = /** @class */ (function () {
     function Snapshot(reference, data) {
         this.reference = reference;
-        this.database = new Database_1.Database(data);
+        this.data = data;
     }
     Snapshot.prototype.value = function () {
-        return this.database.get();
+        return this.data;
     };
     Snapshot.prototype.key = function () {
         return this.reference.key();

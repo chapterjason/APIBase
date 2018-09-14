@@ -10,14 +10,11 @@
 import {Reference} from "./Reference";
 import {generateIdentifier} from "@apibase/core";
 import {CollectionSnapshot} from "../..";
+import {CollectionIndex, CollectionReferenceInterface} from "./CollectionReferenceInterface";
 
-export interface CollectionIndex<ItemType = any> {
-    [id: string]: ItemType;
-}
+export class CollectionReference<ReferenceType = any> extends Reference<CollectionIndex<ReferenceType>> implements CollectionReferenceInterface<ReferenceType> {
 
-export class CollectionReference<ReferenceType = any> extends Reference<CollectionIndex<ReferenceType>> {
-
-    public push(value?: ReferenceType) {
+    public push(value?: ReferenceType): Reference<ReferenceType> {
         const id = generateIdentifier();
         const reference = new Reference<ReferenceType>(this.database, this.path.child(id));
 
