@@ -38,7 +38,7 @@
 
 ▸ **forEach**(callback: *`function`*): `this`
 
-*Defined in [Database/Snapshot/CollectionSnapshotInterface.ts:9](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Snapshot/CollectionSnapshotInterface.ts#L9)*
+*Defined in [Database/Snapshot/CollectionSnapshotInterface.ts:9](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Snapshot/CollectionSnapshotInterface.ts#L9)*
 
 **Parameters:**
 
@@ -55,7 +55,7 @@ ___
 
 ▸ **item**(segment: *`string`*): [SnapshotInterface](_database_snapshot_snapshotinterface_.snapshotinterface.md)<`SnapshotType`>
 
-*Defined in [Database/Snapshot/CollectionSnapshotInterface.ts:7](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Snapshot/CollectionSnapshotInterface.ts#L7)*
+*Defined in [Database/Snapshot/CollectionSnapshotInterface.ts:7](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Snapshot/CollectionSnapshotInterface.ts#L7)*
 
 **Parameters:**
 
@@ -74,7 +74,7 @@ ___
 
 *Inherited from [SnapshotInterface](_database_snapshot_snapshotinterface_.snapshotinterface.md).[key](_database_snapshot_snapshotinterface_.snapshotinterface.md#key)*
 
-*Defined in [Database/Snapshot/SnapshotInterface.ts:5](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Snapshot/SnapshotInterface.ts#L5)*
+*Defined in [Database/Snapshot/SnapshotInterface.ts:5](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Snapshot/SnapshotInterface.ts#L5)*
 
 **Returns:** `string`
 
@@ -85,7 +85,7 @@ ___
 
 ▸ **length**(): `number`
 
-*Defined in [Database/Snapshot/CollectionSnapshotInterface.ts:11](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Snapshot/CollectionSnapshotInterface.ts#L11)*
+*Defined in [Database/Snapshot/CollectionSnapshotInterface.ts:11](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Snapshot/CollectionSnapshotInterface.ts#L11)*
 
 **Returns:** `number`
 
@@ -96,7 +96,7 @@ ___
 
 ▸ **reverse**(): `this`
 
-*Defined in [Database/Snapshot/CollectionSnapshotInterface.ts:13](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Snapshot/CollectionSnapshotInterface.ts#L13)*
+*Defined in [Database/Snapshot/CollectionSnapshotInterface.ts:13](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Snapshot/CollectionSnapshotInterface.ts#L13)*
 
 **Returns:** `this`
 
@@ -107,7 +107,7 @@ ___
 
 ▸ **sort**(compare: *`function`*): `this`
 
-*Defined in [Database/Snapshot/CollectionSnapshotInterface.ts:19](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Snapshot/CollectionSnapshotInterface.ts#L19)*
+*Defined in [Database/Snapshot/CollectionSnapshotInterface.ts:19](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Snapshot/CollectionSnapshotInterface.ts#L19)*
 
 **Parameters:**
 
@@ -124,7 +124,7 @@ ___
 
 ▸ **sortByKey**(): `this`
 
-*Defined in [Database/Snapshot/CollectionSnapshotInterface.ts:15](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Snapshot/CollectionSnapshotInterface.ts#L15)*
+*Defined in [Database/Snapshot/CollectionSnapshotInterface.ts:15](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Snapshot/CollectionSnapshotInterface.ts#L15)*
 
 **Returns:** `this`
 
@@ -135,7 +135,7 @@ ___
 
 ▸ **sortByProperty**(property: *`string`*): `this`
 
-*Defined in [Database/Snapshot/CollectionSnapshotInterface.ts:17](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Snapshot/CollectionSnapshotInterface.ts#L17)*
+*Defined in [Database/Snapshot/CollectionSnapshotInterface.ts:17](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Snapshot/CollectionSnapshotInterface.ts#L17)*
 
 **Parameters:**
 
@@ -154,7 +154,7 @@ ___
 
 *Inherited from [SnapshotInterface](_database_snapshot_snapshotinterface_.snapshotinterface.md).[value](_database_snapshot_snapshotinterface_.snapshotinterface.md#value)*
 
-*Defined in [Database/Snapshot/SnapshotInterface.ts:3](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Snapshot/SnapshotInterface.ts#L3)*
+*Defined in [Database/Snapshot/SnapshotInterface.ts:3](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Snapshot/SnapshotInterface.ts#L3)*
 
 **Returns:** [CollectionIndex](_database_reference_collectionreferenceinterface_.collectionindex.md)<`SnapshotType`>
 

@@ -41,7 +41,7 @@
 
 *Inherited from [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md).[collection](_database_reference_referenceinterface_.referenceinterface.md#collection)*
 
-*Defined in [Database/Reference/ReferenceInterface.ts:22](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Reference/ReferenceInterface.ts#L22)*
+*Defined in [Database/Reference/ReferenceInterface.ts:22](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Reference/ReferenceInterface.ts#L22)*
 
 **Type parameters:**
 
@@ -63,7 +63,7 @@ ___
 
 *Inherited from [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md).[delete](_database_reference_referenceinterface_.referenceinterface.md#delete)*
 
-*Defined in [Database/Reference/ReferenceInterface.ts:28](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Reference/ReferenceInterface.ts#L28)*
+*Defined in [Database/Reference/ReferenceInterface.ts:28](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Reference/ReferenceInterface.ts#L28)*
 
 **Returns:**  `boolean` &#124; `Promise`<`boolean`>
 
@@ -76,7 +76,7 @@ ___
 
 *Overrides [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md).[get](_database_reference_referenceinterface_.referenceinterface.md#get)*
 
-*Defined in [Database/Reference/CollectionReferenceInterface.ts:12](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Reference/CollectionReferenceInterface.ts#L12)*
+*Defined in [Database/Reference/CollectionReferenceInterface.ts:12](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Reference/CollectionReferenceInterface.ts#L12)*
 
 **Returns:**  [CollectionSnapshotInterface](_database_snapshot_collectionsnapshotinterface_.collectionsnapshotinterface.md)<`ReferenceType`> &#124; `Promise`<[CollectionSnapshotInterface](_database_snapshot_collectionsnapshotinterface_.collectionsnapshotinterface.md)<`ReferenceType`>>
 
@@ -89,7 +89,7 @@ ___
 
 *Inherited from [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md).[getPath](_database_reference_referenceinterface_.referenceinterface.md#getpath)*
 
-*Defined in [Database/Reference/ReferenceInterface.ts:12](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Reference/ReferenceInterface.ts#L12)*
+*Defined in [Database/Reference/ReferenceInterface.ts:12](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Reference/ReferenceInterface.ts#L12)*
 
 **Returns:** `Path`
 
@@ -102,7 +102,7 @@ ___
 
 *Inherited from [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md).[key](_database_reference_referenceinterface_.referenceinterface.md#key)*
 
-*Defined in [Database/Reference/ReferenceInterface.ts:14](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Reference/ReferenceInterface.ts#L14)*
+*Defined in [Database/Reference/ReferenceInterface.ts:14](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Reference/ReferenceInterface.ts#L14)*
 
 **Returns:** `string`
 
@@ -115,7 +115,7 @@ ___
 
 *Inherited from [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md).[parent](_database_reference_referenceinterface_.referenceinterface.md#parent)*
 
-*Defined in [Database/Reference/ReferenceInterface.ts:18](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Reference/ReferenceInterface.ts#L18)*
+*Defined in [Database/Reference/ReferenceInterface.ts:18](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Reference/ReferenceInterface.ts#L18)*
 
 **Type parameters:**
 
@@ -130,7 +130,7 @@ ___
 
 ▸ **push**(value?: *`ReferenceType`*):  [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md)<`ReferenceType`> &#124; `Promise`<[ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md)<`ReferenceType`>>
 
-*Defined in [Database/Reference/CollectionReferenceInterface.ts:10](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Reference/CollectionReferenceInterface.ts#L10)*
+*Defined in [Database/Reference/CollectionReferenceInterface.ts:10](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Reference/CollectionReferenceInterface.ts#L10)*
 
 **Parameters:**
 
@@ -149,7 +149,7 @@ ___
 
 *Inherited from [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md).[reference](_database_reference_referenceinterface_.referenceinterface.md#reference)*
 
-*Defined in [Database/Reference/ReferenceInterface.ts:20](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Reference/ReferenceInterface.ts#L20)*
+*Defined in [Database/Reference/ReferenceInterface.ts:20](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Reference/ReferenceInterface.ts#L20)*
 
 **Type parameters:**
 
@@ -171,7 +171,7 @@ ___
 
 *Inherited from [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md).[set](_database_reference_referenceinterface_.referenceinterface.md#set)*
 
-*Defined in [Database/Reference/ReferenceInterface.ts:24](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Reference/ReferenceInterface.ts#L24)*
+*Defined in [Database/Reference/ReferenceInterface.ts:24](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Reference/ReferenceInterface.ts#L24)*
 
 **Parameters:**
 
@@ -190,7 +190,7 @@ ___
 
 *Inherited from [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md).[toJSON](_database_reference_referenceinterface_.referenceinterface.md#tojson)*
 
-*Defined in [Database/Reference/ReferenceInterface.ts:16](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/database/src/Database/Reference/ReferenceInterface.ts#L16)*
+*Defined in [Database/Reference/ReferenceInterface.ts:16](https://github.com/chapterjason/APIBase/blob/00af181/packages/database/src/Database/Reference/ReferenceInterface.ts#L16)*
 
 **Returns:**  [ReferenceJSON](_database_reference_referenceinterface_.referencejson.md) &#124; `Promise`<[ReferenceJSON](_database_reference_referenceinterface_.referencejson.md)>
 

@@ -18,7 +18,7 @@
 
 ▸ **isObject**(object: *`any`*): `boolean`
 
-*Defined in [Common/Object.ts:2](https://github.com/chapterjason/APIBase/blob/d8cc53d/packages/core/src/Common/Object.ts#L2)*
+*Defined in [Common/Object.ts:2](https://github.com/chapterjason/APIBase/blob/00af181/packages/core/src/Common/Object.ts#L2)*
 
 **Parameters:**
 
