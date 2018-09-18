@@ -9,8 +9,9 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Logger, LogLevel } from '@apibase/core';
-import { Example } from './Component/Example';
+import {Logger, LogLevel} from '@apibase/core';
+import {Example} from './Component/Example';
+
 Logger.setLogLevel(LogLevel.LLLL);
 Logger.debug('Init');
 

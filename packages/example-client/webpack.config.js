@@ -7,32 +7,26 @@
  * File that was distributed with this source code.
  */
 
-const path = require("path");
+const Encore = require('@symfony/webpack-encore');
 
-module.exports = {
-    mode: 'development',
-    resolve: {
-        extensions: ['.ts', '.tsx', '.js']
-    },
-    entry: "./src/index.tsx",
-    output: {
-        filename: "bundle.js",
-        path: path.resolve(__dirname, "dist"),
-        publicPath: "/dist/"
-    },
-    module: {
-        rules: [
-            {test: /\.tsx?$/, loader: "ts-loader"}
-        ]
-    },
-    devServer: {
-        stats: {
-            assets: false,
-            hash: false,
-            chunks: false,
-            errors: true,
-            errorDetails: true,
-        },
-        overlay: true
-    }
-};
+Encore
+    .setOutputPath('dist')
+    .setPublicPath('/')
+    .cleanupOutputBeforeBuild()
+    .enableSourceMaps(!Encore.isProduction())
+    .enableVersioning(Encore.isProduction())
+
+    // Entry definitions
+    .addEntry('index', './src/index.tsx')
+
+    .createSharedEntry('js/vendor', './src/vendor.ts')
+
+    .addStyleEntry('style', './src/Styles/main.scss')
+
+    // Loader configuration
+    .enableSassLoader()
+    .enableTypeScriptLoader()
+    .enableReactPreset()
+;
+
+module.exports = Encore.getWebpackConfig();
