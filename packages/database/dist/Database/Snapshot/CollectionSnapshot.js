@@ -38,13 +38,13 @@ var CollectionSnapshot = /** @class */ (function (_super) {
     function CollectionSnapshot(reference, data) {
         var e_1, _a;
         var _this = _super.call(this, reference, data) || this;
-        var map = new core_1.Map();
+        _this._map = new core_1.Map();
         if (core_1.isObject(data)) {
             var keys = Object.keys(data);
             try {
                 for (var keys_1 = __values(keys), keys_1_1 = keys_1.next(); !keys_1_1.done; keys_1_1 = keys_1.next()) {
                     var key = keys_1_1.value;
-                    map.set(key, data[key]);
+                    _this._map.set(key, data[key]);
                 }
             }
             catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -57,22 +57,21 @@ var CollectionSnapshot = /** @class */ (function (_super) {
         }
         else if (Array.isArray(data)) {
             for (var key in data) {
-                map.set(key, data[key]);
+                _this._map.set(key, data[key]);
             }
         }
         else {
             throw new Error('The data at "' + reference.getPath().toString() + '" must be of type object or array.');
         }
-        _this.map = map;
         return _this;
     }
     CollectionSnapshot.prototype.item = function (segment) {
-        return new Snapshot_1.Snapshot(this.reference.reference(segment), this.map.get(segment));
+        return new Snapshot_1.Snapshot(this.reference.reference(segment), this._map.get(segment));
     };
     CollectionSnapshot.prototype.forEach = function (callback) {
         var e_2, _a;
         try {
-            for (var _b = __values(this.map.keys()), _c = _b.next(); !_c.done; _c = _b.next()) {
+            for (var _b = __values(this._map.keys()), _c = _b.next(); !_c.done; _c = _b.next()) {
                 var key = _c.value;
                 callback(this.item(key));
             }
@@ -86,27 +85,49 @@ var CollectionSnapshot = /** @class */ (function (_super) {
         }
         return this;
     };
+    CollectionSnapshot.prototype.map = function (callback) {
+        var e_3, _a;
+        var items = [];
+        try {
+            for (var _b = __values(this._map.keys()), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var key = _c.value;
+                items.push(callback(this.item(key)));
+            }
+        }
+        catch (e_3_1) {
+            e_3 = {error: e_3_1};
+        }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally {
+                if (e_3) throw e_3.error;
+            }
+        }
+        return items;
+    };
     CollectionSnapshot.prototype.length = function () {
-        return this.map.size();
+        return this._map.size();
     };
     CollectionSnapshot.prototype.reverse = function () {
-        this.map.reverse();
+        this._map.reverse();
         return this;
     };
     CollectionSnapshot.prototype.sortByKey = function () {
-        this.map = this.map.sort(function (a, b) {
+        this._map = this._map.sort(function (a, b) {
             return a[0].localeCompare(b[0]);
         });
         return this;
     };
     CollectionSnapshot.prototype.sortByProperty = function (property) {
-        this.map = this.map.sort(function (a, b) {
+        this._map = this._map.sort(function (a, b) {
             return a[1][property].localeCompare(b[1][property]);
         });
         return this;
     };
     CollectionSnapshot.prototype.sort = function (compare) {
-        this.map = this.map.sort(compare);
+        this._map = this._map.sort(compare);
         return this;
     };
     return CollectionSnapshot;

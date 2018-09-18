@@ -1,3 +1,4 @@
+
 export interface SnapshotInterface<SnapshotType = any> {
 
     value(): SnapshotType;

@@ -9,7 +9,7 @@
 
 import {expect} from 'chai';
 import 'mocha';
-import {Database, CollectionSnapshotInterface, SnapshotInterface} from "../../../src";
+import {Database} from "../../../src";
 
 describe('CollectionSnapshot', () => {
 
@@ -120,6 +120,8 @@ describe('CollectionSnapshot', () => {
 
         expect(values).to.deep.equal(expectedValues);
     });
+
+    // @todo map test
 
     it('sortedByKey', () => {
         const reference = database.collection<Post>('/posts');

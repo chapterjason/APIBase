@@ -1,12 +1,15 @@
-import { CollectionIndex, ReferenceInterface } from "../..";
-import { CollectionSnapshotInterface } from "./CollectionSnapshotInterface";
-import { Map, MapTupel } from "@apibase/core";
-import { Snapshot } from "./Snapshot";
+import {CollectionIndex, ReferenceInterface} from "../..";
+import {CollectionSnapshotInterface} from "./CollectionSnapshotInterface";
+import {Map, MapTupel} from "@apibase/core";
+import {Snapshot} from "./Snapshot";
+
 export declare class CollectionSnapshot<SnapshotType = any> extends Snapshot<CollectionIndex<SnapshotType>> implements CollectionSnapshotInterface<SnapshotType> {
-    protected map: Map<string, SnapshotType>;
+    protected _map: Map<string, SnapshotType>;
     constructor(reference: ReferenceInterface<CollectionIndex<SnapshotType>>, data: CollectionIndex<SnapshotType>);
     item(segment: string): Snapshot<SnapshotType>;
     forEach(callback: (snapshot: Snapshot<SnapshotType>) => void): this;
+
+    map<Type = any>(callback: (snapshot: Snapshot<SnapshotType>) => Type): Type[];
     length(): number;
     reverse(): this;
     sortByKey(): this;

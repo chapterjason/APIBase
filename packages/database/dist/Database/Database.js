@@ -64,13 +64,14 @@ var Database = /** @class */ (function () {
         else {
             var segments = path.getSegments();
             var current = this.mapping;
-            var limitCounter = 1;
+            var depth = 1;
             for (var segmentIndex = 0; segmentIndex < segments.length; segmentIndex++) {
                 var segment = segments[segmentIndex];
-                limitCounter++;
-                if (limitCounter >= this.depthLimit) {
+                depth++;
+                if (depth >= this.depthLimit) {
                     throw new Error('Depth limit of ' + this.depthLimit + ' exceeded!');
                 }
+                // @todo while inserting object I have to measure the depth of the object in addition to the current depth
                 if (!current[segment]) {
                     current[segment] = {};
                 }
@@ -83,6 +84,7 @@ var Database = /** @class */ (function () {
                 }
             }
         }
+        // @todo cannot be covered by a test, also it makes not sense. Any ideas ?
         return false;
     };
     Database.prototype.get = function (path) {

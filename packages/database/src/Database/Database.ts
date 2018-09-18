@@ -66,15 +66,16 @@ export class Database implements DatabaseInterface {
             const segments: string[] = path.getSegments();
 
             let current: DatabaseIndex = this.mapping;
-            let limitCounter = 1;
+            let depth = 1;
 
             for (let segmentIndex = 0; segmentIndex < segments.length; segmentIndex++) {
                 const segment = segments[segmentIndex];
-                limitCounter++;
+                depth++;
 
-                if (limitCounter >= this.depthLimit) {
+                if (depth >= this.depthLimit) {
                     throw new Error('Depth limit of ' + this.depthLimit + ' exceeded!');
                 }
+                // @todo while inserting object I have to measure the depth of the object in addition to the current depth
 
                 if (!current[segment]) {
                     current[segment] = {};
@@ -89,6 +90,7 @@ export class Database implements DatabaseInterface {
             }
         }
 
+        // @todo cannot be covered by a test, also it makes not sense. Any ideas ?
         return false;
     }
 

@@ -1,9 +1,12 @@
-import { SnapshotInterface } from "./SnapshotInterface";
-import { CollectionIndex } from "../..";
-import { MapTupel } from "@apibase/core";
+import {SnapshotInterface} from "./SnapshotInterface";
+import {CollectionIndex} from "../..";
+import {MapTupel} from "@apibase/core";
+
 export interface CollectionSnapshotInterface<SnapshotType = any> extends SnapshotInterface<CollectionIndex<SnapshotType>> {
     item(segment: string): SnapshotInterface<SnapshotType>;
     forEach(callback: (snapshot: SnapshotInterface<SnapshotType>) => void): this;
+
+    map<Type = any>(callback: (snapshot: SnapshotInterface<SnapshotType>) => Type): Type[];
     length(): number;
     reverse(): this;
     sortByKey(): this;
