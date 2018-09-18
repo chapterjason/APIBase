@@ -7,8 +7,9 @@
   "license": "MIT",
   "scripts": {
     "clean:dist": "rm -rf dist",
+    "clean:docs": "rm -rf docs",
     "clean:git": "git clean -dXf",
-    "clean": "npm run clean:dist && npm run clean:git",
+    "clean": "npm run clean:dist && npm run clean:docs && npm run clean:git",
     "test": "nyc mocha",
     "build": "tsc",
     "build-docs": "typedoc --out docs --theme markdown",

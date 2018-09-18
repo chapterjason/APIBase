@@ -24,7 +24,7 @@
 
 **● groups**: *`string`[]*
 
-*Defined in [Common/RegularExpression.ts:21](https://github.com/chapterjason/APIBase/blob/00af181/packages/core/src/Common/RegularExpression.ts#L21)*
+*Defined in [Common/RegularExpression.ts:21](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Common/RegularExpression.ts#L21)*
 
 ___
 <a id="index"></a>
@@ -33,7 +33,7 @@ ___
 
 **● index**: *`number`*
 
-*Defined in [Common/RegularExpression.ts:19](https://github.com/chapterjason/APIBase/blob/00af181/packages/core/src/Common/RegularExpression.ts#L19)*
+*Defined in [Common/RegularExpression.ts:19](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Common/RegularExpression.ts#L19)*
 
 ___
 <a id="input"></a>
@@ -42,7 +42,7 @@ ___
 
 **● input**: *`string`*
 
-*Defined in [Common/RegularExpression.ts:20](https://github.com/chapterjason/APIBase/blob/00af181/packages/core/src/Common/RegularExpression.ts#L20)*
+*Defined in [Common/RegularExpression.ts:20](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Common/RegularExpression.ts#L20)*
 
 ___
 
