@@ -6,6 +6,5 @@ export interface CollectionIndex<ItemType = any> {
 }
 export interface CollectionReferenceInterface<ReferenceType = any> extends ReferenceInterface<CollectionIndex<ReferenceType>> {
     push(value?: ReferenceType): Promise<ReferenceInterface<ReferenceType>>;
-
     get(): Promise<CollectionSnapshotInterface<ReferenceType>>;
 }

@@ -7,7 +7,7 @@
  * File that was distributed with this source code.
  */
 
-import {isObject} from '../../src';
+import {isObject, Map} from '../../src';
 
 describe('Object', () => {
 

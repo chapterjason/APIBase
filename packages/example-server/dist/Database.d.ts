@@ -1,4 +1,7 @@
-import { Database } from "@apibase/database";
+import {Database} from "@apibase/database";
+
 export declare const database: Database;
-export declare function load(): void;
-export declare function save(): void;
+
+export declare function load(): Promise<boolean>;
+
+export declare function save(): Promise<void>;

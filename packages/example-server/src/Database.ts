@@ -8,21 +8,20 @@ const databaseFile = path.join(dataDirectory, 'database.json');
 
 export const database = new Database();
 
-export function load() {
-    database.set('/', JSON.parse(fs.readFileSync(databaseFile, 'utf8')));
+export async function load() {
+    return database.set('/', JSON.parse(fs.readFileSync(databaseFile, 'utf8')));
 }
 
-export function save() {
+export async function save() {
     if (!fs.existsSync(dataDirectory)) {
         fs.mkdirSync(dataDirectory);
     }
 
-    fs.writeFileSync(databaseFile, JSON.stringify(database.get('/')));
+    return database.get('/').then(value => {
+        fs.writeFileSync(databaseFile, JSON.stringify(value));
+    })
 }
 
-try {
-    load(); // file not exist -> throw error
-} catch (error) {
-    save(); // create directory and file
-    load(); // load created file
-}
+load()
+    .catch(save)
+    .then(load);

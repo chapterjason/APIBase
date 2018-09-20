@@ -4,6 +4,5 @@ import {CollectionIndex, CollectionReferenceInterface} from "./CollectionReferen
 
 export declare class CollectionReference<ReferenceType = any> extends Reference<CollectionIndex<ReferenceType>> implements CollectionReferenceInterface<ReferenceType> {
     push(value?: ReferenceType): Promise<Reference<ReferenceType>>;
-
     get(): Promise<CollectionSnapshot<ReferenceType>>;
 }

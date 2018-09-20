@@ -30,12 +30,12 @@ server.use((request, response, next) => {
 // set cors header
 server.use(cors());
 
-server.use((request, response, next) => {
+server.use(async (request, response, next) => {
     const path = new Path(request.path);
     if (request.method === 'GET') { // get
         Logger.info('GET', path.toString());
         try {
-            const data = database.get(path);
+            const data = await database.get(path);
             response.send(new ResponseSuccess(data));
         } catch (error) {
             response.status(500);
@@ -45,8 +45,8 @@ server.use((request, response, next) => {
         Logger.info('PUSH', path.toString());
         try {
             const collectionReference = database.collection(path);
-            const reference = collectionReference.push(request.body);
-            response.send(new ResponseSuccess(database.get(reference.getPath())));
+            const reference = await collectionReference.push(request.body);
+            response.send(new ResponseSuccess(await database.get(reference.getPath())));
         } catch (error) {
             response.status(500);
             response.send(new ResponseError(error.message));
@@ -54,7 +54,7 @@ server.use((request, response, next) => {
     } else if (request.method === 'PUT') { // set
         Logger.info('SET', path.toString());
         try {
-            response.send(new ResponseSuccess(database.set(path, request.body)));
+            response.send(new ResponseSuccess(await database.set(path, request.body)));
         } catch (error) {
             response.status(500);
             response.send(new ResponseError(error.message));
@@ -62,14 +62,14 @@ server.use((request, response, next) => {
     } else if (request.method === 'DELETE') { // delete
         Logger.info('DELETE', path.toString());
         try {
-            response.send(new ResponseSuccess(database.delete(path)));
+            response.send(new ResponseSuccess(await database.delete(path)));
         } catch (error) {
             response.status(500);
             response.send(new ResponseError(error.message));
         }
     }
 
-    save();
+    await save();
 });
 
 server.all('*', (request, response) => {
