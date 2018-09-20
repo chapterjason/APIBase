@@ -18,7 +18,7 @@ export interface ItemState {
     values: ValuesInterface;
 }
 
-export class Item<ItemType = any> extends React.Component<ItemProps<ItemType>, ItemState> {
+export class Item<ItemType = any> extends React.PureComponent<ItemProps<ItemType>, ItemState> {
 
     protected handleChange = (key: string, event: React.ChangeEvent<HTMLInputElement>) => {
         const values = {...this.state.values};
@@ -31,7 +31,6 @@ export class Item<ItemType = any> extends React.Component<ItemProps<ItemType>, I
     protected save = () => {
         this.setState({editMode: false});
 
-        // set all values
         const value = this.props.snapshot.value();
         const key = this.props.snapshot.key();
 

@@ -18,7 +18,7 @@ export interface TableState<ItemType = any> {
     sortOrder: boolean;
 }
 
-export class Table<ItemType = any> extends React.Component<TableProps, TableState<ItemType>> {
+export class Table<ItemType = any> extends React.PureComponent<TableProps, TableState<ItemType>> {
 
     protected database: ClientDatabase;
 
@@ -40,9 +40,11 @@ export class Table<ItemType = any> extends React.Component<TableProps, TableStat
         }
     };
     protected addItem = () => {
+        Logger.info('Adding...');
         this.reference
             .push(({name: this.state.inputText} as any) as ItemType)
             .then(() => {
+                Logger.info('Added!');
                 this.setState({inputText: ''});
                 this.update();
             })
@@ -94,9 +96,11 @@ export class Table<ItemType = any> extends React.Component<TableProps, TableStat
     }
 
     public update() {
+        Logger.info('Updating...');
         this.reference.get()
             .then(snapshot => {
-                this.setState({items: snapshot})
+                Logger.info('Updated!');
+                this.setState({items: snapshot});
             })
             .catch(error => {
                 Logger.error(error);
@@ -104,9 +108,11 @@ export class Table<ItemType = any> extends React.Component<TableProps, TableStat
     }
 
     public delete(key: string) {
+        Logger.info('Deleting', key);
         this.reference.reference(key).delete()
             .then(result => {
                 if (result) {
+                    Logger.info(key, 'deleted!');
                     this.update();
                 }
             })
@@ -116,9 +122,11 @@ export class Table<ItemType = any> extends React.Component<TableProps, TableStat
     }
 
     public setValue(key: string, value: ItemType) {
+        Logger.info('Update', key);
         this.reference.reference<ItemType>(key).set(value)
             .then(result => {
                 if (result) {
+                    Logger.info('Updated', key);
                     this.update();
                 }
             })
