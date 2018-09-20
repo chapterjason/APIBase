@@ -28,6 +28,7 @@ server.use(cors());
 server.use(function (request, response, next) {
     var path = new core_1.Path(request.path);
     if (request.method === 'GET') { // get
+        core_1.Logger.info('GET', path.toString());
         try {
             var data = Database_1.database.get(path);
             response.send(new ResponseSuccess_1.ResponseSuccess(data));
@@ -38,6 +39,7 @@ server.use(function (request, response, next) {
         }
     }
     else if (request.method === 'POST') { // set
+        core_1.Logger.info('PUSH', path.toString());
         try {
             var collectionReference = Database_1.database.collection(path);
             var reference = collectionReference.push(request.body);
@@ -49,6 +51,7 @@ server.use(function (request, response, next) {
         }
     }
     else if (request.method === 'PUT') { // set
+        core_1.Logger.info('SET', path.toString());
         try {
             response.send(new ResponseSuccess_1.ResponseSuccess(Database_1.database.set(path, request.body)));
         }
@@ -58,6 +61,7 @@ server.use(function (request, response, next) {
         }
     }
     else if (request.method === 'DELETE') { // delete
+        core_1.Logger.info('DELETE', path.toString());
         try {
             response.send(new ResponseSuccess_1.ResponseSuccess(Database_1.database.delete(path)));
         }

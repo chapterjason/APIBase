@@ -33,6 +33,7 @@ server.use(cors());
 server.use((request, response, next) => {
     const path = new Path(request.path);
     if (request.method === 'GET') { // get
+        Logger.info('GET', path.toString());
         try {
             const data = database.get(path);
             response.send(new ResponseSuccess(data));
@@ -41,6 +42,7 @@ server.use((request, response, next) => {
             response.send(new ResponseError(error.message));
         }
     } else if (request.method === 'POST') { // set
+        Logger.info('PUSH', path.toString());
         try {
             const collectionReference = database.collection(path);
             const reference = collectionReference.push(request.body);
@@ -50,6 +52,7 @@ server.use((request, response, next) => {
             response.send(new ResponseError(error.message));
         }
     } else if (request.method === 'PUT') { // set
+        Logger.info('SET', path.toString());
         try {
             response.send(new ResponseSuccess(database.set(path, request.body)));
         } catch (error) {
@@ -57,6 +60,7 @@ server.use((request, response, next) => {
             response.send(new ResponseError(error.message));
         }
     } else if (request.method === 'DELETE') { // delete
+        Logger.info('DELETE', path.toString());
         try {
             response.send(new ResponseSuccess(database.delete(path)));
         } catch (error) {
