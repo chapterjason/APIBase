@@ -10,7 +10,7 @@
 import {CollectionReference, Snapshot} from "../..";
 import {Path} from "@apibase/core";
 import {ReferenceInterface, ReferenceJSON} from "./ReferenceInterface";
-import { Database } from "../Database";
+import {Database} from "../Database";
 
 export class Reference<ReferenceType = any> implements ReferenceInterface<ReferenceType> {
 
@@ -31,10 +31,10 @@ export class Reference<ReferenceType = any> implements ReferenceInterface<Refere
         return this.path.end();
     }
 
-    public toJSON(): ReferenceJSON {
+    public async toJSON(): Promise<ReferenceJSON> {
         return {
             path: this.path.toString(),
-            value: this.get().value()
+            value: (await this.get()).value()
         };
     }
 
@@ -56,15 +56,16 @@ export class Reference<ReferenceType = any> implements ReferenceInterface<Refere
         return new CollectionReference<ReferenceType>(this.database, this.path.child(segment));
     }
 
-    public set(value: ReferenceType): boolean {
+    public async set(value: ReferenceType): Promise<boolean> {
         return this.database.set(this.path, value);
     }
 
-    public get(): Snapshot<ReferenceType> {
-        return new Snapshot<ReferenceType>(this, this.database.get<ReferenceType>(this.path));
+    public async get(): Promise<Snapshot<ReferenceType>> {
+        const value = await this.database.get<ReferenceType>(this.path);
+        return new Snapshot<ReferenceType>(this, value);
     }
 
-    public delete(): boolean {
+    public async delete(): Promise<boolean> {
         return this.database.delete(this.path);
     }
 

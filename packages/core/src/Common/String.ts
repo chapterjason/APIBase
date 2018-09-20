@@ -16,7 +16,7 @@ export function padLeft(string: string, length: number = 2, char: string = '0') 
     return string;
 }
 
-export function padRight(string: string, length: number, char: string = '0') {
+export function padRight(string: string, length: number = 2, char: string = '0') {
     const diff = length - string.length;
     if (diff > 0) {
         string += char.repeat(diff);

@@ -12,7 +12,7 @@ export class Path {
 
     protected segments: string[];
 
-    public constructor(path: string | string[] = []) {
+    public constructor(path?: string | string[]) {
         if (Array.isArray(path)) {
             this.segments = Path.normalize(path);
         } else if (typeof path === "string") {
@@ -35,14 +35,9 @@ export class Path {
             segment = segment.split('/');
         }
 
-        if (Array.isArray(segment)) {
-            return segment
-                .map(segment => segment.trim())
-                .filter(segment => segment.length)
-                ;
-        }
-
-        return [];
+        return segment
+            .map(segment => segment.trim())
+            .filter(segment => segment.length);
     }
 
     public toString() {

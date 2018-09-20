@@ -7,8 +7,8 @@ export interface CollectionIndex<ItemType = any> {
 
 export interface CollectionReferenceInterface<ReferenceType = any> extends ReferenceInterface<CollectionIndex<ReferenceType>> {
 
-    push(value?: ReferenceType): ReferenceInterface<ReferenceType> | Promise<ReferenceInterface<ReferenceType>>;
+    push(value?: ReferenceType): Promise<ReferenceInterface<ReferenceType>>;
 
-    get(): CollectionSnapshotInterface<ReferenceType> | Promise<CollectionSnapshotInterface<ReferenceType>>;
+    get(): Promise<CollectionSnapshotInterface<ReferenceType>>;
     
 }

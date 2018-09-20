@@ -19,6 +19,9 @@ function padLeft(string, length, char) {
 }
 exports.padLeft = padLeft;
 function padRight(string, length, char) {
+    if (length === void 0) {
+        length = 2;
+    }
     if (char === void 0) { char = '0'; }
     var diff = length - string.length;
     if (diff > 0) {

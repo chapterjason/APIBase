@@ -10,7 +10,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Path = /** @class */ (function () {
     function Path(path) {
-        if (path === void 0) { path = []; }
         if (Array.isArray(path)) {
             this.segments = Path.normalize(path);
         }
@@ -33,12 +32,13 @@ var Path = /** @class */ (function () {
         if (typeof segment === "string") {
             segment = segment.split('/');
         }
-        if (Array.isArray(segment)) {
-            return segment
-                .map(function (segment) { return segment.trim(); })
-                .filter(function (segment) { return segment.length; });
-        }
-        return [];
+        return segment
+            .map(function (segment) {
+                return segment.trim();
+            })
+            .filter(function (segment) {
+                return segment.length;
+            });
     };
     Path.prototype.toString = function () {
         return '/' + this.segments.join('/');

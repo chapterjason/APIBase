@@ -13,7 +13,7 @@ export interface ReferenceInterface<ReferenceType> {
     
     key(): string;
 
-    toJSON(): ReferenceJSON | Promise<ReferenceJSON>;
+    toJSON(): Promise<ReferenceJSON>;
 
     parent<ParentReferenceType = any>(): ReferenceInterface<ParentReferenceType> | null;
 
@@ -21,11 +21,11 @@ export interface ReferenceInterface<ReferenceType> {
 
     collection<ReferenceType = any>(segment: string): CollectionReferenceInterface<ReferenceType>;
 
-    set(value: ReferenceType): boolean | Promise<boolean>;
-    
-    get(): SnapshotInterface<ReferenceType> | Promise<SnapshotInterface<ReferenceType>>;
+    set(value: ReferenceType): Promise<boolean>;
 
-    delete(): boolean | Promise<boolean>;
+    get(): Promise<SnapshotInterface<ReferenceType>>;
+
+    delete(): Promise<boolean>;
 
 
 }

@@ -126,6 +126,8 @@ export class Map<KeyType, ValueType> {
         if (index > -1) {
             this._keys.splice(index, 1);
             this._values.splice(index, 1);
+
+            return true;
         }
 
         return false;

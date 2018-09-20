@@ -7,24 +7,29 @@
  * File that was distributed with this source code.
  */
 
-import { expect } from 'chai';
-import 'mocha';
-import { Map } from '../../src/Collection/Map';
+import {Map} from '../../src/Collection/Map';
 
 describe('Map', () => {
+
+    it('empty constructor', () => {
+        const map = new Map<string, string>();
+
+        expect(JSON.stringify(map['_keys'])).toBe(JSON.stringify([]));
+        expect(JSON.stringify(map['_values'])).toBe(JSON.stringify([]));
+    });
 
     it('constructor with array', () => {
         const map = new Map<string, string>([['first', 'testA'], ['second', 'testB']]);
 
-        expect(JSON.stringify(map['_keys'])).to.equal(JSON.stringify(['first', 'second']));
-        expect(JSON.stringify(map['_values'])).to.equal(JSON.stringify(['testA', 'testB']));
+        expect(JSON.stringify(map['_keys'])).toBe(JSON.stringify(['first', 'second']));
+        expect(JSON.stringify(map['_values'])).toBe(JSON.stringify(['testA', 'testB']));
     });
 
     it('constructor with iterator', () => {
         const map = new Map<string, string>((new Map<string, string>([['first', 'testA'], ['second', 'testB']])).entries());
 
-        expect(JSON.stringify(map['_keys'])).to.equal(JSON.stringify(['first', 'second']));
-        expect(JSON.stringify(map['_values'])).to.equal(JSON.stringify(['testA', 'testB']));
+        expect(JSON.stringify(map['_keys'])).toBe(JSON.stringify(['first', 'second']));
+        expect(JSON.stringify(map['_values'])).toBe(JSON.stringify(['testA', 'testB']));
     });
 
     it('clear', () => {
@@ -32,17 +37,18 @@ describe('Map', () => {
 
         map.clear();
 
-        expect(JSON.stringify(map['_keys'])).to.equal(JSON.stringify([]));
-        expect(JSON.stringify(map['_values'])).to.equal(JSON.stringify([]));
+        expect(JSON.stringify(map['_keys'])).toBe(JSON.stringify([]));
+        expect(JSON.stringify(map['_values'])).toBe(JSON.stringify([]));
     });
 
     it('delete', () => {
         const map = new Map<string, string>([['first', 'testA'], ['second', 'testB']]);
 
-        map.delete('first');
+        expect(map.delete('first')).toBeTruthy();
+        expect(map.delete('notExist')).toBeFalsy();
 
-        expect(JSON.stringify(map['_keys'])).to.equal(JSON.stringify(['second']));
-        expect(JSON.stringify(map['_values'])).to.equal(JSON.stringify(['testB']));
+        expect(JSON.stringify(map['_keys'])).toBe(JSON.stringify(['second']));
+        expect(JSON.stringify(map['_values'])).toBe(JSON.stringify(['testB']));
     });
 
     it('forEach', () => {
@@ -56,8 +62,8 @@ describe('Map', () => {
             values.push(value);
         });
 
-        expect(JSON.stringify(keys)).to.equal(JSON.stringify(['first', 'second']));
-        expect(JSON.stringify(values)).to.equal(JSON.stringify(['testA', 'testB']));
+        expect(JSON.stringify(keys)).toBe(JSON.stringify(['first', 'second']));
+        expect(JSON.stringify(values)).toBe(JSON.stringify(['testA', 'testB']));
     });
 
 
@@ -65,17 +71,17 @@ describe('Map', () => {
         const map = new Map<string, string>([['first', 'testA'], ['second', 'testB']]);
 
 
-        expect(map.get('first')).to.equal('testA');
-        expect(map.get('second')).to.equal('testB');
-        expect(map.get('third')).to.equal(null);
+        expect(map.get('first')).toBe('testA');
+        expect(map.get('second')).toBe('testB');
+        expect(map.get('third')).toBe(null);
     });
 
     it('has', () => {
         const map = new Map<string, string>([['first', 'testA'], ['second', 'testB']]);
 
-        expect(map.has('first')).to.equal(true);
-        expect(map.has('second')).to.equal(true);
-        expect(map.has('drei')).to.equal(false);
+        expect(map.has('first')).toBe(true);
+        expect(map.has('second')).toBe(true);
+        expect(map.has('drei')).toBe(false);
     });
 
     it('keys', () => {
@@ -87,7 +93,7 @@ describe('Map', () => {
             keys.push(key);
         }
 
-        expect(JSON.stringify(keys)).to.equal(JSON.stringify(['first', 'second']));
+        expect(JSON.stringify(keys)).toBe(JSON.stringify(['first', 'second']));
     });
 
     it('set', () => {
@@ -95,18 +101,18 @@ describe('Map', () => {
 
         map.set('third', 'testC');
 
-        expect(JSON.stringify(map['_keys'])).to.equal(JSON.stringify(['first', 'second', 'third']));
-        expect(JSON.stringify(map['_values'])).to.equal(JSON.stringify(['testA', 'testB', 'testC']));
+        expect(JSON.stringify(map['_keys'])).toBe(JSON.stringify(['first', 'second', 'third']));
+        expect(JSON.stringify(map['_values'])).toBe(JSON.stringify(['testA', 'testB', 'testC']));
     });
 
     it('set', () => {
         const map = new Map<string, string>([['first', 'testA'], ['second', 'testB']]);
 
-        expect(map.size()).to.equal(2);
+        expect(map.size()).toBe(2);
 
         map.set('third', 'testC');
 
-        expect(map.size()).to.equal(3);
+        expect(map.size()).toBe(3);
     });
 
     it('values', () => {
@@ -118,7 +124,7 @@ describe('Map', () => {
             values.push(value);
         }
 
-        expect(JSON.stringify(values)).to.equal(JSON.stringify(['testA', 'testB']));
+        expect(JSON.stringify(values)).toBe(JSON.stringify(['testA', 'testB']));
     });
 
     it('iterator', () => {
@@ -130,7 +136,7 @@ describe('Map', () => {
             items.push(value);
         }
 
-        expect(JSON.stringify(items)).to.equal(JSON.stringify([['first', 'testA'], ['second', 'testB']]));
+        expect(JSON.stringify(items)).toBe(JSON.stringify([['first', 'testA'], ['second', 'testB']]));
     });
 
     it('reverse', () => {
@@ -138,8 +144,8 @@ describe('Map', () => {
 
         map.reverse();
 
-        expect(JSON.stringify(map['_keys'])).to.equal(JSON.stringify(['third', 'second', 'first']));
-        expect(JSON.stringify(map['_values'])).to.equal(JSON.stringify(['testC', 'testB', 'testA']));
+        expect(JSON.stringify(map['_keys'])).toBe(JSON.stringify(['third', 'second', 'first']));
+        expect(JSON.stringify(map['_values'])).toBe(JSON.stringify(['testC', 'testB', 'testA']));
     });
 
     it('sort by key', () => {
@@ -149,8 +155,8 @@ describe('Map', () => {
             return b[0].localeCompare(a[0]);
         });
 
-        expect(JSON.stringify(sortedMap['_keys'])).to.equal(JSON.stringify(['third', 'second', 'first']));
-        expect(JSON.stringify(sortedMap['_values'])).to.equal(JSON.stringify(['testC', 'testB', 'testA']));
+        expect(JSON.stringify(sortedMap['_keys'])).toBe(JSON.stringify(['third', 'second', 'first']));
+        expect(JSON.stringify(sortedMap['_values'])).toBe(JSON.stringify(['testC', 'testB', 'testA']));
     });
 
     it('sort by value', () => {
@@ -160,8 +166,8 @@ describe('Map', () => {
             return b[1].localeCompare(a[1]);
         });
 
-        expect(JSON.stringify(sortedMap['_keys'])).to.equal(JSON.stringify(['third', 'second', 'first']));
-        expect(JSON.stringify(sortedMap['_values'])).to.equal(JSON.stringify(['testC', 'testB', 'testA']));
+        expect(JSON.stringify(sortedMap['_keys'])).toBe(JSON.stringify(['third', 'second', 'first']));
+        expect(JSON.stringify(sortedMap['_values'])).toBe(JSON.stringify(['testC', 'testB', 'testA']));
     });
 
 });

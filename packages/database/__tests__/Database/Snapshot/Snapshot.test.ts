@@ -7,8 +7,6 @@
  * File that was distributed with this source code.
  */
 
-import {expect} from 'chai';
-import 'mocha';
 import {Database} from "../../../src";
 
 describe('Snapshot', () => {
@@ -33,8 +31,8 @@ describe('Snapshot', () => {
 
     const database = new Database();
 
-    beforeEach(() => {
-        database.set('/', {
+    beforeEach(async () => {
+        return database.set('/', {
             'posts': {
                 'one': {
                     title: 'FooTitle',
@@ -66,16 +64,17 @@ describe('Snapshot', () => {
 
     it('value', () => {
         const reference = database.reference<string>('/posts/one/title');
-        const snapshot = reference.get();
-
-        expect(snapshot.value()).to.equal('FooTitle')
+        return reference.get().then(snapshot => {
+            expect(snapshot.value()).toBe('FooTitle')
+        });
     });
 
-    it('key', () => {
+    it('key', async () => {
         const reference = database.reference<string>('/posts/one/title');
-        const snapshot = reference.get();
+        return reference.get().then(snapshot => {
+            expect(snapshot.key()).toBe('title');
+        })
 
-        expect(snapshot.key()).to.equal('title')
     });
 
 });

@@ -7,8 +7,6 @@
  * File that was distributed with this source code.
  */
 
-import {expect} from 'chai';
-import 'mocha';
 import {Database} from "../../../src";
 
 describe('Reference', () => {
@@ -33,8 +31,8 @@ describe('Reference', () => {
 
     const database = new Database();
 
-    beforeEach(() => {
-        database.set('/', {
+    beforeEach(async () => {
+        return database.set('/', {
             'posts': {
                 'one': {
                     title: 'FooTitle',
@@ -66,103 +64,118 @@ describe('Reference', () => {
 
     it('getPath', () => {
         const reference = database.reference<string>('/posts/one/title');
-        expect(reference.getPath().toString()).to.equal('/posts/one/title');
+        expect(reference.getPath().toString()).toBe('/posts/one/title');
     });
 
     it('key', () => {
         const reference = database.reference<string>('/posts/one/title');
-        expect(reference.key()).to.equal('title');
+        expect(reference.key()).toBe('title');
     });
 
-    it('toJSON', () => {
+    it('toJSON', async () => {
         const reference = database.reference<string>('/posts/one/title');
-        expect(reference.toJSON()).to.deep.equal({path: '/posts/one/title', value: 'FooTitle'});
+
+        return reference.toJSON().then(result => {
+            expect(result).toMatchObject({path: '/posts/one/title', value: 'FooTitle'});
+        })
     });
 
-    it('parent', () => {
+    it('parent', async () => {
         const reference = database.reference<string>('/posts/one/title');
         const parent = reference.parent<Post>();
 
-        expect(parent.get().value()).to.deep.equal({
-            title: 'FooTitle',
-            content: 'FooContent',
-            authors: {
-                'first': {
-                    name: 'FooName'
-                },
-                'second': {
-                    name: 'BarName'
+        return parent.get().then(snapshot => {
+            expect(snapshot.value()).toMatchObject({
+                title: 'FooTitle',
+                content: 'FooContent',
+                authors: {
+                    'first': {
+                        name: 'FooName'
+                    },
+                    'second': {
+                        name: 'BarName'
+                    }
                 }
-            }
-        });
+            });
+        })
+
     });
 
     it('parent of first level', () => {
         const reference = database.reference<string>('/posts');
         const parent = reference.parent<{ posts: PostCollection }>();
 
-        expect(parent.getPath().toString()).to.equal('/');
+        expect(parent.getPath().toString()).toBe('/');
     });
 
     it('parent of root', () => {
         const reference = database.reference<string>('/');
         const parent = reference.parent<Post>();
 
-        expect(parent).to.equal(null);
+        expect(parent).toBe(null);
     });
 
-    it('reference', () => {
+    it('reference', async () => {
         const postReference = database.reference<string>('/posts/one');
         const reference = postReference.reference<string>('title');
 
-        expect(reference.get().value()).to.equal('FooTitle');
-    });
-
-    it('collection', () => {
-        const postReference = database.reference<string>('/posts/one');
-        const authorReference = postReference.collection<Author>('authors');
-
-        expect(authorReference.get().value()).to.deep.equal({
-            'first': {
-                name: 'FooName'
-            },
-            'second': {
-                name: 'BarName'
-            }
+        return reference.get().then(snapshot => {
+            expect(snapshot.value()).toBe('FooTitle');
         });
     });
 
-    it('set', () => {
-        const reference = database.reference<string>('/posts/one/title');
+    it('collection', async () => {
+        const postReference = database.reference<string>('/posts/one');
+        const authorReference = postReference.collection<Author>('authors');
 
-        reference.set('NewTitle');
-
-        expect(database.get('/posts/one/title')).to.equal('NewTitle');
-    });
-
-    it('get', () => {
-        const reference = database.reference<string>('/posts/one/title');
-        expect(reference.get().value()).to.equal('FooTitle');
-    });
-
-    it('delete', () => {
-        const reference = database.reference<string>('/posts/one/title');
-
-        reference.delete();
-
-        const parentReference = reference.parent();
-
-        expect(parentReference.get().value()).to.deep.equal({
-            content: 'FooContent',
-            authors: {
+        return authorReference.get().then(snapshot => {
+            expect(snapshot.value()).toMatchObject({
                 'first': {
                     name: 'FooName'
                 },
                 'second': {
                     name: 'BarName'
                 }
-            }
+            });
         });
     });
 
+    it('set', async () => {
+        const reference = database.reference<string>('/posts/one/title');
+
+        return reference.set('NewTitle')
+            .then(() => {
+                database.get('/posts/one/title').then(value => {
+                    expect(value).toBe('NewTitle');
+                });
+            });
+    });
+
+    it('get', async () => {
+        const reference = database.reference<string>('/posts/one/title');
+        return reference.get().then(snapshot => {
+            expect(snapshot.value()).toBe('FooTitle');
+        });
+    });
+
+    it('delete', async () => {
+        const reference = database.reference<string>('/posts/one/title');
+
+        return reference.delete().then((result) => {
+            expect(result).toBeTruthy();
+            return reference.parent().get();
+        }).then(snapshot => {
+            expect(snapshot.value()).toMatchObject({
+                content: 'FooContent',
+                authors: {
+                    'first': {
+                        name: 'FooName'
+                    },
+                    'second': {
+                        name: 'BarName'
+                    }
+                }
+            });
+        });
+    });
 });

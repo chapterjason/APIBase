@@ -10,42 +10,19 @@
     "clean:docs": "rm -rf docs",
     "clean:git": "git clean -dXf",
     "clean": "npm run clean:dist && npm run clean:docs && npm run clean:git",
-    "test": "nyc mocha",
+    "test": "jest",
     "build": "tsc",
     "build-docs": "typedoc --out docs --theme markdown",
     "watch": "tsc --watch"
   },
-  "nyc": {
-    "extension": [
-      ".ts",
-      ".tsx"
-    ],
-    "exclude": [
-      "coverage",
-      "dist",
-      "test",
-      ".nyc_output",
-      "**/*.d.ts"
-    ],
-    "reporter": [
-      "html"
-    ],
-    "all": true
-  },
   "devDependencies": {
-    "@types/chai": "^4.1.4",
     "@types/cors": "^2.8.4",
     "@types/express": "^4.16.0",
-    "@types/istanbul": "^0.4.30",
-    "@types/mocha": "^5.2.5",
+    "@types/jest": "^23.3.2",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.1",
     "typedoc": "^0.12.0",
     "typedoc-plugin-markdown": "^1.1.15",
-    "typescript": "^3.0.1",
-    "chai": "^4.1.2",
-    "istanbul": "^0.4.5",
-    "mocha": "^5.2.0",
-    "nyc": "^13.0.1",
-    "source-map-support": "^0.5.9",
-    "ts-node": "^7.0.1"
+    "typescript": "^3.0.1"
   }
 }

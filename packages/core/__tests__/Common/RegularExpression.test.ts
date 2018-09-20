@@ -7,23 +7,21 @@
  * File that was distributed with this source code.
  */
 
-import { expect } from 'chai';
-import 'mocha';
-import { escape, match, matchAll } from '../../src';
+import {escape, match, matchAll} from '../../src';
 
 describe('RegularExpression', () => {
 
     it('escape', () => {
-        expect(escape('-/\\^$*+?.()|[]{}')).to.equal('\\-\\/\\\\\\^\\$\\*\\+\\?\\.\\(\\)\\|\\[\\]\\{\\}');
+        expect(escape('-/\\^$*+?.()|[]{}')).toBe('\\-\\/\\\\\\^\\$\\*\\+\\?\\.\\(\\)\\|\\[\\]\\{\\}');
     });
 
     it('match', () => {
-        expect(match('This is Foo!', /Foo/)).to.equal(true);
-        expect(match('This is Foo!', /Bar/)).to.equal(false);
+        expect(match('This is Foo!', /Foo/)).toBe(true);
+        expect(match('This is Foo!', /Bar/)).toBe(false);
     });
 
     it('matchAll', () => {
-        expect(matchAll('This Foo was a Foo!', /Foo/g)).to.deep.equal([{
+        expect(matchAll('This Foo was a Foo!', /Foo/g)).toMatchObject([{
             "groups": [],
             "index": 5,
             "input": "Foo"
@@ -33,9 +31,9 @@ describe('RegularExpression', () => {
             "input": "Foo"
         }]);
 
-        expect(matchAll.bind(matchAll, 'This Foo was a Foo!', /Foo/)).to.throw('Missing global flag!');
+        expect(matchAll.bind(matchAll, 'This Foo was a Foo!', /Foo/)).toThrowError('Missing global flag!');
 
-        expect(matchAll('This Foo was a Foo!', /(\w+)/g)).to.deep.equal([{
+        expect(matchAll('This Foo was a Foo!', /(\w+)/g)).toMatchObject([{
             "groups": [
                 "This"
             ],

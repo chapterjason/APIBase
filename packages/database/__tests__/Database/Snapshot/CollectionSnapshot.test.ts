@@ -7,11 +7,9 @@
  * File that was distributed with this source code.
  */
 
-import {expect} from 'chai';
-import 'mocha';
 import {Database} from "../../../src";
 
-describe('CollectionReference', () => {
+describe('CollectionSnapshot', () => {
 
     interface Author {
         name: string;
@@ -24,6 +22,7 @@ describe('CollectionReference', () => {
     interface Post {
         title: string;
         content: string;
+        tags?: string[];
         authors: AuthorCollection;
     }
 
@@ -33,8 +32,8 @@ describe('CollectionReference', () => {
 
     const database = new Database();
 
-    beforeEach(() => {
-        database.set('/', {
+    beforeEach(async () => {
+        return database.set('/', {
             'posts': {
                 'one': {
                     title: 'FooTitle',
@@ -51,6 +50,7 @@ describe('CollectionReference', () => {
                 'two': {
                     title: 'BarTitle',
                     content: 'BarContent',
+                    tags: ['Foo', 'Bar'],
                     authors: {
                         'first': {
                             name: 'FooName'
@@ -64,10 +64,12 @@ describe('CollectionReference', () => {
         });
     });
 
-    it('get', () => {
+    it('item', () => {
         const reference = database.collection<Post>('/posts');
-        expect(reference.get().value()).to.deep.equal({
-            'one': {
+        return reference.get().then(snapshot => {
+            const onePost = snapshot.item('one');
+
+            expect(onePost.value()).toMatchObject({
                 title: 'FooTitle',
                 content: 'FooContent',
                 authors: {
@@ -78,87 +80,42 @@ describe('CollectionReference', () => {
                         name: 'BarName'
                     }
                 }
-            },
-            'two': {
-                title: 'BarTitle',
-                content: 'BarContent',
-                authors: {
-                    'first': {
-                        name: 'FooName'
-                    },
-                    'second': {
-                        name: 'BarName'
-                    }
-                }
-            }
+            });
         });
     });
 
-    it('push without value', () => {
+    it('length', async () => {
         const reference = database.collection<Post>('/posts');
-
-        const pushReference = reference.push();
-        pushReference.set({title: 'FooBarTitle', content: 'FooBarContent', authors: {'first': {name: 'FooBarName'}}});
-
-        expect(pushReference.get().value()).to.deep.equal({
-            title: 'FooBarTitle',
-            content: 'FooBarContent',
-            authors: {'first': {name: 'FooBarName'}}
+        return reference.get().then(snapshot => {
+            expect(snapshot.length()).toBe(2);
         });
-
-        const expected = {
-            'one': {
-                title: 'FooTitle',
-                content: 'FooContent',
-                authors: {
-                    'first': {
-                        name: 'FooName'
-                    },
-                    'second': {
-                        name: 'BarName'
-                    }
-                }
-            },
-            'two': {
-                title: 'BarTitle',
-                content: 'BarContent',
-                authors: {
-                    'first': {
-                        name: 'FooName'
-                    },
-                    'second': {
-                        name: 'BarName'
-                    }
-                }
-            }
-        };
-
-        expected[pushReference.key()] = {
-            title: 'FooBarTitle',
-            content: 'FooBarContent',
-            authors: {'first': {name: 'FooBarName'}}
-        };
-
-        expect(reference.get().value()).to.deep.equal(expected)
     });
 
-    it('push with value', () => {
+    it('keys of array', async () => {
+        const reference = database.collection<string[]>('/posts/two/tags');
+        return reference.get().then(snapshot => {
+            expect(snapshot.length()).toBe(2);
+        });
+    });
+
+    it('path non object or array', async () => {
+        const reference = database.collection<string>('/posts/two/title');
+        return reference.get().catch(error => {
+            expect(error.toString()).toBe('Error: The data at "/posts/two/title" must be of type object or array.');
+        });
+    });
+
+    it('forEach', async () => {
         const reference = database.collection<Post>('/posts');
+        return reference.get().then(snapshot => {
 
-        const pushReference = reference.push({
-            title: 'FooBarTitle',
-            content: 'FooBarContent',
-            authors: {'first': {name: 'FooBarName'}}
-        });
+            const values = [];
 
-        expect(pushReference.get().value()).to.deep.equal({
-            title: 'FooBarTitle',
-            content: 'FooBarContent',
-            authors: {'first': {name: 'FooBarName'}}
-        });
+            snapshot.forEach((item) => {
+                values.push(item.value());
+            });
 
-        const expected = {
-            'one': {
+            expect(values).toMatchObject([{
                 title: 'FooTitle',
                 content: 'FooContent',
                 authors: {
@@ -170,9 +127,43 @@ describe('CollectionReference', () => {
                     }
                 }
             },
-            'two': {
+                {
+                    title: 'BarTitle',
+                    content: 'BarContent',
+                    tags: ['Foo', 'Bar'],
+                    authors: {
+                        'first': {
+                            name: 'FooName'
+                        },
+                        'second': {
+                            name: 'BarName'
+                        }
+                    }
+                }]);
+        });
+    });
+
+    // @todo map test
+
+    // @todo custom sort
+
+    it('sortedByKey', async () => {
+        const reference = database.collection<Post>('/posts');
+        return reference.get().then(snapshot => {
+
+            const values = [];
+
+            snapshot.sortByKey();
+            snapshot.reverse();
+
+            snapshot.forEach((item) => {
+                values.push(item.value());
+            });
+
+            expect(values).toMatchObject([{
                 title: 'BarTitle',
                 content: 'BarContent',
+                tags: ['Foo', 'Bar'],
                 authors: {
                     'first': {
                         name: 'FooName'
@@ -181,16 +172,58 @@ describe('CollectionReference', () => {
                         name: 'BarName'
                     }
                 }
-            }
-        };
+            }, {
+                title: 'FooTitle',
+                content: 'FooContent',
+                authors: {
+                    'first': {
+                        name: 'FooName'
+                    },
+                    'second': {
+                        name: 'BarName'
+                    }
+                }
+            }]);
+        });
+    });
 
-        expected[pushReference.key()] = {
-            title: 'FooBarTitle',
-            content: 'FooBarContent',
-            authors: {'first': {name: 'FooBarName'}}
-        };
+    it('sortedByProperty', async () => {
+        const reference = database.collection<Post>('/posts');
+        return reference.get().then(snapshot => {
 
-        expect(reference.get().value()).to.deep.equal(expected)
+            const values = [];
+
+            snapshot.sortByProperty('title');
+
+            snapshot.forEach((item) => {
+                values.push(item.value());
+            });
+
+            expect(values).toMatchObject([{
+                title: 'BarTitle',
+                content: 'BarContent',
+                tags: ['Foo', 'Bar'],
+                authors: {
+                    'first': {
+                        name: 'FooName'
+                    },
+                    'second': {
+                        name: 'BarName'
+                    }
+                }
+            }, {
+                title: 'FooTitle',
+                content: 'FooContent',
+                authors: {
+                    'first': {
+                        name: 'FooName'
+                    },
+                    'second': {
+                        name: 'BarName'
+                    }
+                }
+            }]);
+        });
     });
 
 });

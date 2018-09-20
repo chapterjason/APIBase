@@ -7,9 +7,7 @@
  * File that was distributed with this source code.
  */
 
-import {expect} from 'chai';
-import 'mocha';
-import { generateIdentifier, createdAt } from '../../src';
+import {createdAt, generateIdentifier} from '../../src';
 
 describe('Identifier', () => {
 
@@ -19,7 +17,7 @@ describe('Identifier', () => {
 
         const actualDate = createdAt(id);
 
-        expect(Math.floor(actualDate.getTime() / 1000)).to.equal(Math.floor(expectedDate.getTime() / 1000));
+        expect(Math.floor(actualDate.getTime() / 1000)).toBe(Math.floor(expectedDate.getTime() / 1000));
     });
 
 });

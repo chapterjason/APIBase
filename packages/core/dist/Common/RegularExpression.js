@@ -24,6 +24,7 @@ function matchAll(string, regexp) {
     }
     while ((currentMatch = regexp.exec(string)) !== null) {
         // This is necessary to avoid infinite loops with zero-width matches
+        /* istanbul ignore next */
         if (currentMatch.index === regexp.lastIndex) {
             regexp.lastIndex++;
         }

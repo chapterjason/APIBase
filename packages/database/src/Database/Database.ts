@@ -22,7 +22,7 @@ export class Database implements DatabaseInterface {
         this.mapping = mapping;
     }
 
-    public delete(path?: Path | string | string[]): boolean {
+    public async delete(path?: Path | string | string[]): Promise<boolean> {
         path = Path.ensurePath(path);
 
         if (path.length() === 0) {
@@ -56,7 +56,7 @@ export class Database implements DatabaseInterface {
         }
     }
 
-    public set(path: Path | string | string[], value: any): boolean {
+    public async set(path: Path | string | string[], value: any): Promise<boolean> {
         path = Path.ensurePath(path);
 
         if (path.length() === 0) {
@@ -94,7 +94,7 @@ export class Database implements DatabaseInterface {
         return false;
     }
 
-    public get<T>(path?: Path | string | string[]): T {
+    public async get<T>(path?: Path | string | string[]): Promise<T> {
         path = Path.ensurePath(path);
 
         if (path.length() === 0) {
