@@ -33,7 +33,7 @@
 
 **● level**: *[LogLevel](../enums/_common_logger_.loglevel.md)* =  LogLevel.LLL
 
-*Defined in [Common/Logger.ts:22](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Common/Logger.ts#L22)*
+*Defined in [Common/Logger.ts:22](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Common/Logger.ts#L22)*
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 ▸ **debug**(message: *`any`*, ...messages: *`any`[]*): `void`
 
-*Defined in [Common/Logger.ts:52](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Common/Logger.ts#L52)*
+*Defined in [Common/Logger.ts:52](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Common/Logger.ts#L52)*
 
 **Parameters:**
 
@@ -63,7 +63,7 @@ ___
 
 ▸ **error**(message: *`any`*, ...messages: *`any`[]*): `void`
 
-*Defined in [Common/Logger.ts:28](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Common/Logger.ts#L28)*
+*Defined in [Common/Logger.ts:28](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Common/Logger.ts#L28)*
 
 **Parameters:**
 
@@ -81,7 +81,7 @@ ___
 
 ▸ **getTimestamp**(): `string`
 
-*Defined in [Common/Logger.ts:58](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Common/Logger.ts#L58)*
+*Defined in [Common/Logger.ts:58](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Common/Logger.ts#L58)*
 
 **Returns:** `string`
 
@@ -92,7 +92,7 @@ ___
 
 ▸ **info**(message: *`any`*, ...messages: *`any`[]*): `void`
 
-*Defined in [Common/Logger.ts:40](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Common/Logger.ts#L40)*
+*Defined in [Common/Logger.ts:40](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Common/Logger.ts#L40)*
 
 **Parameters:**
 
@@ -110,7 +110,7 @@ ___
 
 ▸ **internalLog**(type: *`string`*, ...messages: *`any`[]*): `void`
 
-*Defined in [Common/Logger.ts:72](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Common/Logger.ts#L72)*
+*Defined in [Common/Logger.ts:72](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Common/Logger.ts#L72)*
 
 **Parameters:**
 
@@ -128,7 +128,7 @@ ___
 
 ▸ **log**(message: *`any`*, ...messages: *`any`[]*): `void`
 
-*Defined in [Common/Logger.ts:46](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Common/Logger.ts#L46)*
+*Defined in [Common/Logger.ts:46](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Common/Logger.ts#L46)*
 
 **Parameters:**
 
@@ -146,7 +146,7 @@ ___
 
 ▸ **setLogLevel**(level: *[LogLevel](../enums/_common_logger_.loglevel.md)*): `void`
 
-*Defined in [Common/Logger.ts:24](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Common/Logger.ts#L24)*
+*Defined in [Common/Logger.ts:24](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Common/Logger.ts#L24)*
 
 **Parameters:**
 
@@ -163,7 +163,7 @@ ___
 
 ▸ **warn**(message: *`any`*, ...messages: *`any`[]*): `void`
 
-*Defined in [Common/Logger.ts:34](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Common/Logger.ts#L34)*
+*Defined in [Common/Logger.ts:34](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Common/Logger.ts#L34)*
 
 **Parameters:**
 

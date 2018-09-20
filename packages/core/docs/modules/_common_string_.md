@@ -19,7 +19,7 @@
 
 ▸ **padLeft**(string: *`string`*, length?: *`number`*, char?: *`string`*): `string`
 
-*Defined in [Common/String.ts:10](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Common/String.ts#L10)*
+*Defined in [Common/String.ts:10](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Common/String.ts#L10)*
 
 **Parameters:**
 
@@ -36,16 +36,16 @@ ___
 
 ###  padRight
 
-▸ **padRight**(string: *`string`*, length: *`number`*, char?: *`string`*): `string`
+▸ **padRight**(string: *`string`*, length?: *`number`*, char?: *`string`*): `string`
 
-*Defined in [Common/String.ts:19](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Common/String.ts#L19)*
+*Defined in [Common/String.ts:19](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Common/String.ts#L19)*
 
 **Parameters:**
 
 | Param | Type | Default value |
 | ------ | ------ | ------ |
 | string | `string` | - |
-| length | `number` | - |
+| `Default value` length | `number` | 2 |
 | `Default value` char | `string` | &quot;0&quot; |
 
 **Returns:** `string`

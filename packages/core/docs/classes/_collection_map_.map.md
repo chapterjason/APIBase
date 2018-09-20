@@ -46,7 +46,7 @@
 
 ⊕ **new Map**(items?: * `IterableIterator`<[MapTupel](../modules/_collection_map_.md#maptupel)<`KeyType`, `ValueType`>> &#124; `Array`<[MapTupel](../modules/_collection_map_.md#maptupel)<`KeyType`, `ValueType`>>*): [Map](_collection_map_.map.md)
 
-*Defined in [Collection/Map.ts:108](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L108)*
+*Defined in [Collection/Map.ts:108](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L108)*
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ ___
 
 **● _keys**: *`KeyType`[]* =  []
 
-*Defined in [Collection/Map.ts:107](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L107)*
+*Defined in [Collection/Map.ts:107](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L107)*
 
 ___
 <a id="_values"></a>
@@ -75,7 +75,7 @@ ___
 
 **● _values**: *`ValueType`[]* =  []
 
-*Defined in [Collection/Map.ts:108](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L108)*
+*Defined in [Collection/Map.ts:108](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L108)*
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 ▸ **__@iterator**(): `IterableIterator`<[MapTupel](../modules/_collection_map_.md#maptupel)<`KeyType`, `ValueType`>>
 
-*Defined in [Collection/Map.ts:175](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L175)*
+*Defined in [Collection/Map.ts:177](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L177)*
 
 **Returns:** `IterableIterator`<[MapTupel](../modules/_collection_map_.md#maptupel)<`KeyType`, `ValueType`>>
 
@@ -98,7 +98,7 @@ ___
 
 ▸ **clear**(): `void`
 
-*Defined in [Collection/Map.ts:119](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L119)*
+*Defined in [Collection/Map.ts:119](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L119)*
 
 **Returns:** `void`
 
@@ -109,7 +109,7 @@ ___
 
 ▸ **delete**(key: *`KeyType`*): `boolean`
 
-*Defined in [Collection/Map.ts:124](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L124)*
+*Defined in [Collection/Map.ts:124](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L124)*
 
 **Parameters:**
 
@@ -126,7 +126,7 @@ ___
 
 ▸ **entries**(): `IterableIterator`<[MapTupel](../modules/_collection_map_.md#maptupel)<`KeyType`, `ValueType`>>
 
-*Defined in [Collection/Map.ts:134](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L134)*
+*Defined in [Collection/Map.ts:136](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L136)*
 
 **Returns:** `IterableIterator`<[MapTupel](../modules/_collection_map_.md#maptupel)<`KeyType`, `ValueType`>>
 
@@ -137,7 +137,7 @@ ___
 
 ▸ **forEach**(callback: *`function`*): `void`
 
-*Defined in [Collection/Map.ts:138](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L138)*
+*Defined in [Collection/Map.ts:140](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L140)*
 
 **Parameters:**
 
@@ -154,7 +154,7 @@ ___
 
 ▸ **get**(key: *`KeyType`*): `ValueType`
 
-*Defined in [Collection/Map.ts:145](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L145)*
+*Defined in [Collection/Map.ts:147](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L147)*
 
 **Parameters:**
 
@@ -171,7 +171,7 @@ ___
 
 ▸ **has**(key: *`KeyType`*): `boolean`
 
-*Defined in [Collection/Map.ts:154](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L154)*
+*Defined in [Collection/Map.ts:156](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L156)*
 
 **Parameters:**
 
@@ -188,7 +188,7 @@ ___
 
 ▸ **keys**(): `IterableIterator`<`KeyType`>
 
-*Defined in [Collection/Map.ts:158](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L158)*
+*Defined in [Collection/Map.ts:160](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L160)*
 
 **Returns:** `IterableIterator`<`KeyType`>
 
@@ -199,7 +199,7 @@ ___
 
 ▸ **reverse**(): `this`
 
-*Defined in [Collection/Map.ts:179](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L179)*
+*Defined in [Collection/Map.ts:181](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L181)*
 
 **Returns:** `this`
 
@@ -210,7 +210,7 @@ ___
 
 ▸ **set**(key: *`KeyType`*, value: *`ValueType`*): `void`
 
-*Defined in [Collection/Map.ts:162](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L162)*
+*Defined in [Collection/Map.ts:164](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L164)*
 
 **Parameters:**
 
@@ -228,7 +228,7 @@ ___
 
 ▸ **size**(): `number`
 
-*Defined in [Collection/Map.ts:167](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L167)*
+*Defined in [Collection/Map.ts:169](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L169)*
 
 **Returns:** `number`
 
@@ -239,7 +239,7 @@ ___
 
 ▸ **sort**(compareFn?: *`function`*): [Map](_collection_map_.map.md)<`KeyType`, `ValueType`>
 
-*Defined in [Collection/Map.ts:186](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L186)*
+*Defined in [Collection/Map.ts:188](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L188)*
 
 **Parameters:**
 
@@ -256,7 +256,7 @@ ___
 
 ▸ **values**(): `IterableIterator`<`ValueType`>
 
-*Defined in [Collection/Map.ts:171](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L171)*
+*Defined in [Collection/Map.ts:173](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L173)*
 
 **Returns:** `IterableIterator`<`ValueType`>
 

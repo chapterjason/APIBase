@@ -39,7 +39,7 @@
 
 ⊕ **new Database**(mapping?: *[DatabaseIndex](../interfaces/_database_databaseinterface_.databaseindex.md)*): [Database](_database_database_.database.md)
 
-*Defined in [Database/Database.ts:19](https://github.com/chapterjason/APIBase/blob/f597d69/packages/database/src/Database/Database.ts#L19)*
+*Defined in [Database/Database.ts:19](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L19)*
 
 **Parameters:**
 
@@ -59,7 +59,7 @@ ___
 
 **● depthLimit**: *`number`* = 32
 
-*Defined in [Database/Database.ts:19](https://github.com/chapterjason/APIBase/blob/f597d69/packages/database/src/Database/Database.ts#L19)*
+*Defined in [Database/Database.ts:19](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L19)*
 
 ___
 <a id="mapping"></a>
@@ -68,7 +68,7 @@ ___
 
 **● mapping**: *[DatabaseIndex](../interfaces/_database_databaseinterface_.databaseindex.md)*
 
-*Defined in [Database/Database.ts:17](https://github.com/chapterjason/APIBase/blob/f597d69/packages/database/src/Database/Database.ts#L17)*
+*Defined in [Database/Database.ts:17](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L17)*
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[collection](../interfaces/_database_databaseinterface_.databaseinterface.md#collection)*
 
-*Defined in [Database/Database.ts:124](https://github.com/chapterjason/APIBase/blob/f597d69/packages/database/src/Database/Database.ts#L124)*
+*Defined in [Database/Database.ts:124](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L124)*
 
 **Type parameters:**
 
@@ -100,11 +100,11 @@ ___
 
 ###  delete
 
-▸ **delete**(path?: * `Path` &#124; `string` &#124; `string`[]*): `boolean`
+▸ **delete**(path?: * `Path` &#124; `string` &#124; `string`[]*): `Promise`<`boolean`>
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[delete](../interfaces/_database_databaseinterface_.databaseinterface.md#delete)*
 
-*Defined in [Database/Database.ts:25](https://github.com/chapterjason/APIBase/blob/f597d69/packages/database/src/Database/Database.ts#L25)*
+*Defined in [Database/Database.ts:25](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L25)*
 
 **Parameters:**
 
@@ -112,18 +112,18 @@ ___
 | ------ | ------ |
 | `Optional` path |  `Path` &#124; `string` &#124; `string`[]|
 
-**Returns:** `boolean`
+**Returns:** `Promise`<`boolean`>
 
 ___
 <a id="get"></a>
 
 ###  get
 
-▸ **get**<`T`>(path?: * `Path` &#124; `string` &#124; `string`[]*): `T`
+▸ **get**<`T`>(path?: * `Path` &#124; `string` &#124; `string`[]*): `Promise`<`T`>
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[get](../interfaces/_database_databaseinterface_.databaseinterface.md#get)*
 
-*Defined in [Database/Database.ts:97](https://github.com/chapterjason/APIBase/blob/f597d69/packages/database/src/Database/Database.ts#L97)*
+*Defined in [Database/Database.ts:97](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L97)*
 
 **Type parameters:**
 
@@ -134,7 +134,7 @@ ___
 | ------ | ------ |
 | `Optional` path |  `Path` &#124; `string` &#124; `string`[]|
 
-**Returns:** `T`
+**Returns:** `Promise`<`T`>
 
 ___
 <a id="reference"></a>
@@ -145,7 +145,7 @@ ___
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[reference](../interfaces/_database_databaseinterface_.databaseinterface.md#reference)*
 
-*Defined in [Database/Database.ts:120](https://github.com/chapterjason/APIBase/blob/f597d69/packages/database/src/Database/Database.ts#L120)*
+*Defined in [Database/Database.ts:120](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L120)*
 
 **Type parameters:**
 
@@ -163,11 +163,11 @@ ___
 
 ###  set
 
-▸ **set**(path: * `Path` &#124; `string` &#124; `string`[]*, value: *`any`*): `boolean`
+▸ **set**(path: * `Path` &#124; `string` &#124; `string`[]*, value: *`any`*): `Promise`<`boolean`>
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[set](../interfaces/_database_databaseinterface_.databaseinterface.md#set)*
 
-*Defined in [Database/Database.ts:59](https://github.com/chapterjason/APIBase/blob/f597d69/packages/database/src/Database/Database.ts#L59)*
+*Defined in [Database/Database.ts:59](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L59)*
 
 **Parameters:**
 
@@ -176,7 +176,7 @@ ___
 | path |  `Path` &#124; `string` &#124; `string`[]|
 | value | `any` |
 
-**Returns:** `boolean`
+**Returns:** `Promise`<`boolean`>
 
 ___
 

@@ -38,7 +38,7 @@
 
 ⊕ **new MapValueIterator**(values: *`ValueType`[]*): [MapValueIterator](_collection_map_.mapvalueiterator.md)
 
-*Defined in [Collection/Map.ts:48](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L48)*
+*Defined in [Collection/Map.ts:48](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L48)*
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ ___
 
 **● pointer**: *`number`* = 0
 
-*Defined in [Collection/Map.ts:47](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L47)*
+*Defined in [Collection/Map.ts:47](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L47)*
 
 ___
 <a id="values"></a>
@@ -67,7 +67,7 @@ ___
 
 **● values**: *`ValueType`[]*
 
-*Defined in [Collection/Map.ts:48](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L48)*
+*Defined in [Collection/Map.ts:48](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L48)*
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 ▸ **__@iterator**(): `IterableIterator`<`ValueType`>
 
-*Defined in [Collection/Map.ts:70](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L70)*
+*Defined in [Collection/Map.ts:70](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L70)*
 
 **Returns:** `IterableIterator`<`ValueType`>
 
@@ -90,7 +90,7 @@ ___
 
 ▸ **next**(): `IteratorResult`<`ValueType`>
 
-*Defined in [Collection/Map.ts:54](https://github.com/chapterjason/APIBase/blob/f597d69/packages/core/src/Collection/Map.ts#L54)*
+*Defined in [Collection/Map.ts:54](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/core/src/Collection/Map.ts#L54)*
 
 **Returns:** `IteratorResult`<`ValueType`>
 
