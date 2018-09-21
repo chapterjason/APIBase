@@ -1,1 +1,10 @@
-{"version":3,"file":"DatabaseInterface.js","sourceRoot":"","sources":["../../src/Database/DatabaseInterface.ts"],"names":[],"mappings":""}
+{
+  "version": 3,
+  "file": "DatabaseInterface.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../src/Database/DatabaseInterface.ts"
+  ],
+  "names": [],
+  "mappings": ";;AAIA,IAAY,UAGX;AAHD,WAAY,UAAU;IAClB,yCAAG,CAAA;IACH,+CAAM,CAAA;AACV,CAAC,EAHW,UAAU,GAAV,kBAAU,KAAV,kBAAU,QAGrB"
+}

@@ -11,6 +11,7 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
+__export(require("./Database/DatabaseInterface"));
 __export(require("./Database/Database"));
 __export(require("./Database/Reference/Reference"));
 __export(require("./Database/Reference/CollectionReference"));
