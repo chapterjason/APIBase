@@ -1,8 +1,7 @@
-import {CollectionSnapshot} from "@apibase/database";
+import {CollectionReference, CollectionSnapshot} from "@apibase/database";
 import * as React from "react";
 import {ClientDatabase} from "../Database/ClientDatabase";
-import {ClientCollectionReference} from "../Database/Reference/ClientCollectionReference";
-import {Logger} from "@apibase/core";
+import {createdAt, Logger} from "@apibase/core";
 import {Button, HTMLTable, InputGroup} from "@blueprintjs/core";
 import {Item} from "./Item";
 
@@ -18,11 +17,11 @@ export interface TableState<ItemType = any> {
     sortOrder: boolean;
 }
 
-export class Table<ItemType = any> extends React.PureComponent<TableProps, TableState<ItemType>> {
+export class Table<ItemType = any> extends React.Component<TableProps, TableState<ItemType>> {
 
     protected database: ClientDatabase;
 
-    protected reference: ClientCollectionReference<ItemType>;
+    protected reference: CollectionReference<ItemType>;
 
     protected sortBy = (type: "key" | "created" | "name") => {
         if (this.state.sortBy === type) {
@@ -34,23 +33,27 @@ export class Table<ItemType = any> extends React.PureComponent<TableProps, Table
     protected handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({inputText: event.target.value});
     };
-    protected handleKeyPress = (event) => {
+    protected handleKeyPress = async (event) => {
         if (event.key == 'Enter') {
-            this.addItem();
+            await this.addItem();
         }
     };
-    protected addItem = () => {
+
+    protected addItem = async () => {
         Logger.info('Adding...');
-        this.reference
-            .push(({name: this.state.inputText} as any) as ItemType)
-            .then(() => {
-                Logger.info('Added!');
-                this.setState({inputText: ''});
-                this.update();
-            })
-            .catch(error => {
-                Logger.error(error);
-            });
+
+        try {
+            const item = ({name: this.state.inputText} as any) as ItemType;
+            const result = await this.reference.push(item);
+
+            const items = this.state.items;
+            items['_map'].set(result.key(), item);
+
+            this.setState({inputText: '', items});
+            Logger.info('Added!');
+        } catch (error) {
+            Logger.error(error);
+        }
     };
 
     constructor(props: TableProps) {
@@ -60,11 +63,12 @@ export class Table<ItemType = any> extends React.PureComponent<TableProps, Table
         this.reference = this.database.collection(this.props.path);
     }
 
-    public componentDidMount() {
-        this.update();
+    public async componentDidMount() {
+        await this.update();
     }
 
     public render() {
+        this.preRender();
         return (
             <HTMLTable>
                 <thead>
@@ -95,44 +99,66 @@ export class Table<ItemType = any> extends React.PureComponent<TableProps, Table
         );
     }
 
-    public update() {
+    public async update() {
         Logger.info('Updating...');
-        this.reference.get()
-            .then(snapshot => {
-                Logger.info('Updated!');
-                this.setState({items: snapshot});
-            })
-            .catch(error => {
-                Logger.error(error);
-            });
+        try {
+            const snapshot = await this.reference.get();
+            Logger.info('Updated!');
+            this.setState({items: snapshot});
+        } catch (error) {
+            Logger.error(error);
+        }
     }
 
-    public delete(key: string) {
+    public async delete(key: string) {
         Logger.info('Deleting', key);
-        this.reference.reference(key).delete()
-            .then(result => {
-                if (result) {
-                    Logger.info(key, 'deleted!');
-                    this.update();
-                }
-            })
-            .catch(error => {
-                Logger.error(error);
-            });
+
+        try {
+            const result = await this.reference.reference(key).delete();
+
+            if (result) {
+                Logger.info(key, 'deleted!');
+                await this.update();
+            }
+        } catch (error) {
+            Logger.error(error);
+        }
     }
 
-    public setValue(key: string, value: ItemType) {
+    public async setValue(key: string, value: ItemType) {
         Logger.info('Update', key);
-        this.reference.reference<ItemType>(key).set(value)
-            .then(result => {
-                if (result) {
-                    Logger.info('Updated', key);
-                    this.update();
-                }
-            })
-            .catch(error => {
-                Logger.error(error);
-            });
+
+        try {
+            const result = await this.reference.reference<ItemType>(key).set(value);
+
+            if (result) {
+                Logger.info('Updated', key);
+                await this.update();
+            }
+        } catch (error) {
+            Logger.error(error);
+        }
+    }
+
+    protected preRender() {
+        if (this.state.items) {
+            const sortBy = this.state.sortBy;
+            if (sortBy === "key") {
+                this.state.items.sortByKey();
+            } else if (sortBy === 'created') {
+                this.state.items.sort((a, b) => {
+                    const aDate = createdAt(a[0]);
+                    const bDate = createdAt(b[0]);
+                    return aDate > bDate ? -1 : aDate < bDate ? 1 : 0;
+                });
+            } else if (sortBy === 'name') {
+                this.state.items.sortByProperty('name');
+            }
+
+            if (this.state.sortOrder) {
+                this.state.items.reverse();
+            }
+        }
     }
 
     protected renderItems(): JSX.Element[] {
