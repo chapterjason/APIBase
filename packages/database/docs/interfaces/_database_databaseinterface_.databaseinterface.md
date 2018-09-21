@@ -30,7 +30,7 @@
 
 ▸ **collection**<`ReferenceType`>(path?: * `Path` &#124; `string` &#124; `string`[]*): [CollectionReferenceInterface](_database_reference_collectionreferenceinterface_.collectionreferenceinterface.md)<`ReferenceType`>
 
-*Defined in [Database/DatabaseInterface.ts:19](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/DatabaseInterface.ts#L19)*
+*Defined in [Database/DatabaseInterface.ts:30](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/DatabaseInterface.ts#L30)*
 
 **Type parameters:**
 
@@ -50,7 +50,7 @@ ___
 
 ▸ **delete**(path?: * `Path` &#124; `string` &#124; `string`[]*): `Promise`<`boolean`>
 
-*Defined in [Database/DatabaseInterface.ts:11](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/DatabaseInterface.ts#L11)*
+*Defined in [Database/DatabaseInterface.ts:22](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/DatabaseInterface.ts#L22)*
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ ___
 
 ▸ **get**<`T`>(path?: * `Path` &#124; `string` &#124; `string`[]*): `Promise`<`T`>
 
-*Defined in [Database/DatabaseInterface.ts:15](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/DatabaseInterface.ts#L15)*
+*Defined in [Database/DatabaseInterface.ts:26](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/DatabaseInterface.ts#L26)*
 
 **Type parameters:**
 
@@ -87,7 +87,7 @@ ___
 
 ▸ **reference**<`ReferenceType`>(path?: * `Path` &#124; `string` &#124; `string`[]*): [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md)<`ReferenceType`>
 
-*Defined in [Database/DatabaseInterface.ts:17](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/DatabaseInterface.ts#L17)*
+*Defined in [Database/DatabaseInterface.ts:28](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/DatabaseInterface.ts#L28)*
 
 **Type parameters:**
 
@@ -107,7 +107,7 @@ ___
 
 ▸ **set**(path: * `Path` &#124; `string` &#124; `string`[]*, value: *`any`*): `Promise`<`boolean`>
 
-*Defined in [Database/DatabaseInterface.ts:13](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/DatabaseInterface.ts#L13)*
+*Defined in [Database/DatabaseInterface.ts:24](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/DatabaseInterface.ts#L24)*
 
 **Parameters:**
 

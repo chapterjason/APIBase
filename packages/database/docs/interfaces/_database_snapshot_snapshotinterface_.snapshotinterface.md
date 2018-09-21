@@ -32,7 +32,7 @@
 
 ▸ **key**(): `string`
 
-*Defined in [Database/Snapshot/SnapshotInterface.ts:6](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Snapshot/SnapshotInterface.ts#L6)*
+*Defined in [Database/Snapshot/SnapshotInterface.ts:6](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Snapshot/SnapshotInterface.ts#L6)*
 
 **Returns:** `string`
 
@@ -43,7 +43,7 @@ ___
 
 ▸ **value**(): `SnapshotType`
 
-*Defined in [Database/Snapshot/SnapshotInterface.ts:4](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Snapshot/SnapshotInterface.ts#L4)*
+*Defined in [Database/Snapshot/SnapshotInterface.ts:4](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Snapshot/SnapshotInterface.ts#L4)*
 
 **Returns:** `SnapshotType`
 

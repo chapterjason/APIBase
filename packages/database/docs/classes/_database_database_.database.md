@@ -39,7 +39,7 @@
 
 ⊕ **new Database**(mapping?: *[DatabaseIndex](../interfaces/_database_databaseinterface_.databaseindex.md)*): [Database](_database_database_.database.md)
 
-*Defined in [Database/Database.ts:19](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L19)*
+*Defined in [Database/Database.ts:19](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Database.ts#L19)*
 
 **Parameters:**
 
@@ -59,7 +59,7 @@ ___
 
 **● depthLimit**: *`number`* = 32
 
-*Defined in [Database/Database.ts:19](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L19)*
+*Defined in [Database/Database.ts:19](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Database.ts#L19)*
 
 ___
 <a id="mapping"></a>
@@ -68,7 +68,7 @@ ___
 
 **● mapping**: *[DatabaseIndex](../interfaces/_database_databaseinterface_.databaseindex.md)*
 
-*Defined in [Database/Database.ts:17](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L17)*
+*Defined in [Database/Database.ts:17](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Database.ts#L17)*
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[collection](../interfaces/_database_databaseinterface_.databaseinterface.md#collection)*
 
-*Defined in [Database/Database.ts:124](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L124)*
+*Defined in [Database/Database.ts:124](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Database.ts#L124)*
 
 **Type parameters:**
 
@@ -104,7 +104,7 @@ ___
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[delete](../interfaces/_database_databaseinterface_.databaseinterface.md#delete)*
 
-*Defined in [Database/Database.ts:25](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L25)*
+*Defined in [Database/Database.ts:25](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Database.ts#L25)*
 
 **Parameters:**
 
@@ -123,7 +123,7 @@ ___
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[get](../interfaces/_database_databaseinterface_.databaseinterface.md#get)*
 
-*Defined in [Database/Database.ts:97](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L97)*
+*Defined in [Database/Database.ts:97](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Database.ts#L97)*
 
 **Type parameters:**
 
@@ -145,7 +145,7 @@ ___
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[reference](../interfaces/_database_databaseinterface_.databaseinterface.md#reference)*
 
-*Defined in [Database/Database.ts:120](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L120)*
+*Defined in [Database/Database.ts:120](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Database.ts#L120)*
 
 **Type parameters:**
 
@@ -167,7 +167,7 @@ ___
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[set](../interfaces/_database_databaseinterface_.databaseinterface.md#set)*
 
-*Defined in [Database/Database.ts:59](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Database.ts#L59)*
+*Defined in [Database/Database.ts:59](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Database.ts#L59)*
 
 **Parameters:**
 

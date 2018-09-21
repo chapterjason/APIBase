@@ -47,7 +47,7 @@
 
 ⊕ **new Reference**(database: *[Database](_database_database_.database.md)*, path: *`Path`*): [Reference](_database_reference_reference_.reference.md)
 
-*Defined in [Database/Reference/Reference.ts:19](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Reference/Reference.ts#L19)*
+*Defined in [Database/Reference/Reference.ts:19](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Reference/Reference.ts#L19)*
 
 **Parameters:**
 
@@ -68,7 +68,7 @@ ___
 
 **● database**: *[Database](_database_database_.database.md)*
 
-*Defined in [Database/Reference/Reference.ts:17](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Reference/Reference.ts#L17)*
+*Defined in [Database/Reference/Reference.ts:17](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Reference/Reference.ts#L17)*
 
 ___
 <a id="path"></a>
@@ -77,7 +77,7 @@ ___
 
 **● path**: *`Path`*
 
-*Defined in [Database/Reference/Reference.ts:19](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Reference/Reference.ts#L19)*
+*Defined in [Database/Reference/Reference.ts:19](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Reference/Reference.ts#L19)*
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 *Implementation of [ReferenceInterface](../interfaces/_database_reference_referenceinterface_.referenceinterface.md).[collection](../interfaces/_database_reference_referenceinterface_.referenceinterface.md#collection)*
 
-*Defined in [Database/Reference/Reference.ts:55](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Reference/Reference.ts#L55)*
+*Defined in [Database/Reference/Reference.ts:55](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Reference/Reference.ts#L55)*
 
 **Type parameters:**
 
@@ -113,7 +113,7 @@ ___
 
 *Implementation of [ReferenceInterface](../interfaces/_database_reference_referenceinterface_.referenceinterface.md).[delete](../interfaces/_database_reference_referenceinterface_.referenceinterface.md#delete)*
 
-*Defined in [Database/Reference/Reference.ts:68](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Reference/Reference.ts#L68)*
+*Defined in [Database/Reference/Reference.ts:68](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Reference/Reference.ts#L68)*
 
 **Returns:** `Promise`<`boolean`>
 
@@ -126,7 +126,7 @@ ___
 
 *Implementation of [ReferenceInterface](../interfaces/_database_reference_referenceinterface_.referenceinterface.md).[get](../interfaces/_database_reference_referenceinterface_.referenceinterface.md#get)*
 
-*Defined in [Database/Reference/Reference.ts:63](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Reference/Reference.ts#L63)*
+*Defined in [Database/Reference/Reference.ts:63](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Reference/Reference.ts#L63)*
 
 **Returns:** `Promise`<[Snapshot](_database_snapshot_snapshot_.snapshot.md)<`ReferenceType`>>
 
@@ -139,7 +139,7 @@ ___
 
 *Implementation of [ReferenceInterface](../interfaces/_database_reference_referenceinterface_.referenceinterface.md).[getPath](../interfaces/_database_reference_referenceinterface_.referenceinterface.md#getpath)*
 
-*Defined in [Database/Reference/Reference.ts:26](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Reference/Reference.ts#L26)*
+*Defined in [Database/Reference/Reference.ts:26](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Reference/Reference.ts#L26)*
 
 **Returns:** `Path`
 
@@ -152,7 +152,7 @@ ___
 
 *Implementation of [ReferenceInterface](../interfaces/_database_reference_referenceinterface_.referenceinterface.md).[key](../interfaces/_database_reference_referenceinterface_.referenceinterface.md#key)*
 
-*Defined in [Database/Reference/Reference.ts:30](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Reference/Reference.ts#L30)*
+*Defined in [Database/Reference/Reference.ts:30](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Reference/Reference.ts#L30)*
 
 **Returns:** `string`
 
@@ -165,7 +165,7 @@ ___
 
 *Implementation of [ReferenceInterface](../interfaces/_database_reference_referenceinterface_.referenceinterface.md).[parent](../interfaces/_database_reference_referenceinterface_.referenceinterface.md#parent)*
 
-*Defined in [Database/Reference/Reference.ts:41](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Reference/Reference.ts#L41)*
+*Defined in [Database/Reference/Reference.ts:41](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Reference/Reference.ts#L41)*
 
 **Type parameters:**
 
@@ -182,7 +182,7 @@ ___
 
 *Implementation of [ReferenceInterface](../interfaces/_database_reference_referenceinterface_.referenceinterface.md).[reference](../interfaces/_database_reference_referenceinterface_.referenceinterface.md#reference)*
 
-*Defined in [Database/Reference/Reference.ts:51](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Reference/Reference.ts#L51)*
+*Defined in [Database/Reference/Reference.ts:51](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Reference/Reference.ts#L51)*
 
 **Type parameters:**
 
@@ -204,7 +204,7 @@ ___
 
 *Implementation of [ReferenceInterface](../interfaces/_database_reference_referenceinterface_.referenceinterface.md).[set](../interfaces/_database_reference_referenceinterface_.referenceinterface.md#set)*
 
-*Defined in [Database/Reference/Reference.ts:59](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Reference/Reference.ts#L59)*
+*Defined in [Database/Reference/Reference.ts:59](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Reference/Reference.ts#L59)*
 
 **Parameters:**
 
@@ -223,7 +223,7 @@ ___
 
 *Implementation of [ReferenceInterface](../interfaces/_database_reference_referenceinterface_.referenceinterface.md).[toJSON](../interfaces/_database_reference_referenceinterface_.referenceinterface.md#tojson)*
 
-*Defined in [Database/Reference/Reference.ts:34](https://github.com/chapterjason/APIBase/blob/2632bf5/packages/database/src/Database/Reference/Reference.ts#L34)*
+*Defined in [Database/Reference/Reference.ts:34](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/Reference/Reference.ts#L34)*
 
 **Returns:** `Promise`<[ReferenceJSON](../interfaces/_database_reference_referenceinterface_.referencejson.md)>
 
