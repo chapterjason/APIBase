@@ -30,7 +30,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                 resolve(result.value);
             }).then(fulfilled, rejected);
         }
-
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -54,7 +53,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
             return step([n, v]);
         };
     }
-
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
@@ -119,6 +117,7 @@ var express = require("express");
 var cors = require("cors");
 var ResponseError_1 = require("./Response/ResponseError");
 var ResponseSuccess_1 = require("./Response/ResponseSuccess");
+var database_1 = require("@apibase/database");
 core_1.Logger.setLogLevel(core_1.LogLevel.LLLL);
 var server = express();
 // body will be parsed as json
@@ -132,7 +131,7 @@ server.use(function (request, response, next) {
 server.use(cors());
 server.use(function (request, response, next) {
     return __awaiter(_this, void 0, void 0, function () {
-        var path, data, error_1, collectionReference, reference, _a, _b, _c, error_2, _d, _e, _f, error_3, _g, _h, _j,
+        var path, data, error_1, changes, commits, i, change, error_2, i, _a, _b, _c, _d, _e, _f, error_3, _g, _h, _j,
             error_4;
         return __generator(this, function (_k) {
             switch (_k.label) {
@@ -154,69 +153,100 @@ server.use(function (request, response, next) {
                     response.send(new ResponseError_1.ResponseError(error_1.message));
                     return [3 /*break*/, 4];
                 case 4:
-                    return [3 /*break*/, 20];
+                    return [3 /*break*/, 29];
                 case 5:
-                    if (!(request.method === 'POST')) return [3 /*break*/, 11];
-                    core_1.Logger.info('PUSH', path.toString());
+                    if (!(request.method === 'POST')) return [3 /*break*/, 20];
+                    core_1.Logger.info('SYNC', path.toString());
+                    changes = request.body;
+                    commits = [];
                     _k.label = 6;
                 case 6:
-                    _k.trys.push([6, 9, , 10]);
-                    collectionReference = Database_1.database.collection(path);
-                    return [4 /*yield*/, collectionReference.push(request.body)];
+                    _k.trys.push([6, 14, 15, 16]);
+                    i = 0;
+                    _k.label = 7;
                 case 7:
-                    reference = _k.sent();
-                    _b = (_a = response).send;
-                    _c = ResponseSuccess_1.ResponseSuccess.bind;
-                    return [4 /*yield*/, Database_1.database.get(reference.getPath())];
+                    if (!(i < changes.length)) return [3 /*break*/, 13];
+                    change = changes[i];
+                    if (!(change.type === database_1.ChangeType.SET)) return [3 /*break*/, 9];
+                    return [4 /*yield*/, Database_1.database.set(change.path, change.value)];
                 case 8:
-                    _b.apply(_a, [new (_c.apply(ResponseSuccess_1.ResponseSuccess, [void 0, _k.sent()]))()]);
-                    return [3 /*break*/, 10];
+                    _k.sent();
+                    return [3 /*break*/, 11];
                 case 9:
-                    error_2 = _k.sent();
-                    response.status(500);
-                    response.send(new ResponseError_1.ResponseError(error_2.message));
-                    return [3 /*break*/, 10];
+                    if (!(change.type === database_1.ChangeType.DELETE)) return [3 /*break*/, 11];
+                    return [4 /*yield*/, Database_1.database.delete(change.path)];
                 case 10:
-                    return [3 /*break*/, 20];
+                    _k.sent();
+                    _k.label = 11;
                 case 11:
-                    if (!(request.method === 'PUT')) return [3 /*break*/, 16];
-                    core_1.Logger.info('SET', path.toString());
+                    commits.push(i);
                     _k.label = 12;
                 case 12:
-                    _k.trys.push([12, 14, , 15]);
+                    i++;
+                    return [3 /*break*/, 7];
+                case 13:
+                    return [3 /*break*/, 16];
+                case 14:
+                    error_2 = _k.sent();
+                    core_1.Logger.error(error_2);
+                    return [3 /*break*/, 16];
+                case 15:
+                    for (i = commits.length - 1; i >= 0; i--) {
+                        changes.splice(commits[i], 1);
+                    }
+                    return [7 /*endfinally*/];
+                case 16:
+                    if (!(changes.length > 0)) return [3 /*break*/, 17];
+                    response.send(new ResponseError_1.ResponseError(changes));
+                    return [3 /*break*/, 19];
+                case 17:
+                    _b = (_a = response).send;
+                    _c = ResponseSuccess_1.ResponseSuccess.bind;
+                    return [4 /*yield*/, Database_1.database.get('/')];
+                case 18:
+                    _b.apply(_a, [new (_c.apply(ResponseSuccess_1.ResponseSuccess, [void 0, _k.sent()]))()]);
+                    _k.label = 19;
+                case 19:
+                    return [3 /*break*/, 29];
+                case 20:
+                    if (!(request.method === 'PUT')) return [3 /*break*/, 25];
+                    core_1.Logger.info('SET', path.toString());
+                    _k.label = 21;
+                case 21:
+                    _k.trys.push([21, 23, , 24]);
                     _e = (_d = response).send;
                     _f = ResponseSuccess_1.ResponseSuccess.bind;
                     return [4 /*yield*/, Database_1.database.set(path, request.body)];
-                case 13:
+                case 22:
                     _e.apply(_d, [new (_f.apply(ResponseSuccess_1.ResponseSuccess, [void 0, _k.sent()]))()]);
-                    return [3 /*break*/, 15];
-                case 14:
+                    return [3 /*break*/, 24];
+                case 23:
                     error_3 = _k.sent();
                     response.status(500);
                     response.send(new ResponseError_1.ResponseError(error_3.message));
-                    return [3 /*break*/, 15];
-                case 15:
-                    return [3 /*break*/, 20];
-                case 16:
-                    if (!(request.method === 'DELETE')) return [3 /*break*/, 20];
+                    return [3 /*break*/, 24];
+                case 24:
+                    return [3 /*break*/, 29];
+                case 25:
+                    if (!(request.method === 'DELETE')) return [3 /*break*/, 29];
                     core_1.Logger.info('DELETE', path.toString());
-                    _k.label = 17;
-                case 17:
-                    _k.trys.push([17, 19, , 20]);
+                    _k.label = 26;
+                case 26:
+                    _k.trys.push([26, 28, , 29]);
                     _h = (_g = response).send;
                     _j = ResponseSuccess_1.ResponseSuccess.bind;
                     return [4 /*yield*/, Database_1.database.delete(path)];
-                case 18:
+                case 27:
                     _h.apply(_g, [new (_j.apply(ResponseSuccess_1.ResponseSuccess, [void 0, _k.sent()]))()]);
-                    return [3 /*break*/, 20];
-                case 19:
+                    return [3 /*break*/, 29];
+                case 28:
                     error_4 = _k.sent();
                     response.status(500);
                     response.send(new ResponseError_1.ResponseError(error_4.message));
-                    return [3 /*break*/, 20];
-                case 20:
+                    return [3 /*break*/, 29];
+                case 29:
                     return [4 /*yield*/, Database_1.save()];
-                case 21:
+                case 30:
                     _k.sent();
                     return [2 /*return*/];
         }

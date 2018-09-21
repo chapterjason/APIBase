@@ -70,32 +70,35 @@ export class Table<ItemType = any> extends React.Component<TableProps, TableStat
     public render() {
         this.preRender();
         return (
-            <HTMLTable>
-                <thead>
-                    <tr>
-                        <th onClick={() => this.sortBy('key')}>ID</th>
-                        <th onClick={() => this.sortBy('created')}>Created at</th>
-                        <th onClick={() => this.sortBy('name')}>Name</th>
-                        <th>#</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.renderItems()}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>#</th>
-                        <th>
-                            <InputGroup type={"text"} value={this.state.inputText} onKeyPress={this.handleKeyPress}
-                                        onChange={this.handleChange}/>
-                        </th>
-                        <th>
-                            <Button icon={"add"} onClick={this.addItem}>Add</Button>
-                        </th>
-                    </tr>
-                </tfoot>
-            </HTMLTable>
+            <div>
+                <Button onClick={() => this.database.syncLoop(() => this.forceUpdate())}>Synchronize</Button>
+                <HTMLTable>
+                    <thead>
+                        <tr>
+                            <th onClick={() => this.sortBy('key')}>ID</th>
+                            <th onClick={() => this.sortBy('created')}>Created at</th>
+                            <th onClick={() => this.sortBy('name')}>Name</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.renderItems()}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>#</th>
+                            <th>
+                                <InputGroup type={"text"} value={this.state.inputText} onKeyPress={this.handleKeyPress}
+                                            onChange={this.handleChange}/>
+                            </th>
+                            <th>
+                                <Button icon={"add"} onClick={this.addItem}>Add</Button>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </HTMLTable>
+            </div>
         );
     }
 
