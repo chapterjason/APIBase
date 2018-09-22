@@ -10,7 +10,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Path = /** @class */ (function () {
     function Path(path) {
-        if (Array.isArray(path)) {
+        if (path instanceof Path) {
+            this.segments = path.getSegments();
+        }
+        else if (Array.isArray(path)) {
             this.segments = Path.normalize(path);
         }
         else if (typeof path === "string") {

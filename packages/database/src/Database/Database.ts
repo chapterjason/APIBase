@@ -7,7 +7,7 @@
  * File that was distributed with this source code.
  */
 
-import {Path} from '@apibase/core';
+import {Path, PathType} from '@apibase/core';
 import {Reference} from "./Reference/Reference";
 import {CollectionReference} from "./Reference/CollectionReference";
 import {DatabaseIndex, DatabaseInterface} from './DatabaseInterface';
@@ -22,7 +22,7 @@ export class Database implements DatabaseInterface {
         this.mapping = mapping;
     }
 
-    public async delete(path?: Path | string | string[]): Promise<boolean> {
+    public async delete(path?: PathType): Promise<boolean> {
         path = Path.ensurePath(path);
 
         if (path.length() === 0) {
@@ -56,7 +56,7 @@ export class Database implements DatabaseInterface {
         }
     }
 
-    public async set(path: Path | string | string[], value: any): Promise<boolean> {
+    public async set(path: PathType, value: any): Promise<boolean> {
         path = Path.ensurePath(path);
 
         if (path.length() === 0) {
@@ -94,7 +94,7 @@ export class Database implements DatabaseInterface {
         return false;
     }
 
-    public async get<T>(path?: Path | string | string[]): Promise<T> {
+    public async get<T>(path?: PathType): Promise<T> {
         path = Path.ensurePath(path);
 
         if (path.length() === 0) {
@@ -117,11 +117,11 @@ export class Database implements DatabaseInterface {
         }
     }
 
-    public reference<ReferenceType = any>(path?: Path | string | string[]): Reference<ReferenceType> {
+    public reference<ReferenceType = any>(path?: PathType): Reference<ReferenceType> {
         return new Reference<ReferenceType>(this, Path.ensurePath(path));
     }
 
-    public collection<ReferenceType = any>(path?: Path | string | string[]): CollectionReference<ReferenceType> {
+    public collection<ReferenceType = any>(path?: PathType): CollectionReference<ReferenceType> {
         return new CollectionReference<ReferenceType>(this, Path.ensurePath(path));
     }
 

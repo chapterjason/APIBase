@@ -7,13 +7,16 @@
  * File that was distributed with this source code.
  */
 
+export type PathType = Path | string | string[];
 
 export class Path {
 
     protected segments: string[];
 
-    public constructor(path?: string | string[]) {
-        if (Array.isArray(path)) {
+    public constructor(path?: PathType) {
+        if (path instanceof Path) {
+            this.segments = path.getSegments();
+        } else if (Array.isArray(path)) {
             this.segments = Path.normalize(path);
         } else if (typeof path === "string") {
             this.segments = Path.normalize(path);
@@ -22,7 +25,7 @@ export class Path {
         }
     }
 
-    public static ensurePath(path: Path | string | string[]) {
+    public static ensurePath(path: PathType) {
         if (path instanceof Path) {
             return path;
         } else {

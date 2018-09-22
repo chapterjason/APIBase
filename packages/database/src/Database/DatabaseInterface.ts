@@ -1,6 +1,6 @@
 import {ReferenceInterface} from "./Reference/ReferenceInterface";
 import {CollectionReferenceInterface} from "./Reference/CollectionReferenceInterface";
-import {Path} from "@apibase/core";
+import {PathType} from "@apibase/core";
 
 export enum ChangeType {
     SET,
@@ -19,14 +19,14 @@ export interface DatabaseIndex {
 
 export interface DatabaseInterface {
 
-    delete(path?: Path | string | string[]): Promise<boolean>;
+    delete(path?: PathType): Promise<boolean>;
 
-    set(path: Path | string | string[], value: any): Promise<boolean>;
+    set(path: PathType, value: any): Promise<boolean>;
 
-    get<T>(path?: Path | string | string[]): Promise<T>;
+    get<T>(path?: PathType): Promise<T>;
 
-    reference<ReferenceType = any>(path?: Path | string | string[]): ReferenceInterface<ReferenceType>;
+    reference<ReferenceType = any>(path?: PathType): ReferenceInterface<ReferenceType>;
 
-    collection<ReferenceType = any>(path?: Path | string | string[]): CollectionReferenceInterface<ReferenceType>;
+    collection<ReferenceType = any>(path?: PathType): CollectionReferenceInterface<ReferenceType>;
 
 }
