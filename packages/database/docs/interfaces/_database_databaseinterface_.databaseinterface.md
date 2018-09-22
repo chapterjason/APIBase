@@ -28,9 +28,9 @@
 
 ###  collection
 
-▸ **collection**<`ReferenceType`>(path?: * `Path` &#124; `string` &#124; `string`[]*): [CollectionReferenceInterface](_database_reference_collectionreferenceinterface_.collectionreferenceinterface.md)<`ReferenceType`>
+▸ **collection**<`ReferenceType`>(path?: *`PathType`*): [CollectionReferenceInterface](_database_reference_collectionreferenceinterface_.collectionreferenceinterface.md)<`ReferenceType`>
 
-*Defined in [Database/DatabaseInterface.ts:30](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/DatabaseInterface.ts#L30)*
+*Defined in [Database/DatabaseInterface.ts:19](https://github.com/chapterjason/APIBase/blob/c442522/packages/database/src/Database/DatabaseInterface.ts#L19)*
 
 **Type parameters:**
 
@@ -39,7 +39,7 @@
 
 | Param | Type |
 | ------ | ------ |
-| `Optional` path |  `Path` &#124; `string` &#124; `string`[]|
+| `Optional` path | `PathType` |
 
 **Returns:** [CollectionReferenceInterface](_database_reference_collectionreferenceinterface_.collectionreferenceinterface.md)<`ReferenceType`>
 
@@ -48,15 +48,15 @@ ___
 
 ###  delete
 
-▸ **delete**(path?: * `Path` &#124; `string` &#124; `string`[]*): `Promise`<`boolean`>
+▸ **delete**(path?: *`PathType`*): `Promise`<`boolean`>
 
-*Defined in [Database/DatabaseInterface.ts:22](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/DatabaseInterface.ts#L22)*
+*Defined in [Database/DatabaseInterface.ts:11](https://github.com/chapterjason/APIBase/blob/c442522/packages/database/src/Database/DatabaseInterface.ts#L11)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| `Optional` path |  `Path` &#124; `string` &#124; `string`[]|
+| `Optional` path | `PathType` |
 
 **Returns:** `Promise`<`boolean`>
 
@@ -65,9 +65,9 @@ ___
 
 ###  get
 
-▸ **get**<`T`>(path?: * `Path` &#124; `string` &#124; `string`[]*): `Promise`<`T`>
+▸ **get**<`T`>(path?: *`PathType`*): `Promise`<`T`>
 
-*Defined in [Database/DatabaseInterface.ts:26](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/DatabaseInterface.ts#L26)*
+*Defined in [Database/DatabaseInterface.ts:15](https://github.com/chapterjason/APIBase/blob/c442522/packages/database/src/Database/DatabaseInterface.ts#L15)*
 
 **Type parameters:**
 
@@ -76,7 +76,7 @@ ___
 
 | Param | Type |
 | ------ | ------ |
-| `Optional` path |  `Path` &#124; `string` &#124; `string`[]|
+| `Optional` path | `PathType` |
 
 **Returns:** `Promise`<`T`>
 
@@ -85,9 +85,9 @@ ___
 
 ###  reference
 
-▸ **reference**<`ReferenceType`>(path?: * `Path` &#124; `string` &#124; `string`[]*): [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md)<`ReferenceType`>
+▸ **reference**<`ReferenceType`>(path?: *`PathType`*): [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md)<`ReferenceType`>
 
-*Defined in [Database/DatabaseInterface.ts:28](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/DatabaseInterface.ts#L28)*
+*Defined in [Database/DatabaseInterface.ts:17](https://github.com/chapterjason/APIBase/blob/c442522/packages/database/src/Database/DatabaseInterface.ts#L17)*
 
 **Type parameters:**
 
@@ -96,7 +96,7 @@ ___
 
 | Param | Type |
 | ------ | ------ |
-| `Optional` path |  `Path` &#124; `string` &#124; `string`[]|
+| `Optional` path | `PathType` |
 
 **Returns:** [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md)<`ReferenceType`>
 
@@ -105,15 +105,15 @@ ___
 
 ###  set
 
-▸ **set**(path: * `Path` &#124; `string` &#124; `string`[]*, value: *`any`*): `Promise`<`boolean`>
+▸ **set**(path: *`PathType`*, value: *`any`*): `Promise`<`boolean`>
 
-*Defined in [Database/DatabaseInterface.ts:24](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/database/src/Database/DatabaseInterface.ts#L24)*
+*Defined in [Database/DatabaseInterface.ts:13](https://github.com/chapterjason/APIBase/blob/c442522/packages/database/src/Database/DatabaseInterface.ts#L13)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| path |  `Path` &#124; `string` &#124; `string`[]|
+| path | `PathType` |
 | value | `any` |
 
 **Returns:** `Promise`<`boolean`>

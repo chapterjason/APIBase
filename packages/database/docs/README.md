@@ -8,6 +8,10 @@ The database stores all its data in a javascript object. With paths the data can
 
 ### External modules
 
+* ["Database/Change/AbstractChange"](modules/_database_change_abstractchange_.md)
+* ["Database/Change/ChangeInterface"](modules/_database_change_changeinterface_.md)
+* ["Database/Change/DeleteChange"](modules/_database_change_deletechange_.md)
+* ["Database/Change/SetChange"](modules/_database_change_setchange_.md)
 * ["Database/Database"](modules/_database_database_.md)
 * ["Database/DatabaseInterface"](modules/_database_databaseinterface_.md)
 * ["Database/Reference/CollectionReference"](modules/_database_reference_collectionreference_.md)

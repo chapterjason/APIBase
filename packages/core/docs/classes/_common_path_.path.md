@@ -35,15 +35,15 @@
 
 ###  constructor
 
-⊕ **new Path**(path?: * `string` &#124; `string`[]*): [Path](_common_path_.path.md)
+⊕ **new Path**(path?: *[PathType](../modules/_common_path_.md#pathtype)*): [Path](_common_path_.path.md)
 
-*Defined in [Common/Path.ts:13](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Common/Path.ts#L13)*
+*Defined in [Common/Path.ts:14](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Common/Path.ts#L14)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| `Optional` path |  `string` &#124; `string`[]|
+| `Optional` path | [PathType](../modules/_common_path_.md#pathtype) |
 
 **Returns:** [Path](_common_path_.path.md)
 
@@ -57,7 +57,7 @@ ___
 
 **● segments**: *`string`[]*
 
-*Defined in [Common/Path.ts:13](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Common/Path.ts#L13)*
+*Defined in [Common/Path.ts:14](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Common/Path.ts#L14)*
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 ▸ **child**(segment: *`string`*): [Path](_common_path_.path.md)
 
-*Defined in [Common/Path.ts:59](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Common/Path.ts#L59)*
+*Defined in [Common/Path.ts:62](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Common/Path.ts#L62)*
 
 **Parameters:**
 
@@ -86,7 +86,7 @@ ___
 
 ▸ **end**():  `string` &#124; `null`
 
-*Defined in [Common/Path.ts:67](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Common/Path.ts#L67)*
+*Defined in [Common/Path.ts:70](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Common/Path.ts#L70)*
 
 **Returns:**  `string` &#124; `null`
 
@@ -97,7 +97,7 @@ ___
 
 ▸ **getSegments**(): `string`[]
 
-*Defined in [Common/Path.ts:47](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Common/Path.ts#L47)*
+*Defined in [Common/Path.ts:50](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Common/Path.ts#L50)*
 
 **Returns:** `string`[]
 
@@ -108,7 +108,7 @@ ___
 
 ▸ **length**(): `number`
 
-*Defined in [Common/Path.ts:63](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Common/Path.ts#L63)*
+*Defined in [Common/Path.ts:66](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Common/Path.ts#L66)*
 
 **Returns:** `number`
 
@@ -119,7 +119,7 @@ ___
 
 ▸ **parent**():  [Path](_common_path_.path.md) &#124; `null`
 
-*Defined in [Common/Path.ts:51](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Common/Path.ts#L51)*
+*Defined in [Common/Path.ts:54](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Common/Path.ts#L54)*
 
 **Returns:**  [Path](_common_path_.path.md) &#124; `null`
 
@@ -130,7 +130,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [Common/Path.ts:43](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Common/Path.ts#L43)*
+*Defined in [Common/Path.ts:46](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Common/Path.ts#L46)*
 
 **Returns:** `string`
 
@@ -139,15 +139,15 @@ ___
 
 ### `<Static>` ensurePath
 
-▸ **ensurePath**(path: * [Path](_common_path_.path.md) &#124; `string` &#124; `string`[]*): [Path](_common_path_.path.md)
+▸ **ensurePath**(path: *[PathType](../modules/_common_path_.md#pathtype)*): [Path](_common_path_.path.md)
 
-*Defined in [Common/Path.ts:25](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Common/Path.ts#L25)*
+*Defined in [Common/Path.ts:28](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Common/Path.ts#L28)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| path |  [Path](_common_path_.path.md) &#124; `string` &#124; `string`[]|
+| path | [PathType](../modules/_common_path_.md#pathtype) |
 
 **Returns:** [Path](_common_path_.path.md)
 
@@ -158,7 +158,7 @@ ___
 
 ▸ **normalize**(segment: * `string` &#124; `string`[]*): `string`[]
 
-*Defined in [Common/Path.ts:33](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Common/Path.ts#L33)*
+*Defined in [Common/Path.ts:36](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Common/Path.ts#L36)*
 
 **Parameters:**
 

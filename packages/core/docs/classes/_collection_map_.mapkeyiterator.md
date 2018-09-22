@@ -38,7 +38,7 @@
 
 ⊕ **new MapKeyIterator**(keys: *`KeyType`[]*): [MapKeyIterator](_collection_map_.mapkeyiterator.md)
 
-*Defined in [Collection/Map.ts:78](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Collection/Map.ts#L78)*
+*Defined in [Collection/Map.ts:78](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Collection/Map.ts#L78)*
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ ___
 
 **● keys**: *`KeyType`[]*
 
-*Defined in [Collection/Map.ts:78](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Collection/Map.ts#L78)*
+*Defined in [Collection/Map.ts:78](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Collection/Map.ts#L78)*
 
 ___
 <a id="pointer"></a>
@@ -67,7 +67,7 @@ ___
 
 **● pointer**: *`number`* = 0
 
-*Defined in [Collection/Map.ts:77](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Collection/Map.ts#L77)*
+*Defined in [Collection/Map.ts:77](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Collection/Map.ts#L77)*
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 ▸ **__@iterator**(): `IterableIterator`<`KeyType`>
 
-*Defined in [Collection/Map.ts:100](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Collection/Map.ts#L100)*
+*Defined in [Collection/Map.ts:100](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Collection/Map.ts#L100)*
 
 **Returns:** `IterableIterator`<`KeyType`>
 
@@ -90,7 +90,7 @@ ___
 
 ▸ **next**(): `IteratorResult`<`KeyType`>
 
-*Defined in [Collection/Map.ts:84](https://github.com/chapterjason/APIBase/blob/e44e28d/packages/core/src/Collection/Map.ts#L84)*
+*Defined in [Collection/Map.ts:84](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Collection/Map.ts#L84)*
 
 **Returns:** `IteratorResult`<`KeyType`>
 
