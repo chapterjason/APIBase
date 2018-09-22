@@ -24,7 +24,7 @@
 
 ▸ **escape**(string: *`string`*): `string`
 
-*Defined in [Common/RegularExpression.ts:10](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Common/RegularExpression.ts#L10)*
+*Defined in [Common/RegularExpression.ts:10](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/RegularExpression.ts#L10)*
 
 **Parameters:**
 
@@ -41,7 +41,7 @@ ___
 
 ▸ **match**(string: *`string`*, regexp: *`RegExp`*): `boolean`
 
-*Defined in [Common/RegularExpression.ts:14](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Common/RegularExpression.ts#L14)*
+*Defined in [Common/RegularExpression.ts:14](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/RegularExpression.ts#L14)*
 
 **Parameters:**
 
@@ -59,7 +59,7 @@ ___
 
 ▸ **matchAll**(string: *`string`*, regexp: *`RegExp`*): `any`[]
 
-*Defined in [Common/RegularExpression.ts:24](https://github.com/chapterjason/APIBase/blob/c442522/packages/core/src/Common/RegularExpression.ts#L24)*
+*Defined in [Common/RegularExpression.ts:24](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/RegularExpression.ts#L24)*
 
 **Parameters:**
 
