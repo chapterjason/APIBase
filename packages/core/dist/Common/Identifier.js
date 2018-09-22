@@ -23,10 +23,10 @@ exports.createdAt = createdAt;
  * @returns string
  */
 function generateIdentifier() {
-    var now = new Date();
+    const now = new Date();
     // Math.random should be unique because of its seeding algorithm.
-    var random = Math.random();
-    var parts = [
+    const random = Math.random();
+    const parts = [
         // Add the date like in mongodb to have a created timestamp
         Math.floor(now.getTime() / 1000).toString(16),
         // Convert it to base 36 (numbers + letters), and grab the first 9 characters after the decimal.

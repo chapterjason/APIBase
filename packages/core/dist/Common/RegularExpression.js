@@ -17,8 +17,8 @@ function match(string, regexp) {
 }
 exports.match = match;
 function matchAll(string, regexp) {
-    var matches = [];
-    var currentMatch;
+    const matches = [];
+    let currentMatch;
     if (!regexp.global) {
         throw new Error('Missing global flag!');
     }

@@ -7,46 +7,18 @@
  * For the full copyright and license information, please view the LICENSE
  * File that was distributed with this source code.
  */
-var __values = (this && this.__values) || function (o) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
-    if (m) return m.call(o);
-    return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-};
-var __read = (this && this.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-var __spread = (this && this.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var MapTupelIterator = /** @class */ (function () {
-    function MapTupelIterator(keys, values) {
+
+class MapTupelIterator {
+    constructor(keys, values) {
         this.pointer = 0;
         this.keys = keys;
         this.values = values;
     }
-    MapTupelIterator.prototype.next = function () {
+
+    next() {
         if (this.pointer < this.keys.length) {
-            var index = this.pointer++;
+            const index = this.pointer++;
             return {
                 done: false,
                 value: [this.keys[index], this.values[index]]
@@ -58,21 +30,23 @@ var MapTupelIterator = /** @class */ (function () {
                 value: null
             };
         }
-    };
-    MapTupelIterator.prototype[Symbol.iterator] = function () {
+    }
+
+    [Symbol.iterator]() {
         return this;
-    };
-    return MapTupelIterator;
-}());
+    }
+}
 exports.MapTupelIterator = MapTupelIterator;
-var MapValueIterator = /** @class */ (function () {
-    function MapValueIterator(values) {
+
+class MapValueIterator {
+    constructor(values) {
         this.pointer = 0;
         this.values = values;
     }
-    MapValueIterator.prototype.next = function () {
+
+    next() {
         if (this.pointer < this.values.length) {
-            var index = this.pointer++;
+            const index = this.pointer++;
             return {
                 done: false,
                 value: this.values[index]
@@ -84,21 +58,23 @@ var MapValueIterator = /** @class */ (function () {
                 value: null
             };
         }
-    };
-    MapValueIterator.prototype[Symbol.iterator] = function () {
+    }
+
+    [Symbol.iterator]() {
         return this;
-    };
-    return MapValueIterator;
-}());
+    }
+}
 exports.MapValueIterator = MapValueIterator;
-var MapKeyIterator = /** @class */ (function () {
-    function MapKeyIterator(keys) {
+
+class MapKeyIterator {
+    constructor(keys) {
         this.pointer = 0;
         this.keys = keys;
     }
-    MapKeyIterator.prototype.next = function () {
+
+    next() {
         if (this.pointer < this.keys.length) {
-            var index = this.pointer++;
+            const index = this.pointer++;
             return {
                 done: false,
                 value: this.keys[index]
@@ -110,92 +86,94 @@ var MapKeyIterator = /** @class */ (function () {
                 value: null
             };
         }
-    };
-    MapKeyIterator.prototype[Symbol.iterator] = function () {
+    }
+
+    [Symbol.iterator]() {
         return this;
-    };
-    return MapKeyIterator;
-}());
+    }
+}
 exports.MapKeyIterator = MapKeyIterator;
-var Map = /** @class */ (function () {
-    function Map(items) {
-        var e_1, _a;
+
+class Map {
+    constructor(items) {
         this._keys = [];
         this._values = [];
         if (items) {
-            try {
-                for (var items_1 = __values(items), items_1_1 = items_1.next(); !items_1_1.done; items_1_1 = items_1.next()) {
-                    var pair = items_1_1.value;
-                    this._keys.push(pair[0]);
-                    this._values.push(pair[1]);
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (items_1_1 && !items_1_1.done && (_a = items_1.return)) _a.call(items_1);
-                }
-                finally { if (e_1) throw e_1.error; }
+            for (let pair of items) {
+                this._keys.push(pair[0]);
+                this._values.push(pair[1]);
             }
         }
     }
-    Map.prototype.clear = function () {
+
+    clear() {
         this._keys = [];
         this._values = [];
-    };
-    Map.prototype.delete = function (key) {
-        var index = this._keys.indexOf(key);
+    }
+
+    delete(key) {
+        const index = this._keys.indexOf(key);
         if (index > -1) {
             this._keys.splice(index, 1);
             this._values.splice(index, 1);
             return true;
         }
         return false;
-    };
-    Map.prototype.entries = function () {
+    }
+
+    entries() {
         return new MapTupelIterator(this._keys, this._values);
-    };
-    Map.prototype.forEach = function (callback) {
-        var length = this._keys.length;
-        for (var index = 0; index < length; index++) {
+    }
+
+    forEach(callback) {
+        const length = this._keys.length;
+        for (let index = 0; index < length; index++) {
             callback(this._values[index], this._keys[index], this);
         }
-    };
-    Map.prototype.get = function (key) {
-        var index = this._keys.indexOf(key);
+    }
+
+    get(key) {
+        const index = this._keys.indexOf(key);
         if (index > -1) {
             return this._values[index];
         }
         return null;
-    };
-    Map.prototype.has = function (key) {
+    }
+
+    has(key) {
         return this._keys.indexOf(key) > -1;
-    };
-    Map.prototype.keys = function () {
+    }
+
+    keys() {
         return new MapKeyIterator(this._keys);
-    };
-    Map.prototype.set = function (key, value) {
+    }
+
+    set(key, value) {
         this._keys.push(key);
         this._values.push(value);
-    };
-    Map.prototype.size = function () {
+    }
+
+    size() {
         return this._keys.length;
-    };
-    Map.prototype.values = function () {
+    }
+
+    values() {
         return new MapValueIterator(this._values);
-    };
-    Map.prototype[Symbol.iterator] = function () {
+    }
+
+    [Symbol.iterator]() {
         return this.entries();
-    };
-    Map.prototype.reverse = function () {
+    }
+
+    reverse() {
         this._keys = this._keys.reverse();
         this._values = this._values.reverse();
         return this;
-    };
-    Map.prototype.sort = function (compareFn) {
-        return new Map(__spread(this.entries()).sort(compareFn));
-    };
-    return Map;
-}());
+    }
+
+    sort(compareFn) {
+        return new Map([...this.entries()].sort(compareFn));
+    }
+}
 exports.Map = Map;
 //# sourceMappingURL=Map.js.map
