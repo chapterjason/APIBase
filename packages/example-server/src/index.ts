@@ -13,7 +13,6 @@ import * as express from 'express';
 import * as cors from 'cors';
 import {ResponseError} from "./Response/ResponseError";
 import {ResponseSuccess} from "./Response/ResponseSuccess";
-import {ChangeType} from "@apibase/database";
 
 Logger.setLogLevel(LogLevel.LLLL);
 
@@ -45,6 +44,8 @@ server.use(async (request, response, next) => {
     } else if (request.method === 'POST') { // sync
         Logger.info('SYNC', path.toString());
 
+        // @todo
+        /*
         const changes = request.body;
         const commits: number[] = [];
 
@@ -73,6 +74,7 @@ server.use(async (request, response, next) => {
         } else {
             response.send(new ResponseSuccess(await database.get('/')));
         }
+        */
     } else if (request.method === 'PUT') { // set
         Logger.info('SET', path.toString());
         try {

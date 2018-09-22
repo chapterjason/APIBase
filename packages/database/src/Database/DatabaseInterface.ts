@@ -2,17 +2,6 @@ import {ReferenceInterface} from "./Reference/ReferenceInterface";
 import {CollectionReferenceInterface} from "./Reference/CollectionReferenceInterface";
 import {PathType} from "@apibase/core";
 
-export enum ChangeType {
-    SET,
-    DELETE
-}
-
-export interface Change {
-    path: string;
-    type: ChangeType;
-    value?: any;
-}
-
 export interface DatabaseIndex {
     [key: string]: any;
 }

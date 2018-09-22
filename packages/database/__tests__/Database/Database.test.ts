@@ -7,8 +7,8 @@
  * File that was distributed with this source code.
  */
 
-import {Database} from '../../src';
-import {Path} from "@apibase/core";
+import {AbstractChange, ChangeInterface, Database, DeleteChange, SetChange} from '../../src';
+import {generateIdentifier, Map, Path} from "@apibase/core";
 
 describe('Database', () => {
 
@@ -66,6 +66,80 @@ describe('Database', () => {
             .then(value => {
                 expect(value).toMatchObject({'Foo': 'Bar'});
             });
+    });
+
+    it('getMapping', async () => {
+        expect(await database.getMapping()).toMatchObject({
+            user: {
+                "id": 1,
+                "name": "Leanne Graham",
+                "username": "Bret",
+                "email": "Sincere@april.biz",
+                "address": {
+                    "street": "Kulas Light",
+                    "suite": "Apt. 556",
+                    "city": "Gwenborough",
+                    "zipcode": "92998-3874",
+                    "geo": {
+                        "lat": "-37.3159",
+                        "lng": "81.1496"
+                    }
+                },
+                "phone": "1-770-736-8031 x56442",
+                "website": "hildegard.org",
+                "company": {
+                    "name": "Romaguera-Crona",
+                    "catchPhrase": "Multi-layered client-server neural-net",
+                    "bs": "harness real-time e-markets"
+                }
+            }
+        });
+    });
+
+    it('getChanges', async () => {
+        const database = new Database();
+
+        await database.set('foo', 'val');
+        await database.set('bar', 'ue');
+        await database.delete('foo');
+
+        const changes = await database.getChanges();
+        const values = changes['_values'];
+
+        expect(values[0]['path']['segments']).toMatchObject(['foo']);
+        expect(values[0]['value']).toBe('val');
+
+        expect(values[1]['path']['segments']).toMatchObject(['bar']);
+        expect(values[1]['value']).toBe('ue');
+
+        expect(values[2]['path']['segments']).toMatchObject(['foo']);
+        expect(values[2]['value']).toBeUndefined();
+    });
+
+    it('applyChanges', async () => {
+        const database = new Database();
+
+        await database.set('foo', 'val');
+
+        const changes = new Map<string, ChangeInterface>();
+
+        class CustomChange extends AbstractChange {
+        }
+
+        const c1Change = new CustomChange('foo');
+        const setChange = new SetChange('bar', 'ue');
+        const c2Change = new CustomChange('bar');
+        const deleteChange = new DeleteChange('foo');
+
+        changes.set(generateIdentifier(), setChange);
+        changes.set(generateIdentifier(), c1Change);
+        changes.set(generateIdentifier(), deleteChange);
+        changes.set(generateIdentifier(), c2Change);
+
+        await database.applyChanges(changes);
+
+        expect(await database.get()).toMatchObject({'bar': 'ue'});
+
     });
 
     for (let index in supportedTypes) {
@@ -174,9 +248,9 @@ describe('Database', () => {
         });
     });
 
-    it('delete root', () => {
-        database.delete();
-        expect(database.get('/')).toMatchObject({});
+    it('delete root', async () => {
+        await database.delete();
+        expect(await database.get('/')).toMatchObject({});
     });
 
     it('delete not existing', async () => {
@@ -198,17 +272,18 @@ describe('Database', () => {
     });
 
     it('set', async () => {
-        return database.set('/user/address/geo', {'Bar': 'Foo'}).then(result => {
-            expect(result).toBeTruthy();
-            return database.get('/user/address');
-        }).then(result => {
-            expect(result).toMatchObject({
-                "street": "Kulas Light",
-                "suite": "Apt. 556",
-                "city": "Gwenborough",
-                "zipcode": "92998-3874",
-                "geo": {'Bar': 'Foo'}
-            });
+        const result = await database.set('/user/address/geo', {'Bar': 'Foo'});
+
+        expect(result).toBeTruthy();
+
+        const address = await database.get('/user/address');
+
+        expect(address).toMatchObject({
+            "street": "Kulas Light",
+            "suite": "Apt. 556",
+            "city": "Gwenborough",
+            "zipcode": "92998-3874",
+            "geo": {'Bar': 'Foo'}
         });
     });
 
@@ -284,4 +359,5 @@ describe('Database', () => {
         expect(reference['path']['segments'].length).toBe(0);
     });
 
-});
+})
+;

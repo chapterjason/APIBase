@@ -98,59 +98,58 @@ describe('CollectionReference', () => {
     it('push without value', async () => {
         const reference = database.collection<Post>('/posts');
 
-        return reference.push().then(itemReference => {
-            return itemReference.set({
-                title: 'FooBarTitle',
-                content: 'FooBarContent',
-                authors: {'first': {name: 'FooBarName'}}
-            }).then((result) => {
-                expect(result).toBeTruthy();
-                return itemReference.get()
-            }).then(snapshot => {
-                expect(snapshot.value()).toMatchObject({
-                    title: 'FooBarTitle',
-                    content: 'FooBarContent',
-                    authors: {'first': {name: 'FooBarName'}}
-                });
-
-                const expected = {
-                    'one': {
-                        title: 'FooTitle',
-                        content: 'FooContent',
-                        authors: {
-                            'first': {
-                                name: 'FooName'
-                            },
-                            'second': {
-                                name: 'BarName'
-                            }
-                        }
-                    },
-                    'two': {
-                        title: 'BarTitle',
-                        content: 'BarContent',
-                        authors: {
-                            'first': {
-                                name: 'FooName'
-                            },
-                            'second': {
-                                name: 'BarName'
-                            }
-                        }
-                    }
-                };
-
-                expected[itemReference.key()] = {
-                    title: 'FooBarTitle',
-                    content: 'FooBarContent',
-                    authors: {'first': {name: 'FooBarName'}}
-                };
-
-                return reference.get().then(snapshot => {
-                    expect(snapshot.value()).toMatchObject(expected);
-                });
-            });
+        const itemReference = await reference.push();
+        const setResult = await itemReference.set({
+            title: 'FooBarTitle',
+            content: 'FooBarContent',
+            authors: {'first': {name: 'FooBarName'}}
         });
+
+        expect(setResult).toBeTruthy();
+
+        const snapshot = await itemReference.get();
+
+        expect(snapshot.value()).toMatchObject({
+            title: 'FooBarTitle',
+            content: 'FooBarContent',
+            authors: {'first': {name: 'FooBarName'}}
+        });
+
+        const expected = {
+            'one': {
+                title: 'FooTitle',
+                content: 'FooContent',
+                authors: {
+                    'first': {
+                        name: 'FooName'
+                    },
+                    'second': {
+                        name: 'BarName'
+                    }
+                }
+            },
+            'two': {
+                title: 'BarTitle',
+                content: 'BarContent',
+                authors: {
+                    'first': {
+                        name: 'FooName'
+                    },
+                    'second': {
+                        name: 'BarName'
+                    }
+                }
+            }
+        };
+
+        expected[itemReference.key()] = {
+            title: 'FooBarTitle',
+            content: 'FooBarContent',
+            authors: {'first': {name: 'FooBarName'}}
+        };
+
+        const allSnapshot = await reference.get();
+        expect(allSnapshot.value()).toMatchObject(expected);
     });
 
     it('push with value', async () => {

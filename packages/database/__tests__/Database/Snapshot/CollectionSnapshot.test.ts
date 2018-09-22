@@ -143,9 +143,25 @@ describe('CollectionSnapshot', () => {
         });
     });
 
-    // @todo map test
+    it('map', async () => {
+        const reference = database.collection<Post>('/posts');
+        const snapshot = await reference.get();
 
-    // @todo custom sort
+        const result = snapshot.map<string>(post => post.value().title);
+        expect(result).toMatchObject(["FooTitle", "BarTitle"]);
+    });
+
+    it('map', async () => {
+        const reference = database.collection<Post>('/posts');
+        const snapshot = await reference.get();
+
+        const result = snapshot
+            .sort((a, b) => a[1].title.localeCompare(b[1].title))
+            .map<string>(post => post.value().title);
+
+        expect(result).toMatchObject(["BarTitle", "FooTitle"]);
+    });
+
 
     it('sortedByKey', async () => {
         const reference = database.collection<Post>('/posts');

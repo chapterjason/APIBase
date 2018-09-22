@@ -8,14 +8,12 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-
 class MapTupelIterator {
     constructor(keys, values) {
         this.pointer = 0;
         this.keys = keys;
         this.values = values;
     }
-
     next() {
         if (this.pointer < this.keys.length) {
             const index = this.pointer++;
@@ -31,19 +29,16 @@ class MapTupelIterator {
             };
         }
     }
-
     [Symbol.iterator]() {
         return this;
     }
 }
 exports.MapTupelIterator = MapTupelIterator;
-
 class MapValueIterator {
     constructor(values) {
         this.pointer = 0;
         this.values = values;
     }
-
     next() {
         if (this.pointer < this.values.length) {
             const index = this.pointer++;
@@ -59,19 +54,16 @@ class MapValueIterator {
             };
         }
     }
-
     [Symbol.iterator]() {
         return this;
     }
 }
 exports.MapValueIterator = MapValueIterator;
-
 class MapKeyIterator {
     constructor(keys) {
         this.pointer = 0;
         this.keys = keys;
     }
-
     next() {
         if (this.pointer < this.keys.length) {
             const index = this.pointer++;
@@ -87,13 +79,11 @@ class MapKeyIterator {
             };
         }
     }
-
     [Symbol.iterator]() {
         return this;
     }
 }
 exports.MapKeyIterator = MapKeyIterator;
-
 class Map {
     constructor(items) {
         this._keys = [];
@@ -105,12 +95,10 @@ class Map {
             }
         }
     }
-
     clear() {
         this._keys = [];
         this._values = [];
     }
-
     delete(key) {
         const index = this._keys.indexOf(key);
         if (index > -1) {
@@ -120,18 +108,15 @@ class Map {
         }
         return false;
     }
-
     entries() {
         return new MapTupelIterator(this._keys, this._values);
     }
-
     forEach(callback) {
         const length = this._keys.length;
         for (let index = 0; index < length; index++) {
             callback(this._values[index], this._keys[index], this);
         }
     }
-
     get(key) {
         const index = this._keys.indexOf(key);
         if (index > -1) {
@@ -139,38 +124,30 @@ class Map {
         }
         return null;
     }
-
     has(key) {
         return this._keys.indexOf(key) > -1;
     }
-
     keys() {
         return new MapKeyIterator(this._keys);
     }
-
     set(key, value) {
         this._keys.push(key);
         this._values.push(value);
     }
-
     size() {
         return this._keys.length;
     }
-
     values() {
         return new MapValueIterator(this._values);
     }
-
     [Symbol.iterator]() {
         return this.entries();
     }
-
     reverse() {
         this._keys = this._keys.reverse();
         this._values = this._values.reverse();
         return this;
     }
-
     sort(compareFn) {
         return new Map([...this.entries()].sort(compareFn));
     }

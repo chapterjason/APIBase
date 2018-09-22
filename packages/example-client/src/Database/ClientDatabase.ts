@@ -1,5 +1,5 @@
 import {Logger, Path} from "@apibase/core";
-import {Change, ChangeType, Database} from "@apibase/database";
+import {Database} from "@apibase/database";
 import Axios, {AxiosPromise, AxiosResponse} from 'axios';
 
 interface DatabaseResponse<Type> {
@@ -10,7 +10,7 @@ interface DatabaseResponse<Type> {
 export class ClientDatabase extends Database {
 
     protected service: string;
-    protected changes: Change[] = [];
+
     protected storageKey: string = 'database-v1';
 
     public constructor(service: string) {
@@ -24,21 +24,20 @@ export class ClientDatabase extends Database {
 
         const changes = localStorage.getItem(this.storageKey + '-changes');
         if (changes) {
-            this.changes = JSON.parse(changes);
+            // @todo
+            // this.changes = JSON.parse(changes);
         }
 
         this.syncLoop();
     }
 
     delete(path?: Path | string | string[]): Promise<boolean> {
-        this.changes.push({type: ChangeType.DELETE, path: Path.ensurePath(path).toString()});
         const result = super.delete(path);
         this.updateLocalStorage();
         return result;
     }
 
     set(path: Path | string | string[], value: any): Promise<boolean> {
-        this.changes.push({type: ChangeType.SET, value: value, path: Path.ensurePath(path).toString()});
         const result = super.set(path, value);
         this.updateLocalStorage();
         return result;
@@ -68,38 +67,39 @@ export class ClientDatabase extends Database {
     }
 
     protected async sync() {
-        try {
-            this.mapping = await this._sync();
-            this.changes = [];
-        } catch (error) {
-            Logger.error(error);
-        } finally {
-
-            /**
-             * Get the current master server data
-             *
-             * reapply changes to be at the newest
-             */
-            {
-                try {
-                    this.mapping = await this._get('/');
-
-                    for (let i = 0; i < this.changes.length; i++) {
-                        const change = this.changes[i];
-
-                        if (change.type === ChangeType.SET) {
-                            await super.set(change.path, change.value);
-                        } else if (change.type === ChangeType.DELETE) {
-                            await super.delete(change.path);
-                        }
-                    }
-                } catch (error) {
-                    Logger.error(error);
-                }
-            }
-
-            this.updateLocalStorage();
-        }
+        // @todo
+        // try {
+        //     this.mapping = await this._sync();
+        //     this.changes = [];
+        // } catch (error) {
+        //     Logger.error(error);
+        // } finally {
+        //
+        //     /**
+        //      * Get the current master server data
+        //      *
+        //      * reapply changes to be at the newest
+        //      */
+        //     {
+        //         try {
+        //             this.mapping = await this._get('/');
+        //
+        //             for (let i = 0; i < this.changes.length; i++) {
+        //                 const change = this.changes[i];
+        //
+        //                 if (change.type === ChangeType.SET) {
+        //                     await super.set(change.path, change.value);
+        //                 } else if (change.type === ChangeType.DELETE) {
+        //                     await super.delete(change.path);
+        //                 }
+        //             }
+        //         } catch (error) {
+        //             Logger.error(error);
+        //         }
+        //     }
+        //
+        //     this.updateLocalStorage();
+        // }
     }
 
     protected async _delete(path: Path | string | string[]): Promise<boolean> {

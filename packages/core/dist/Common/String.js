@@ -8,7 +8,6 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-
 function padLeft(string, length = 2, char = '0') {
     const diff = length - string.length;
     if (diff > 0) {
@@ -17,7 +16,6 @@ function padLeft(string, length = 2, char = '0') {
     return string;
 }
 exports.padLeft = padLeft;
-
 function padRight(string, length = 2, char = '0') {
     const diff = length - string.length;
     if (diff > 0) {

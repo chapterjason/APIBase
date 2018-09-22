@@ -19,6 +19,7 @@ describe('Path', () => {
         expect(new Path('/Foo/Bar').getSegments()).toMatchObject(['Foo', 'Bar']);
         expect(new Path('/Foo/Bar/').getSegments()).toMatchObject(['Foo', 'Bar']);
         expect(new Path('/Foo/////Bar/').getSegments()).toMatchObject(['Foo', 'Bar']);
+        expect(new Path(new Path('/Foo/////Bar/')).getSegments()).toMatchObject(['Foo', 'Bar']);
     });
 
     it('toString', () => {

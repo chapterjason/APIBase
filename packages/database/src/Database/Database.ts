@@ -7,60 +7,76 @@
  * File that was distributed with this source code.
  */
 
-import {Path, PathType} from '@apibase/core';
+import {generateIdentifier, Logger, Map, MapTupel, Path, PathType} from '@apibase/core';
 import {Reference} from "./Reference/Reference";
 import {CollectionReference} from "./Reference/CollectionReference";
 import {DatabaseIndex, DatabaseInterface} from './DatabaseInterface';
+import {DeleteChange} from "./Change/DeleteChange";
+import {SetChange} from "./Change/SetChange";
+import {ChangeInterface} from "./Change/ChangeInterface";
 
 export class Database implements DatabaseInterface {
+
+    protected original: DatabaseIndex;
 
     protected mapping: DatabaseIndex;
 
     protected depthLimit: number = 32;
 
+    protected changes: Map<string, ChangeInterface> = new Map<string, ChangeInterface>();
+
     public constructor(mapping: DatabaseIndex = {}) {
+        this.original = mapping;
         this.mapping = mapping;
     }
 
-    public async delete(path?: PathType): Promise<boolean> {
-        path = Path.ensurePath(path);
+    public async getMapping(): Promise<DatabaseIndex> {
+        return Promise.resolve(this.mapping);
+    }
 
-        if (path.length() === 0) {
-            this.mapping = {};
-            return true;
-        } else {
-            const segments: string[] = path.getSegments();
+    public async getChanges(): Promise<Map<string, ChangeInterface>> {
+        return Promise.resolve(this.changes);
+    }
 
-            let current: DatabaseIndex = this.mapping;
+    public async applyChanges(changes: Map<string, ChangeInterface>) {
+        changes.forEach((change, key) => {
+            this.changes.set(key, change);
+        });
 
-            const lastIndex = segments.length - 1;
-            const currentPath: Path = new Path();
+        this.mapping = this.original;
 
-            let itemIndex = 0;
-            for (; itemIndex < segments.length; itemIndex++) {
-                const segment = segments[itemIndex];
+        this.changes.sort((a: MapTupel<string, ChangeInterface>, b: MapTupel<string, ChangeInterface>) => {
+            return a[1].getTimestamp().getTime() - b[1].getTimestamp().getTime();
+        });
 
-                if (segment in current) {
-                    currentPath.child(segment);
-
-                    if (itemIndex === lastIndex) {
-                        delete current[segment];
-                        return true;
-                    }
-
-                    current = current[segment];
-                } else {
-                    return false;
-                }
+        for (let change of this.changes.values()) {
+            if (change instanceof DeleteChange) {
+                await this.applyDelete(change);
+            } else if (change instanceof SetChange) {
+                await this.applySet(change);
             }
         }
     }
 
+    public async delete(path?: PathType): Promise<boolean> {
+        const change = new DeleteChange(path);
+        this.changes.set(generateIdentifier(), change);
+        Logger.debug(change);
+        return this.applyDelete(change);
+    }
+
     public async set(path: PathType, value: any): Promise<boolean> {
-        path = Path.ensurePath(path);
+        const change = new SetChange(path, value);
+        Logger.debug(change);
+        this.changes.set(generateIdentifier(), change);
+        return this.applySet(change);
+    }
+
+    public async applySet(change: SetChange): Promise<boolean> {
+        const path = Path.ensurePath(change.getPath());
 
         if (path.length() === 0) {
-            this.mapping = value;
+            this.mapping = change.getValue();
             return true;
         } else {
             const segments: string[] = path.getSegments();
@@ -84,13 +100,14 @@ export class Database implements DatabaseInterface {
                 if (segmentIndex <= segments.length - 2) {
                     current = current[segment];
                 } else {
-                    current[segment] = value;
+                    current[segment] = change.getValue();
                     return true;
                 }
             }
         }
 
         // @todo cannot be covered by a test, also it makes not sense. Any ideas ?
+        /* istanbul ignore next */
         return false;
     }
 
@@ -123,6 +140,40 @@ export class Database implements DatabaseInterface {
 
     public collection<ReferenceType = any>(path?: PathType): CollectionReference<ReferenceType> {
         return new CollectionReference<ReferenceType>(this, Path.ensurePath(path));
+    }
+
+    protected async applyDelete(change: DeleteChange): Promise<boolean> {
+        const path = Path.ensurePath(change.getPath());
+
+        if (path.length() === 0) {
+            this.mapping = {};
+            return true;
+        } else {
+            const segments: string[] = path.getSegments();
+
+            let current: DatabaseIndex = this.mapping;
+
+            const lastIndex = segments.length - 1;
+            const currentPath: Path = new Path();
+
+            let itemIndex = 0;
+            for (; itemIndex < segments.length; itemIndex++) {
+                const segment = segments[itemIndex];
+
+                if (segment in current) {
+                    currentPath.child(segment);
+
+                    if (itemIndex === lastIndex) {
+                        delete current[segment];
+                        return true;
+                    }
+
+                    current = current[segment];
+                } else {
+                    return false;
+                }
+            }
+        }
     }
 
 }

@@ -15,7 +15,7 @@ export class Path {
 
     public constructor(path?: PathType) {
         if (path instanceof Path) {
-            this.segments = path.getSegments();
+            this.segments = Path.normalize(path.getSegments());
         } else if (Array.isArray(path)) {
             this.segments = Path.normalize(path);
         } else if (typeof path === "string") {

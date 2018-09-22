@@ -7,130 +7,76 @@
  * For the full copyright and license information, please view the LICENSE
  * File that was distributed with this source code.
  */
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __values = (this && this.__values) || function (o) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
-    if (m) return m.call(o);
-    return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@apibase/core");
-var Snapshot_1 = require("./Snapshot");
-var CollectionSnapshot = /** @class */ (function (_super) {
-    __extends(CollectionSnapshot, _super);
-    function CollectionSnapshot(reference, data) {
-        var e_1, _a;
-        var _this = _super.call(this, reference, data) || this;
-        _this._map = new core_1.Map();
+const core_1 = require("@apibase/core");
+const Snapshot_1 = require("./Snapshot");
+
+class CollectionSnapshot extends Snapshot_1.Snapshot {
+    constructor(reference, data) {
+        super(reference, data);
+        this._map = new core_1.Map();
         if (core_1.isObject(data)) {
-            var keys = Object.keys(data);
-            try {
-                for (var keys_1 = __values(keys), keys_1_1 = keys_1.next(); !keys_1_1.done; keys_1_1 = keys_1.next()) {
-                    var key = keys_1_1.value;
-                    _this._map.set(key, data[key]);
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (keys_1_1 && !keys_1_1.done && (_a = keys_1.return)) _a.call(keys_1);
-                }
-                finally { if (e_1) throw e_1.error; }
+            const keys = Object.keys(data);
+            for (let key of keys) {
+                this._map.set(key, data[key]);
             }
         }
         else if (Array.isArray(data)) {
-            for (var key in data) {
-                _this._map.set(key, data[key]);
+            for (let key in data) {
+                this._map.set(key, data[key]);
             }
         }
         else {
             throw new Error('The data at "' + reference.getPath().toString() + '" must be of type object or array.');
         }
-        return _this;
     }
-    CollectionSnapshot.prototype.item = function (segment) {
+
+    item(segment) {
         return new Snapshot_1.Snapshot(this.reference.reference(segment), this._map.get(segment));
-    };
-    CollectionSnapshot.prototype.forEach = function (callback) {
-        var e_2, _a;
-        try {
-            for (var _b = __values(this._map.keys()), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var key = _c.value;
-                callback(this.item(key));
-            }
-        }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
-        finally {
-            try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-            }
-            finally { if (e_2) throw e_2.error; }
+    }
+
+    forEach(callback) {
+        for (let key of this._map.keys()) {
+            callback(this.item(key));
         }
         return this;
-    };
-    CollectionSnapshot.prototype.map = function (callback) {
-        var e_3, _a;
-        var items = [];
-        try {
-            for (var _b = __values(this._map.keys()), _c = _b.next(); !_c.done; _c = _b.next()) {
-                var key = _c.value;
-                items.push(callback(this.item(key)));
-            }
-        }
-        catch (e_3_1) {
-            e_3 = {error: e_3_1};
-        }
-        finally {
-            try {
-                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-            }
-            finally {
-                if (e_3) throw e_3.error;
-            }
+    }
+
+    map(callback) {
+        const items = [];
+        for (let key of this._map.keys()) {
+            items.push(callback(this.item(key)));
         }
         return items;
-    };
-    CollectionSnapshot.prototype.length = function () {
+    }
+
+    length() {
         return this._map.size();
-    };
-    CollectionSnapshot.prototype.reverse = function () {
+    }
+
+    reverse() {
         this._map.reverse();
         return this;
-    };
-    CollectionSnapshot.prototype.sortByKey = function () {
-        this._map = this._map.sort(function (a, b) {
+    }
+
+    sortByKey() {
+        this._map = this._map.sort((a, b) => {
             return a[0].localeCompare(b[0]);
         });
         return this;
-    };
-    CollectionSnapshot.prototype.sortByProperty = function (property) {
-        this._map = this._map.sort(function (a, b) {
+    }
+
+    sortByProperty(property) {
+        this._map = this._map.sort((a, b) => {
             return a[1][property].localeCompare(b[1][property]);
         });
         return this;
-    };
-    CollectionSnapshot.prototype.sort = function (compare) {
+    }
+
+    sort(compare) {
         this._map = this._map.sort(compare);
         return this;
-    };
-    return CollectionSnapshot;
-}(Snapshot_1.Snapshot));
+    }
+}
 exports.CollectionSnapshot = CollectionSnapshot;
 //# sourceMappingURL=CollectionSnapshot.js.map

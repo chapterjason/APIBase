@@ -9,6 +9,10 @@ module.exports = {
         "!**/node_modules/**",
         "!**/vendor/**"
     ],
+    "coverageReporters": [
+        "html",
+        "json"
+    ],
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx)?$",
     "moduleFileExtensions": [
         "ts",

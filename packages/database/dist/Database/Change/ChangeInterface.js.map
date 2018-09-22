@@ -1,9 +1,9 @@
 {
   "version": 3,
-  "file": "DatabaseInterface.js",
+  "file": "ChangeInterface.js",
   "sourceRoot": "",
   "sources": [
-    "../../src/Database/DatabaseInterface.ts"
+    "../../../src/Database/Change/ChangeInterface.ts"
   ],
   "names": [],
   "mappings": ""

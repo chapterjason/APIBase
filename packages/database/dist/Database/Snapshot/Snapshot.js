@@ -8,18 +8,20 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var Snapshot = /** @class */ (function () {
-    function Snapshot(reference, data) {
+
+class Snapshot {
+    constructor(reference, data) {
         this.reference = reference;
         this.data = data;
     }
-    Snapshot.prototype.value = function () {
+
+    value() {
         return this.data;
-    };
-    Snapshot.prototype.key = function () {
+    }
+
+    key() {
         return this.reference.key();
-    };
-    return Snapshot;
-}());
+    }
+}
 exports.Snapshot = Snapshot;
 //# sourceMappingURL=Snapshot.js.map

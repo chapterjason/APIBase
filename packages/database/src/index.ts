@@ -10,6 +10,11 @@
 export * from './Database/DatabaseInterface';
 export * from './Database/Database';
 
+export * from './Database/Change/ChangeInterface';
+export * from './Database/Change/AbstractChange';
+export * from './Database/Change/SetChange';
+export * from './Database/Change/DeleteChange';
+
 export * from './Database/Reference/ReferenceInterface';
 export * from './Database/Reference/Reference';
 export * from './Database/Reference/CollectionReferenceInterface';

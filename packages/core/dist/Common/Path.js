@@ -8,11 +8,10 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-
 class Path {
     constructor(path) {
         if (path instanceof Path) {
-            this.segments = path.getSegments();
+            this.segments = Path.normalize(path.getSegments());
         }
         else if (Array.isArray(path)) {
             this.segments = Path.normalize(path);
@@ -24,7 +23,6 @@ class Path {
             this.segments = [];
         }
     }
-
     static ensurePath(path) {
         if (path instanceof Path) {
             return path;
@@ -33,7 +31,6 @@ class Path {
             return new Path(path);
         }
     }
-
     static normalize(segment) {
         if (typeof segment === "string") {
             segment = segment.split('/');
@@ -42,15 +39,12 @@ class Path {
             .map(segment => segment.trim())
             .filter(segment => segment.length);
     }
-
     toString() {
         return '/' + this.segments.join('/');
     }
-
     getSegments() {
         return this.segments;
     }
-
     parent() {
         if (this.segments.length === 0) {
             return null;
@@ -59,15 +53,12 @@ class Path {
             return new Path(this.segments.slice(0, -1));
         }
     }
-
     child(segment) {
         return new Path(this.segments.concat(Path.normalize(segment)));
     }
-
     length() {
         return this.segments.length;
     }
-
     end() {
         if (this.segments.length === 0) {
             return null;
