@@ -12,19 +12,15 @@ export declare class Database implements DatabaseInterface {
     protected depthLimit: number;
     protected changes: Map<string, ChangeInterface>;
     constructor(mapping?: DatabaseIndex);
-
     getMapping(): Promise<DatabaseIndex>;
-
     getChanges(): Promise<Map<string, ChangeInterface>>;
-
     applyChanges(changes: Map<string, ChangeInterface>): Promise<void>;
     delete(path?: PathType): Promise<boolean>;
     set(path: PathType, value: any): Promise<boolean>;
-
     applySet(change: SetChange): Promise<boolean>;
     get<T>(path?: PathType): Promise<T>;
     reference<ReferenceType = any>(path?: PathType): Reference<ReferenceType>;
     collection<ReferenceType = any>(path?: PathType): CollectionReference<ReferenceType>;
 
-    protected applyDelete(change: DeleteChange): Promise<boolean>;
+    applyDelete(change: DeleteChange): Promise<boolean>;
 }

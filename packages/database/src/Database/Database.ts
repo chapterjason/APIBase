@@ -7,7 +7,7 @@
  * File that was distributed with this source code.
  */
 
-import {generateIdentifier, Logger, Map, MapTupel, Path, PathType} from '@apibase/core';
+import {generateIdentifier, Map, MapTupel, Path, PathType} from '@apibase/core';
 import {Reference} from "./Reference/Reference";
 import {CollectionReference} from "./Reference/CollectionReference";
 import {DatabaseIndex, DatabaseInterface} from './DatabaseInterface';
@@ -38,7 +38,7 @@ export class Database implements DatabaseInterface {
         return Promise.resolve(this.changes);
     }
 
-    public async applyChanges(changes: Map<string, ChangeInterface>) {
+    async applyChanges(changes: Map<string, ChangeInterface>) {
         changes.forEach((change, key) => {
             this.changes.set(key, change);
         });
@@ -61,13 +61,11 @@ export class Database implements DatabaseInterface {
     public async delete(path?: PathType): Promise<boolean> {
         const change = new DeleteChange(path);
         this.changes.set(generateIdentifier(), change);
-        Logger.debug(change);
         return this.applyDelete(change);
     }
 
     public async set(path: PathType, value: any): Promise<boolean> {
         const change = new SetChange(path, value);
-        Logger.debug(change);
         this.changes.set(generateIdentifier(), change);
         return this.applySet(change);
     }
@@ -142,7 +140,7 @@ export class Database implements DatabaseInterface {
         return new CollectionReference<ReferenceType>(this, Path.ensurePath(path));
     }
 
-    protected async applyDelete(change: DeleteChange): Promise<boolean> {
+    async applyDelete(change: DeleteChange): Promise<boolean> {
         const path = Path.ensurePath(change.getPath());
 
         if (path.length() === 0) {

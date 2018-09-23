@@ -8,17 +8,14 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-
 class Snapshot {
     constructor(reference, data) {
         this.reference = reference;
         this.data = data;
     }
-
     value() {
         return this.data;
     }
-
     key() {
         return this.reference.key();
     }

@@ -37,7 +37,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Reference_1 = require("./Reference");
 const core_1 = require("@apibase/core");
 const __1 = require("../..");
-
 class CollectionReference extends Reference_1.Reference {
     push(value) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -49,7 +48,6 @@ class CollectionReference extends Reference_1.Reference {
             return reference;
         });
     }
-
     get() {
         return __awaiter(this, void 0, void 0, function* () {
             const value = yield this.database.get(this.path);

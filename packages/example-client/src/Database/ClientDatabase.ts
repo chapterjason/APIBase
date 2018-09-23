@@ -1,5 +1,5 @@
-import {Logger, Path} from "@apibase/core";
-import {Database} from "@apibase/database";
+import {Logger, Map, Path} from "@apibase/core";
+import {ChangeInterface, Database, DatabaseIndex} from "@apibase/database";
 import Axios, {AxiosPromise, AxiosResponse} from 'axios';
 
 interface DatabaseResponse<Type> {
@@ -24,36 +24,55 @@ export class ClientDatabase extends Database {
 
         const changes = localStorage.getItem(this.storageKey + '-changes');
         if (changes) {
-            // @todo
-            // this.changes = JSON.parse(changes);
+            this.changes = new Map<string, ChangeInterface>(JSON.parse(changes));
         }
 
-        this.syncLoop();
+        // this.syncLoop();
     }
 
-    delete(path?: Path | string | string[]): Promise<boolean> {
-        const result = super.delete(path);
+    protected static async handleResponse<ResultType>(request: () => AxiosPromise<DatabaseResponse<ResultType>>) {
+        const response: AxiosResponse<DatabaseResponse<ResultType>> = await request();
+        const data = response.data;
+        if (data.success) {
+            return data.result;
+        } else {
+            throw new Error(data.result as any);
+        }
+    }
+
+    public async delete(path?: Path | string | string[]): Promise<boolean> {
+        const result = await super.delete(path);
         this.updateLocalStorage();
         return result;
     }
 
-    set(path: Path | string | string[], value: any): Promise<boolean> {
-        const result = super.set(path, value);
+    public async set(path: Path | string | string[], value: any): Promise<boolean> {
+        const result = await super.set(path, value);
         this.updateLocalStorage();
         return result;
     }
 
-    public syncLoop(callback?: () => void) {
-        this.sync()
-            .then(() => {
-                Logger.debug('Synchronized!');
-                if (callback) {
-                    callback();
-                }
-            })
-            .catch(error => {
-                Logger.error(error);
-            });
+    public async syncLoop(callback?: () => void) {
+        try {
+            await this.sync();
+
+            Logger.debug('Synchronized!');
+
+            if (callback) {
+                callback();
+            }
+
+        } catch (error) {
+            Logger.error(error);
+        }
+    }
+
+    protected getHistory() {
+        const history = [];
+        for (let pair of this.changes.entries()) {
+            history.push(pair);
+        }
+        return history;
     }
 
     protected updateLocalStorage() {
@@ -62,76 +81,35 @@ export class ClientDatabase extends Database {
          */
         {
             localStorage.setItem(this.storageKey, JSON.stringify(this.mapping));
-            localStorage.setItem(this.storageKey + '-changes', JSON.stringify(this.changes));
+            localStorage.setItem(this.storageKey + '-changes', JSON.stringify(this.getHistory()));
         }
     }
 
     protected async sync() {
-        // @todo
-        // try {
-        //     this.mapping = await this._sync();
-        //     this.changes = [];
-        // } catch (error) {
-        //     Logger.error(error);
-        // } finally {
-        //
-        //     /**
-        //      * Get the current master server data
-        //      *
-        //      * reapply changes to be at the newest
-        //      */
-        //     {
-        //         try {
-        //             this.mapping = await this._get('/');
-        //
-        //             for (let i = 0; i < this.changes.length; i++) {
-        //                 const change = this.changes[i];
-        //
-        //                 if (change.type === ChangeType.SET) {
-        //                     await super.set(change.path, change.value);
-        //                 } else if (change.type === ChangeType.DELETE) {
-        //                     await super.delete(change.path);
-        //                 }
-        //             }
-        //         } catch (error) {
-        //             Logger.error(error);
-        //         }
-        //     }
-        //
-        //     this.updateLocalStorage();
-        // }
+        try {
+            this.mapping = await this._sync();
+            this.changes.clear();
+        } catch (error) {
+            Logger.error(error);
+        } finally {
+            this.updateLocalStorage();
+        }
     }
 
     protected async _delete(path: Path | string | string[]): Promise<boolean> {
-        return this.handleResponse<boolean>(() => Axios.delete(this.getService(path)));
+        return ClientDatabase.handleResponse<boolean>(() => Axios.delete(this.getService(path)));
     }
 
     protected async _set(path: Path | string | string[], value: any): Promise<boolean> {
-        return this.handleResponse<boolean>(() => Axios.put<DatabaseResponse<boolean>>(this.getService(path), value));
+        return ClientDatabase.handleResponse<boolean>(() => Axios.put<DatabaseResponse<boolean>>(this.getService(path), value));
     }
 
     protected async _get<T>(path: Path | string | string[]): Promise<T> {
-        return this.handleResponse<T>(() => Axios.get<DatabaseResponse<T>>(this.getService(path)));
+        return ClientDatabase.handleResponse<T>(() => Axios.get<DatabaseResponse<T>>(this.getService(path)));
     }
 
-    protected async _sync(): Promise<any> {
-        return this.handleResponse<any>(() => Axios.post<DatabaseResponse<any>>(this.getService('/'), this.changes));
-    }
-
-    protected async handleResponse<ResultType>(request: () => AxiosPromise<DatabaseResponse<ResultType>>) {
-        return new Promise<ResultType>(async (resolve, reject) => {
-            try {
-                const response: AxiosResponse<DatabaseResponse<ResultType>> = await request();
-                const data = response.data;
-                if (data.success) {
-                    resolve(data.result)
-                } else {
-                    reject(data.result);
-                }
-            } catch (error) {
-                reject(false);
-            }
-        });
+    protected async _sync(): Promise<DatabaseIndex> {
+        return ClientDatabase.handleResponse<DatabaseIndex>(() => Axios.post<DatabaseResponse<DatabaseIndex>>(this.getService('/'), this.getHistory()));
     }
 
     protected getService(path: Path | string | string[]) {

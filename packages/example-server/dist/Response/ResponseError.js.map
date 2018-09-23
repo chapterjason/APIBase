@@ -1,1 +1,10 @@
-{"version":3,"file":"ResponseError.js","sourceRoot":"","sources":["../../src/Response/ResponseError.ts"],"names":[],"mappings":";AAAA;;;;;;;GAOG;;AAGH;IAKI,uBAAmB,MAAW;QAHpB,YAAO,GAAY,KAAK,CAAC;QAI/B,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;IACzB,CAAC;IACL,oBAAC;AAAD,CAAC,AARD,IAQC;AARY,sCAAa"}
+{
+  "version": 3,
+  "file": "ResponseError.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../src/Response/ResponseError.ts"
+  ],
+  "names": [],
+  "mappings": ";AAAA;;;;;;;GAOG;;AAGH,MAAa,aAAa;IAKtB,YAAmB,MAAW;QAHpB,YAAO,GAAY,KAAK,CAAC;QAI/B,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;IACzB,CAAC;CACJ;AARD,sCAQC"
+}

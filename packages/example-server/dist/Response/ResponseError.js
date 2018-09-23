@@ -8,12 +8,12 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var ResponseError = /** @class */ (function () {
-    function ResponseError(result) {
+
+class ResponseError {
+    constructor(result) {
         this.success = false;
         this.result = result;
     }
-    return ResponseError;
-}());
+}
 exports.ResponseError = ResponseError;
 //# sourceMappingURL=ResponseError.js.map

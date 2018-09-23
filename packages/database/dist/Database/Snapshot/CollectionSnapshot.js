@@ -10,7 +10,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@apibase/core");
 const Snapshot_1 = require("./Snapshot");
-
 class CollectionSnapshot extends Snapshot_1.Snapshot {
     constructor(reference, data) {
         super(reference, data);
@@ -30,18 +29,15 @@ class CollectionSnapshot extends Snapshot_1.Snapshot {
             throw new Error('The data at "' + reference.getPath().toString() + '" must be of type object or array.');
         }
     }
-
     item(segment) {
         return new Snapshot_1.Snapshot(this.reference.reference(segment), this._map.get(segment));
     }
-
     forEach(callback) {
         for (let key of this._map.keys()) {
             callback(this.item(key));
         }
         return this;
     }
-
     map(callback) {
         const items = [];
         for (let key of this._map.keys()) {
@@ -49,30 +45,25 @@ class CollectionSnapshot extends Snapshot_1.Snapshot {
         }
         return items;
     }
-
     length() {
         return this._map.size();
     }
-
     reverse() {
         this._map.reverse();
         return this;
     }
-
     sortByKey() {
         this._map = this._map.sort((a, b) => {
             return a[0].localeCompare(b[0]);
         });
         return this;
     }
-
     sortByProperty(property) {
         this._map = this._map.sort((a, b) => {
             return a[1][property].localeCompare(b[1][property]);
         });
         return this;
     }
-
     sort(compare) {
         this._map = this._map.sort(compare);
         return this;

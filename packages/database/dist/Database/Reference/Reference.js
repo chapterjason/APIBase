@@ -36,21 +36,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const __1 = require("../..");
 const core_1 = require("@apibase/core");
-
 class Reference {
     constructor(database, path) {
         this.database = database;
         this.path = path;
     }
-
     getPath() {
         return this.path;
     }
-
     key() {
         return this.path.end();
     }
-
     toJSON() {
         return __awaiter(this, void 0, void 0, function* () {
             return {
@@ -59,7 +55,6 @@ class Reference {
             };
         });
     }
-
     parent() {
         if (this.path.length() === 0) { // parent of root is null
             return null;
@@ -71,28 +66,23 @@ class Reference {
             return new Reference(this.database, this.path.parent());
         }
     }
-
     reference(segment) {
         return new Reference(this.database, this.path.child(segment));
     }
-
     collection(segment) {
         return new __1.CollectionReference(this.database, this.path.child(segment));
     }
-
     set(value) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.database.set(this.path, value);
         });
     }
-
     get() {
         return __awaiter(this, void 0, void 0, function* () {
             const value = yield this.database.get(this.path);
             return new __1.Snapshot(this, value);
         });
     }
-
     delete() {
         return __awaiter(this, void 0, void 0, function* () {
             return this.database.delete(this.path);

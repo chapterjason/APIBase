@@ -8,12 +8,12 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var ResponseSuccess = /** @class */ (function () {
-    function ResponseSuccess(result) {
+
+class ResponseSuccess {
+    constructor(result) {
         this.success = true;
         this.result = result;
     }
-    return ResponseSuccess;
-}());
+}
 exports.ResponseSuccess = ResponseSuccess;
 //# sourceMappingURL=ResponseSuccess.js.map

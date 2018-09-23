@@ -39,7 +39,6 @@ const Reference_1 = require("./Reference/Reference");
 const CollectionReference_1 = require("./Reference/CollectionReference");
 const DeleteChange_1 = require("./Change/DeleteChange");
 const SetChange_1 = require("./Change/SetChange");
-
 class Database {
     constructor(mapping = {}) {
         this.depthLimit = 32;
@@ -47,19 +46,16 @@ class Database {
         this.original = mapping;
         this.mapping = mapping;
     }
-
     getMapping() {
         return __awaiter(this, void 0, void 0, function* () {
             return Promise.resolve(this.mapping);
         });
     }
-
     getChanges() {
         return __awaiter(this, void 0, void 0, function* () {
             return Promise.resolve(this.changes);
         });
     }
-
     applyChanges(changes) {
         return __awaiter(this, void 0, void 0, function* () {
             changes.forEach((change, key) => {
@@ -79,25 +75,20 @@ class Database {
             }
         });
     }
-
     delete(path) {
         return __awaiter(this, void 0, void 0, function* () {
             const change = new DeleteChange_1.DeleteChange(path);
             this.changes.set(core_1.generateIdentifier(), change);
-            core_1.Logger.debug(change);
             return this.applyDelete(change);
         });
     }
-
     set(path, value) {
         return __awaiter(this, void 0, void 0, function* () {
             const change = new SetChange_1.SetChange(path, value);
-            core_1.Logger.debug(change);
             this.changes.set(core_1.generateIdentifier(), change);
             return this.applySet(change);
         });
     }
-
     applySet(change) {
         return __awaiter(this, void 0, void 0, function* () {
             const path = core_1.Path.ensurePath(change.getPath());
@@ -133,7 +124,6 @@ class Database {
             return false;
         });
     }
-
     get(path) {
         return __awaiter(this, void 0, void 0, function* () {
             path = core_1.Path.ensurePath(path);
@@ -157,15 +147,12 @@ class Database {
             }
         });
     }
-
     reference(path) {
         return new Reference_1.Reference(this, core_1.Path.ensurePath(path));
     }
-
     collection(path) {
         return new CollectionReference_1.CollectionReference(this, core_1.Path.ensurePath(path));
     }
-
     applyDelete(change) {
         return __awaiter(this, void 0, void 0, function* () {
             const path = core_1.Path.ensurePath(change.getPath());
