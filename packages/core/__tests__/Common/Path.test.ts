@@ -15,6 +15,7 @@ describe('Path', () => {
         expect(new Path().getSegments()).toMatchObject([]);
         expect(new Path(['Foo', 'Bar']).getSegments()).toMatchObject(['Foo', 'Bar']);
         expect(new Path(['Foo', ' ', ' Bar']).getSegments()).toMatchObject(['Foo', 'Bar']);
+        expect(new Path(['Foo', ' ', ' Bar/Deep/Dive']).getSegments()).toMatchObject(['Foo', 'Bar', 'Deep', 'Dive']);
         expect(new Path('Foo/Bar').getSegments()).toMatchObject(['Foo', 'Bar']);
         expect(new Path('/Foo/Bar').getSegments()).toMatchObject(['Foo', 'Bar']);
         expect(new Path('/Foo/Bar/').getSegments()).toMatchObject(['Foo', 'Bar']);

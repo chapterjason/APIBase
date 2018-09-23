@@ -35,6 +35,9 @@ class Path {
         if (typeof segment === "string") {
             segment = segment.split('/');
         }
+        if (Array.isArray(segment)) {
+            segment = [].concat(...segment.map(item => item.split('/')));
+        }
         return segment
             .map(segment => segment.trim())
             .filter(segment => segment.length);

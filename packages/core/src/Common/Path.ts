@@ -38,6 +38,10 @@ export class Path {
             segment = segment.split('/');
         }
 
+        if (Array.isArray(segment)) {
+            segment = ([] as string[]).concat(...segment.map(item => item.split('/')));
+        }
+
         return segment
             .map(segment => segment.trim())
             .filter(segment => segment.length);
