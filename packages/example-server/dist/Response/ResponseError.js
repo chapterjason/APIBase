@@ -8,7 +8,6 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-
 class ResponseError {
     constructor(result) {
         this.success = false;

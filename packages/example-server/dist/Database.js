@@ -63,7 +63,6 @@ exports.save = save;
 load()
     .catch(save)
     .then(load);
-
 function convertToTupelArray(data) {
     return data.map(item => {
         let change;
@@ -78,6 +77,5 @@ function convertToTupelArray(data) {
         return [item[0], change];
     });
 }
-
 exports.convertToTupelArray = convertToTupelArray;
 //# sourceMappingURL=Database.js.map

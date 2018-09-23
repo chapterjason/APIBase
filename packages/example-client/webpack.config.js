@@ -30,7 +30,4 @@ Encore
 ;
 
 const webpackConfig = Encore.getWebpackConfig();
-
-console.log(webpackConfig);
-
 module.exports = webpackConfig;

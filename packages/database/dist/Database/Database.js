@@ -73,6 +73,7 @@ class Database {
                     yield this.applySet(change);
                 }
             }
+            this.cleanupChanges();
         });
     }
     delete(path) {
@@ -182,6 +183,46 @@ class Database {
                 }
             }
         });
+    }
+
+    cleanupChanges() {
+        let groupObject = {};
+        // Group all changes by path
+        this.changes.forEach(item => {
+            const strPath = item.getPath().toString();
+            if (!groupObject[strPath]) {
+                groupObject[strPath] = [];
+            }
+            groupObject[strPath].push(item);
+        });
+        // Filter out all groups that doesn't end with a delete
+        const groups = Object.keys(groupObject).filter(path => {
+            const items = groupObject[path];
+            if (items.length > 0) {
+                if (items[items.length - 1] instanceof DeleteChange_1.DeleteChange) {
+                    return true;
+                }
+            }
+            return false;
+        }).map(path => groupObject[path]);
+        // Map all groups to the last path
+        const pathsToDelete = groups.map(items => {
+            return items[items.length - 1].getPath().toString();
+        });
+        // Save all changes that path starts with any of the deleted ones
+        const changesToDelete = [];
+        this.changes.forEach((item, key) => {
+            const strPath = item.getPath().toString();
+            for (let path of pathsToDelete) {
+                if (strPath.startsWith(path)) {
+                    changesToDelete.push(key);
+                }
+            }
+        });
+        // remove all the keys
+        for (let key of changesToDelete) {
+            this.changes.delete(key);
+        }
     }
 }
 exports.Database = Database;

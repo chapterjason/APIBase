@@ -14,10 +14,7 @@ export interface DatabaseInterface {
     get<T>(path?: PathType): Promise<T>;
     reference<ReferenceType = any>(path?: PathType): ReferenceInterface<ReferenceType>;
     collection<ReferenceType = any>(path?: PathType): CollectionReferenceInterface<ReferenceType>;
-
     applyChanges(changes: Map<string, ChangeInterface>): Promise<void>;
-
     applySet(change: SetChange): Promise<boolean>;
-
     applyDelete(change: DeleteChange): Promise<boolean>;
 }

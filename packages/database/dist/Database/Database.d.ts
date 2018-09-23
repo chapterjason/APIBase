@@ -21,6 +21,7 @@ export declare class Database implements DatabaseInterface {
     get<T>(path?: PathType): Promise<T>;
     reference<ReferenceType = any>(path?: PathType): Reference<ReferenceType>;
     collection<ReferenceType = any>(path?: PathType): CollectionReference<ReferenceType>;
-
     applyDelete(change: DeleteChange): Promise<boolean>;
+
+    protected cleanupChanges(): void;
 }

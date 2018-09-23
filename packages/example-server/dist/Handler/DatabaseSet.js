@@ -22,7 +22,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                 resolve(result.value);
             }).then(fulfilled, rejected);
         }
-
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -30,7 +29,6 @@ Object.defineProperty(exports, "__esModule", {value: true});
 const ResponseSuccess_1 = require("../Response/ResponseSuccess");
 const ResponseError_1 = require("../Response/ResponseError");
 const core_1 = require("@apibase/core");
-
 function DatabaseSet(database, save) {
     return (request, response, next) => __awaiter(this, void 0, void 0, function* () {
         if (request.method === 'PUT') {
@@ -50,6 +48,5 @@ function DatabaseSet(database, save) {
         }
     });
 }
-
 exports.DatabaseSet = DatabaseSet;
 //# sourceMappingURL=DatabaseSet.js.map
