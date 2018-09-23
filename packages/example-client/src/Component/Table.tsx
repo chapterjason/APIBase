@@ -2,7 +2,7 @@ import {CollectionReference, CollectionSnapshot} from "@apibase/database";
 import * as React from "react";
 import {ClientDatabase} from "../Database/ClientDatabase";
 import {createdAt, Logger} from "@apibase/core";
-import {Button, HTMLTable, InputGroup} from "@blueprintjs/core";
+import {Button, HTMLTable, InputGroup, NumericInput, Switch} from "@blueprintjs/core";
 import {Item} from "./Item";
 
 export interface TableProps {
@@ -15,6 +15,8 @@ export interface TableState<ItemType = any> {
     inputText: string;
     sortBy: string;
     sortOrder: boolean;
+    autoSync: boolean;
+    syncInterval: number;
 }
 
 export class Table<ItemType = any> extends React.Component<TableProps, TableState<ItemType>> {
@@ -22,6 +24,8 @@ export class Table<ItemType = any> extends React.Component<TableProps, TableStat
     protected database: ClientDatabase;
 
     protected reference: CollectionReference<ItemType>;
+
+    protected loopId: number;
 
     protected sortBy = (type: "key" | "created" | "name") => {
         if (this.state.sortBy === type) {
@@ -32,6 +36,20 @@ export class Table<ItemType = any> extends React.Component<TableProps, TableStat
     };
     protected handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({inputText: event.target.value});
+    };
+    protected handleSyncChange = (value: number) => {
+        this.setState({syncInterval: value});
+        window.clearInterval(this.loopId);
+        this.loopId = window.setInterval(() => this.sync(), value);
+    };
+    protected handleCheck = () => {
+        const newAutoSync = !this.state.autoSync;
+        this.setState({autoSync: newAutoSync});
+
+        window.clearInterval(this.loopId);
+        if (newAutoSync) {
+            this.loopId = window.setInterval(() => this.sync(), this.state.syncInterval);
+        }
     };
     protected handleKeyPress = async (event) => {
         if (event.key == 'Enter') {
@@ -59,8 +77,12 @@ export class Table<ItemType = any> extends React.Component<TableProps, TableStat
     constructor(props: TableProps) {
         super(props);
         this.database = new ClientDatabase(this.props.uri);
-        this.state = {items: null, inputText: '', sortBy: 'key', sortOrder: false};
+        this.state = {items: null, inputText: '', sortBy: 'key', sortOrder: false, autoSync: true, syncInterval: 10000};
         this.reference = this.database.collection(this.props.path);
+        this.sync()
+            .then(() => {
+                this.loopId = window.setInterval(() => this.sync(), this.state.syncInterval);
+            });
     }
 
     public async componentDidMount() {
@@ -71,7 +93,12 @@ export class Table<ItemType = any> extends React.Component<TableProps, TableStat
         this.preRender();
         return (
             <div>
-                <Button onClick={() => this.database.syncLoop(() => this.forceUpdate())}>Synchronize</Button>
+                <div>
+                    <Switch checked={this.state.autoSync} label="AutoSync" onChange={this.handleCheck}/>
+                    <NumericInput placeholder="Enter a sync interval" value={this.state.syncInterval}
+                                  onValueChange={this.handleSyncChange}/>
+                    <Button onClick={() => this.sync()}>Synchronize</Button>
+                </div>
                 <HTMLTable>
                     <thead>
                         <tr>
@@ -141,6 +168,12 @@ export class Table<ItemType = any> extends React.Component<TableProps, TableStat
         } catch (error) {
             Logger.error(error);
         }
+    }
+
+    protected async sync() {
+        await this.database.sync(async () => {
+            await this.update();
+        })
     }
 
     protected preRender() {

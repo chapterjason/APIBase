@@ -26,8 +26,6 @@ export class ClientDatabase extends Database {
         if (changes) {
             this.changes = new Map<string, ChangeInterface>(JSON.parse(changes));
         }
-
-        // this.syncLoop();
     }
 
     protected static async handleResponse<ResultType>(request: () => AxiosPromise<DatabaseResponse<ResultType>>) {
@@ -52,21 +50,6 @@ export class ClientDatabase extends Database {
         return result;
     }
 
-    public async syncLoop(callback?: () => void) {
-        try {
-            await this.sync();
-
-            Logger.debug('Synchronized!');
-
-            if (callback) {
-                callback();
-            }
-
-        } catch (error) {
-            Logger.error(error);
-        }
-    }
-
     protected getHistory() {
         const history = [];
         for (let pair of this.changes.entries()) {
@@ -85,10 +68,16 @@ export class ClientDatabase extends Database {
         }
     }
 
-    protected async sync() {
+    public async sync(callback?: () => void) {
         try {
             this.mapping = await this._sync();
             this.changes.clear();
+
+            Logger.debug('Synchronized!');
+
+            if (callback) {
+                callback();
+            }
         } catch (error) {
             Logger.error(error);
         } finally {
