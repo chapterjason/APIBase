@@ -359,5 +359,31 @@ describe('Database', () => {
         expect(reference['path']['segments'].length).toBe(0);
     });
 
-})
-;
+    it('applyChanges with same timestamp', async () => {
+        const database = new Database({
+            'users': {
+                'a': {'name': 'Foo'},
+                'b': {'name': 'Bar'}
+            }
+        });
+
+        const date = new Date();
+        const updateChangeA = new SetChange('/users/a/name', 'Change A');
+        const updateChangeB = new SetChange('/users/a/name', 'Change B');
+
+        updateChangeA['timestamp'] = date;
+        updateChangeB['timestamp'] = date;
+
+        const changes = new Map<string, ChangeInterface>();
+        changes.set(generateIdentifier(), updateChangeB);
+        changes.set(generateIdentifier(), updateChangeA);
+
+        expect(database['mapping']).toMatchObject({"users": {"a": {"name": "Foo"}, "b": {"name": "Bar"}}});
+        await database.applyChanges(changes);
+        // @todo Is this really expected...?
+        expect(database['mapping']).toMatchObject({"users": {"a": {"name": "Change A"}, "b": {"name": "Bar"}}});
+
+
+    });
+
+});
