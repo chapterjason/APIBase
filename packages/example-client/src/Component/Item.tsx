@@ -28,18 +28,18 @@ export class Item<ItemType = any> extends React.PureComponent<ItemProps<ItemType
     protected edit = () => {
         this.setState({editMode: true});
     };
-    protected save = () => {
+    protected save = async () => {
         this.setState({editMode: false});
 
         const value = this.props.snapshot.value();
         const key = this.props.snapshot.key();
 
         if (Array.isArray(value)) {
-            this.props.table.setValue(key, this.state.values);
+            await this.props.table.setValue(key, this.state.values);
         } else if (isObject(value)) {
-            this.props.table.setValue(key, this.state.values);
+            await this.props.table.setValue(key, this.state.values);
         } else {
-            this.props.table.setValue(key, this.state.values[key]);
+            await this.props.table.setValue(key, this.state.values[key]);
         }
     };
 
@@ -61,6 +61,28 @@ export class Item<ItemType = any> extends React.PureComponent<ItemProps<ItemType
         }
 
         this.state = {editMode: false, values: values};
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if (!state.editMode) {
+            const value = props.snapshot.value();
+            const key = props.snapshot.key();
+
+            const values = {};
+            if (Array.isArray(value)) {
+                value.forEach((value, index) => values[index] = value);
+            } else if (isObject(value)) {
+                Object
+                    .keys(value)
+                    .forEach((key) => values[key] = value[key]);
+            } else {
+                values[key] = value;
+            }
+
+            return {...state, values: values};
+        }
+
+        return null;
     }
 
     public render() {
