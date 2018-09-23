@@ -29,7 +29,7 @@
 
 ▸ **getPath**(): `Path`
 
-*Defined in [Database/Change/ChangeInterface.ts:5](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Change/ChangeInterface.ts#L5)*
+*Defined in [Database/Change/ChangeInterface.ts:5](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/ChangeInterface.ts#L5)*
 
 **Returns:** `Path`
 
@@ -40,7 +40,7 @@ ___
 
 ▸ **getTimestamp**(): `Date`
 
-*Defined in [Database/Change/ChangeInterface.ts:7](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Change/ChangeInterface.ts#L7)*
+*Defined in [Database/Change/ChangeInterface.ts:7](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/ChangeInterface.ts#L7)*
 
 **Returns:** `Date`
 

@@ -25,7 +25,7 @@
 
 **Ƭ MapTupel**: *[`KeyType`, `ValueType`]*
 
-*Defined in [Collection/Map.ts:10](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Collection/Map.ts#L10)*
+*Defined in [Collection/Map.ts:10](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Collection/Map.ts#L10)*
 
 ___
 

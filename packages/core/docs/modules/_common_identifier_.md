@@ -19,7 +19,7 @@
 
 ▸ **createdAt**(id: *`string`*): `Date`
 
-*Defined in [Common/Identifier.ts:16](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Identifier.ts#L16)*
+*Defined in [Common/Identifier.ts:16](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Identifier.ts#L16)*
 
 Returns the createTimestamp from the id
 
@@ -38,7 +38,7 @@ ___
 
 ▸ **generateIdentifier**(): `string`
 
-*Defined in [Common/Identifier.ts:25](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Identifier.ts#L25)*
+*Defined in [Common/Identifier.ts:25](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Identifier.ts#L25)*
 
 Generates a unique id
 

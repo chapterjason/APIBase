@@ -14,6 +14,9 @@
 
 ### Methods
 
+* [applyChanges](_database_databaseinterface_.databaseinterface.md#applychanges)
+* [applyDelete](_database_databaseinterface_.databaseinterface.md#applydelete)
+* [applySet](_database_databaseinterface_.databaseinterface.md#applyset)
 * [collection](_database_databaseinterface_.databaseinterface.md#collection)
 * [delete](_database_databaseinterface_.databaseinterface.md#delete)
 * [get](_database_databaseinterface_.databaseinterface.md#get)
@@ -24,13 +27,64 @@
 
 ## Methods
 
+<a id="applychanges"></a>
+
+###  applyChanges
+
+▸ **applyChanges**(changes: *`Map`<`string`, [ChangeInterface](_database_change_changeinterface_.changeinterface.md)>*): `Promise`<`void`>
+
+*Defined in [Database/DatabaseInterface.ts:24](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L24)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| changes | `Map`<`string`, [ChangeInterface](_database_change_changeinterface_.changeinterface.md)> |
+
+**Returns:** `Promise`<`void`>
+
+___
+<a id="applydelete"></a>
+
+###  applyDelete
+
+▸ **applyDelete**(change: *[DeleteChange](../classes/_database_change_deletechange_.deletechange.md)*): `Promise`<`boolean`>
+
+*Defined in [Database/DatabaseInterface.ts:28](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L28)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| change | [DeleteChange](../classes/_database_change_deletechange_.deletechange.md) |
+
+**Returns:** `Promise`<`boolean`>
+
+___
+<a id="applyset"></a>
+
+###  applySet
+
+▸ **applySet**(change: *[SetChange](../classes/_database_change_setchange_.setchange.md)*): `Promise`<`boolean`>
+
+*Defined in [Database/DatabaseInterface.ts:26](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L26)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| change | [SetChange](../classes/_database_change_setchange_.setchange.md) |
+
+**Returns:** `Promise`<`boolean`>
+
+___
 <a id="collection"></a>
 
 ###  collection
 
 ▸ **collection**<`ReferenceType`>(path?: *`PathType`*): [CollectionReferenceInterface](_database_reference_collectionreferenceinterface_.collectionreferenceinterface.md)<`ReferenceType`>
 
-*Defined in [Database/DatabaseInterface.ts:19](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/DatabaseInterface.ts#L19)*
+*Defined in [Database/DatabaseInterface.ts:22](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L22)*
 
 **Type parameters:**
 
@@ -50,7 +104,7 @@ ___
 
 ▸ **delete**(path?: *`PathType`*): `Promise`<`boolean`>
 
-*Defined in [Database/DatabaseInterface.ts:11](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/DatabaseInterface.ts#L11)*
+*Defined in [Database/DatabaseInterface.ts:14](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L14)*
 
 **Parameters:**
 
@@ -67,7 +121,7 @@ ___
 
 ▸ **get**<`T`>(path?: *`PathType`*): `Promise`<`T`>
 
-*Defined in [Database/DatabaseInterface.ts:15](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/DatabaseInterface.ts#L15)*
+*Defined in [Database/DatabaseInterface.ts:18](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L18)*
 
 **Type parameters:**
 
@@ -87,7 +141,7 @@ ___
 
 ▸ **reference**<`ReferenceType`>(path?: *`PathType`*): [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md)<`ReferenceType`>
 
-*Defined in [Database/DatabaseInterface.ts:17](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/DatabaseInterface.ts#L17)*
+*Defined in [Database/DatabaseInterface.ts:20](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L20)*
 
 **Type parameters:**
 
@@ -107,7 +161,7 @@ ___
 
 ▸ **set**(path: *`PathType`*, value: *`any`*): `Promise`<`boolean`>
 
-*Defined in [Database/DatabaseInterface.ts:13](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/DatabaseInterface.ts#L13)*
+*Defined in [Database/DatabaseInterface.ts:16](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L16)*
 
 **Parameters:**
 

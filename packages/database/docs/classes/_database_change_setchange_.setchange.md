@@ -42,7 +42,7 @@
 
 *Overrides [AbstractChange](_database_change_abstractchange_.abstractchange.md).[constructor](_database_change_abstractchange_.abstractchange.md#constructor)*
 
-*Defined in [Database/Change/SetChange.ts:6](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Change/SetChange.ts#L6)*
+*Defined in [Database/Change/SetChange.ts:6](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/SetChange.ts#L6)*
 
 **Parameters:**
 
@@ -65,7 +65,7 @@ ___
 
 *Inherited from [AbstractChange](_database_change_abstractchange_.abstractchange.md).[path](_database_change_abstractchange_.abstractchange.md#path)*
 
-*Defined in [Database/Change/AbstractChange.ts:6](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Change/AbstractChange.ts#L6)*
+*Defined in [Database/Change/AbstractChange.ts:6](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/AbstractChange.ts#L6)*
 
 ___
 <a id="timestamp"></a>
@@ -76,7 +76,7 @@ ___
 
 *Inherited from [AbstractChange](_database_change_abstractchange_.abstractchange.md).[timestamp](_database_change_abstractchange_.abstractchange.md#timestamp)*
 
-*Defined in [Database/Change/AbstractChange.ts:8](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Change/AbstractChange.ts#L8)*
+*Defined in [Database/Change/AbstractChange.ts:8](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/AbstractChange.ts#L8)*
 
 ___
 <a id="value"></a>
@@ -85,7 +85,7 @@ ___
 
 **● value**: *`any`*
 
-*Defined in [Database/Change/SetChange.ts:6](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Change/SetChange.ts#L6)*
+*Defined in [Database/Change/SetChange.ts:6](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/SetChange.ts#L6)*
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 *Inherited from [AbstractChange](_database_change_abstractchange_.abstractchange.md).[getPath](_database_change_abstractchange_.abstractchange.md#getpath)*
 
-*Defined in [Database/Change/AbstractChange.ts:15](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Change/AbstractChange.ts#L15)*
+*Defined in [Database/Change/AbstractChange.ts:15](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/AbstractChange.ts#L15)*
 
 **Returns:** `Path`
 
@@ -116,7 +116,7 @@ ___
 
 *Inherited from [AbstractChange](_database_change_abstractchange_.abstractchange.md).[getTimestamp](_database_change_abstractchange_.abstractchange.md#gettimestamp)*
 
-*Defined in [Database/Change/AbstractChange.ts:19](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Change/AbstractChange.ts#L19)*
+*Defined in [Database/Change/AbstractChange.ts:19](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/AbstractChange.ts#L19)*
 
 **Returns:** `Date`
 
@@ -127,7 +127,7 @@ ___
 
 ▸ **getValue**(): `any`
 
-*Defined in [Database/Change/SetChange.ts:13](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Change/SetChange.ts#L13)*
+*Defined in [Database/Change/SetChange.ts:13](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/SetChange.ts#L13)*
 
 **Returns:** `any`
 

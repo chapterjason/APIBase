@@ -22,7 +22,7 @@
 
 **L**: 
 
-*Defined in [Common/Logger.ts:14](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Logger.ts#L14)*
+*Defined in [Common/Logger.ts:14](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Logger.ts#L14)*
 
 ___
 <a id="ll"></a>
@@ -31,7 +31,7 @@ ___
 
 **LL**: 
 
-*Defined in [Common/Logger.ts:15](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Logger.ts#L15)*
+*Defined in [Common/Logger.ts:15](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Logger.ts#L15)*
 
 ___
 <a id="lll"></a>
@@ -40,7 +40,7 @@ ___
 
 **LLL**: 
 
-*Defined in [Common/Logger.ts:16](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Logger.ts#L16)*
+*Defined in [Common/Logger.ts:16](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Logger.ts#L16)*
 
 ___
 <a id="llll"></a>
@@ -49,7 +49,7 @@ ___
 
 **LLLL**: 
 
-*Defined in [Common/Logger.ts:17](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Logger.ts#L17)*
+*Defined in [Common/Logger.ts:17](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Logger.ts#L17)*
 
 ___
 <a id="quiet"></a>
@@ -58,7 +58,7 @@ ___
 
 **QUIET**: 
 
-*Defined in [Common/Logger.ts:13](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Logger.ts#L13)*
+*Defined in [Common/Logger.ts:13](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Logger.ts#L13)*
 
 ___
 

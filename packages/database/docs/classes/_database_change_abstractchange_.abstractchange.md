@@ -40,7 +40,7 @@
 
 ⊕ **new AbstractChange**(path: *`PathType`*): [AbstractChange](_database_change_abstractchange_.abstractchange.md)
 
-*Defined in [Database/Change/AbstractChange.ts:8](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Change/AbstractChange.ts#L8)*
+*Defined in [Database/Change/AbstractChange.ts:8](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/AbstractChange.ts#L8)*
 
 **Parameters:**
 
@@ -60,7 +60,7 @@ ___
 
 **● path**: *`Path`*
 
-*Defined in [Database/Change/AbstractChange.ts:6](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Change/AbstractChange.ts#L6)*
+*Defined in [Database/Change/AbstractChange.ts:6](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/AbstractChange.ts#L6)*
 
 ___
 <a id="timestamp"></a>
@@ -69,7 +69,7 @@ ___
 
 **● timestamp**: *`Date`*
 
-*Defined in [Database/Change/AbstractChange.ts:8](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Change/AbstractChange.ts#L8)*
+*Defined in [Database/Change/AbstractChange.ts:8](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/AbstractChange.ts#L8)*
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 *Implementation of [ChangeInterface](../interfaces/_database_change_changeinterface_.changeinterface.md).[getPath](../interfaces/_database_change_changeinterface_.changeinterface.md#getpath)*
 
-*Defined in [Database/Change/AbstractChange.ts:15](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Change/AbstractChange.ts#L15)*
+*Defined in [Database/Change/AbstractChange.ts:15](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/AbstractChange.ts#L15)*
 
 **Returns:** `Path`
 
@@ -96,7 +96,7 @@ ___
 
 *Implementation of [ChangeInterface](../interfaces/_database_change_changeinterface_.changeinterface.md).[getTimestamp](../interfaces/_database_change_changeinterface_.changeinterface.md#gettimestamp)*
 
-*Defined in [Database/Change/AbstractChange.ts:19](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Change/AbstractChange.ts#L19)*
+*Defined in [Database/Change/AbstractChange.ts:19](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/AbstractChange.ts#L19)*
 
 **Returns:** `Date`
 

@@ -37,7 +37,7 @@
 
 ⊕ **new Path**(path?: *[PathType](../modules/_common_path_.md#pathtype)*): [Path](_common_path_.path.md)
 
-*Defined in [Common/Path.ts:14](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Path.ts#L14)*
+*Defined in [Common/Path.ts:14](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Path.ts#L14)*
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 **● segments**: *`string`[]*
 
-*Defined in [Common/Path.ts:14](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Path.ts#L14)*
+*Defined in [Common/Path.ts:14](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Path.ts#L14)*
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 ▸ **child**(segment: *`string`*): [Path](_common_path_.path.md)
 
-*Defined in [Common/Path.ts:62](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Path.ts#L62)*
+*Defined in [Common/Path.ts:62](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Path.ts#L62)*
 
 **Parameters:**
 
@@ -86,7 +86,7 @@ ___
 
 ▸ **end**():  `string` &#124; `null`
 
-*Defined in [Common/Path.ts:70](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Path.ts#L70)*
+*Defined in [Common/Path.ts:70](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Path.ts#L70)*
 
 **Returns:**  `string` &#124; `null`
 
@@ -97,7 +97,7 @@ ___
 
 ▸ **getSegments**(): `string`[]
 
-*Defined in [Common/Path.ts:50](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Path.ts#L50)*
+*Defined in [Common/Path.ts:50](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Path.ts#L50)*
 
 **Returns:** `string`[]
 
@@ -108,7 +108,7 @@ ___
 
 ▸ **length**(): `number`
 
-*Defined in [Common/Path.ts:66](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Path.ts#L66)*
+*Defined in [Common/Path.ts:66](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Path.ts#L66)*
 
 **Returns:** `number`
 
@@ -119,7 +119,7 @@ ___
 
 ▸ **parent**():  [Path](_common_path_.path.md) &#124; `null`
 
-*Defined in [Common/Path.ts:54](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Path.ts#L54)*
+*Defined in [Common/Path.ts:54](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Path.ts#L54)*
 
 **Returns:**  [Path](_common_path_.path.md) &#124; `null`
 
@@ -130,7 +130,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [Common/Path.ts:46](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Path.ts#L46)*
+*Defined in [Common/Path.ts:46](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Path.ts#L46)*
 
 **Returns:** `string`
 
@@ -141,7 +141,7 @@ ___
 
 ▸ **ensurePath**(path: *[PathType](../modules/_common_path_.md#pathtype)*): [Path](_common_path_.path.md)
 
-*Defined in [Common/Path.ts:28](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Path.ts#L28)*
+*Defined in [Common/Path.ts:28](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Path.ts#L28)*
 
 **Parameters:**
 
@@ -158,7 +158,7 @@ ___
 
 ▸ **normalize**(segment: * `string` &#124; `string`[]*): `string`[]
 
-*Defined in [Common/Path.ts:36](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/core/src/Common/Path.ts#L36)*
+*Defined in [Common/Path.ts:36](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Path.ts#L36)*
 
 **Parameters:**
 

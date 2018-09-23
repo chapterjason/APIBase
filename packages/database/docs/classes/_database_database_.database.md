@@ -28,6 +28,7 @@
 * [applyChanges](_database_database_.database.md#applychanges)
 * [applyDelete](_database_database_.database.md#applydelete)
 * [applySet](_database_database_.database.md#applyset)
+* [cleanupChanges](_database_database_.database.md#cleanupchanges)
 * [collection](_database_database_.database.md#collection)
 * [delete](_database_database_.database.md#delete)
 * [get](_database_database_.database.md#get)
@@ -46,7 +47,7 @@
 
 ⊕ **new Database**(mapping?: *[DatabaseIndex](../interfaces/_database_databaseinterface_.databaseindex.md)*): [Database](_database_database_.database.md)
 
-*Defined in [Database/Database.ts:26](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L26)*
+*Defined in [Database/Database.ts:26](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L26)*
 
 **Parameters:**
 
@@ -66,7 +67,7 @@ ___
 
 **● changes**: *`Map`<`string`, [ChangeInterface](../interfaces/_database_change_changeinterface_.changeinterface.md)>* =  new Map<string, ChangeInterface>()
 
-*Defined in [Database/Database.ts:26](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L26)*
+*Defined in [Database/Database.ts:26](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L26)*
 
 ___
 <a id="depthlimit"></a>
@@ -75,7 +76,7 @@ ___
 
 **● depthLimit**: *`number`* = 32
 
-*Defined in [Database/Database.ts:24](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L24)*
+*Defined in [Database/Database.ts:24](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L24)*
 
 ___
 <a id="mapping"></a>
@@ -84,7 +85,7 @@ ___
 
 **● mapping**: *[DatabaseIndex](../interfaces/_database_databaseinterface_.databaseindex.md)*
 
-*Defined in [Database/Database.ts:22](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L22)*
+*Defined in [Database/Database.ts:22](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L22)*
 
 ___
 <a id="original"></a>
@@ -93,7 +94,7 @@ ___
 
 **● original**: *[DatabaseIndex](../interfaces/_database_databaseinterface_.databaseindex.md)*
 
-*Defined in [Database/Database.ts:20](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L20)*
+*Defined in [Database/Database.ts:20](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L20)*
 
 ___
 
@@ -105,7 +106,9 @@ ___
 
 ▸ **applyChanges**(changes: *`Map`<`string`, [ChangeInterface](../interfaces/_database_change_changeinterface_.changeinterface.md)>*): `Promise`<`void`>
 
-*Defined in [Database/Database.ts:41](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L41)*
+*Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[applyChanges](../interfaces/_database_databaseinterface_.databaseinterface.md#applychanges)*
+
+*Defined in [Database/Database.ts:41](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L41)*
 
 **Parameters:**
 
@@ -118,11 +121,13 @@ ___
 ___
 <a id="applydelete"></a>
 
-### `<Protected>` applyDelete
+###  applyDelete
 
 ▸ **applyDelete**(change: *[DeleteChange](_database_change_deletechange_.deletechange.md)*): `Promise`<`boolean`>
 
-*Defined in [Database/Database.ts:145](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L145)*
+*Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[applyDelete](../interfaces/_database_databaseinterface_.databaseinterface.md#applydelete)*
+
+*Defined in [Database/Database.ts:145](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L145)*
 
 **Parameters:**
 
@@ -139,7 +144,9 @@ ___
 
 ▸ **applySet**(change: *[SetChange](_database_change_setchange_.setchange.md)*): `Promise`<`boolean`>
 
-*Defined in [Database/Database.ts:75](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L75)*
+*Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[applySet](../interfaces/_database_databaseinterface_.databaseinterface.md#applyset)*
+
+*Defined in [Database/Database.ts:75](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L75)*
 
 **Parameters:**
 
@@ -150,6 +157,17 @@ ___
 **Returns:** `Promise`<`boolean`>
 
 ___
+<a id="cleanupchanges"></a>
+
+### `<Protected>` cleanupChanges
+
+▸ **cleanupChanges**(): `void`
+
+*Defined in [Database/Database.ts:179](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L179)*
+
+**Returns:** `void`
+
+___
 <a id="collection"></a>
 
 ###  collection
@@ -158,7 +176,7 @@ ___
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[collection](../interfaces/_database_databaseinterface_.databaseinterface.md#collection)*
 
-*Defined in [Database/Database.ts:141](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L141)*
+*Defined in [Database/Database.ts:141](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L141)*
 
 **Type parameters:**
 
@@ -180,7 +198,7 @@ ___
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[delete](../interfaces/_database_databaseinterface_.databaseinterface.md#delete)*
 
-*Defined in [Database/Database.ts:61](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L61)*
+*Defined in [Database/Database.ts:63](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L63)*
 
 **Parameters:**
 
@@ -199,7 +217,7 @@ ___
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[get](../interfaces/_database_databaseinterface_.databaseinterface.md#get)*
 
-*Defined in [Database/Database.ts:114](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L114)*
+*Defined in [Database/Database.ts:114](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L114)*
 
 **Type parameters:**
 
@@ -219,7 +237,7 @@ ___
 
 ▸ **getChanges**(): `Promise`<`Map`<`string`, [ChangeInterface](../interfaces/_database_change_changeinterface_.changeinterface.md)>>
 
-*Defined in [Database/Database.ts:37](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L37)*
+*Defined in [Database/Database.ts:37](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L37)*
 
 **Returns:** `Promise`<`Map`<`string`, [ChangeInterface](../interfaces/_database_change_changeinterface_.changeinterface.md)>>
 
@@ -230,7 +248,7 @@ ___
 
 ▸ **getMapping**(): `Promise`<[DatabaseIndex](../interfaces/_database_databaseinterface_.databaseindex.md)>
 
-*Defined in [Database/Database.ts:33](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L33)*
+*Defined in [Database/Database.ts:33](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L33)*
 
 **Returns:** `Promise`<[DatabaseIndex](../interfaces/_database_databaseinterface_.databaseindex.md)>
 
@@ -243,7 +261,7 @@ ___
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[reference](../interfaces/_database_databaseinterface_.databaseinterface.md#reference)*
 
-*Defined in [Database/Database.ts:137](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L137)*
+*Defined in [Database/Database.ts:137](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L137)*
 
 **Type parameters:**
 
@@ -265,7 +283,7 @@ ___
 
 *Implementation of [DatabaseInterface](../interfaces/_database_databaseinterface_.databaseinterface.md).[set](../interfaces/_database_databaseinterface_.databaseinterface.md#set)*
 
-*Defined in [Database/Database.ts:68](https://github.com/chapterjason/APIBase/blob/54f0c33/packages/database/src/Database/Database.ts#L68)*
+*Defined in [Database/Database.ts:69](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Database.ts#L69)*
 
 **Parameters:**
 
