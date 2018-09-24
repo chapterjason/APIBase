@@ -8,6 +8,9 @@ Reused functions that cannot be directly assigned to a package and that are used
 
 ### External modules
 
+* ["Behavioral/Event/Event"](modules/_behavioral_event_event_.md)
+* ["Behavioral/Event/EventEmitter"](modules/_behavioral_event_eventemitter_.md)
+* ["Behavioral/Event/EventInterface"](modules/_behavioral_event_eventinterface_.md)
 * ["Collection/Map"](modules/_collection_map_.md)
 * ["Common/Identifier"](modules/_common_identifier_.md)
 * ["Common/Logger"](modules/_common_logger_.md)

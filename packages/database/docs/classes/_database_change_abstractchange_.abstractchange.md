@@ -8,7 +8,9 @@
 
 ↳  [DeleteChange](_database_change_deletechange_.deletechange.md)
 
-↳  [SetChange](_database_change_setchange_.setchange.md)
+↳  [CreateChange](_database_change_createchange_.createchange.md)
+
+↳  [UpdateChange](_database_change_updatechange_.updatechange.md)
 
 ## Implements
 
@@ -24,11 +26,13 @@
 
 * [path](_database_change_abstractchange_.abstractchange.md#path)
 * [timestamp](_database_change_abstractchange_.abstractchange.md#timestamp)
+* [type](_database_change_abstractchange_.abstractchange.md#type)
 
 ### Methods
 
 * [getPath](_database_change_abstractchange_.abstractchange.md#getpath)
 * [getTimestamp](_database_change_abstractchange_.abstractchange.md#gettimestamp)
+* [getType](_database_change_abstractchange_.abstractchange.md#gettype)
 
 ---
 
@@ -40,7 +44,7 @@
 
 ⊕ **new AbstractChange**(path: *`PathType`*): [AbstractChange](_database_change_abstractchange_.abstractchange.md)
 
-*Defined in [Database/Change/AbstractChange.ts:8](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/AbstractChange.ts#L8)*
+*Defined in [Database/Change/AbstractChange.ts:10](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/AbstractChange.ts#L10)*
 
 **Parameters:**
 
@@ -60,7 +64,7 @@ ___
 
 **● path**: *`Path`*
 
-*Defined in [Database/Change/AbstractChange.ts:6](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/AbstractChange.ts#L6)*
+*Defined in [Database/Change/AbstractChange.ts:6](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/AbstractChange.ts#L6)*
 
 ___
 <a id="timestamp"></a>
@@ -69,7 +73,16 @@ ___
 
 **● timestamp**: *`Date`*
 
-*Defined in [Database/Change/AbstractChange.ts:8](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/AbstractChange.ts#L8)*
+*Defined in [Database/Change/AbstractChange.ts:8](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/AbstractChange.ts#L8)*
+
+___
+<a id="type"></a>
+
+### `<Protected>` type
+
+**● type**: *`string`* =  undefined
+
+*Defined in [Database/Change/AbstractChange.ts:10](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/AbstractChange.ts#L10)*
 
 ___
 
@@ -83,7 +96,7 @@ ___
 
 *Implementation of [ChangeInterface](../interfaces/_database_change_changeinterface_.changeinterface.md).[getPath](../interfaces/_database_change_changeinterface_.changeinterface.md#getpath)*
 
-*Defined in [Database/Change/AbstractChange.ts:15](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/AbstractChange.ts#L15)*
+*Defined in [Database/Change/AbstractChange.ts:17](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/AbstractChange.ts#L17)*
 
 **Returns:** `Path`
 
@@ -96,9 +109,22 @@ ___
 
 *Implementation of [ChangeInterface](../interfaces/_database_change_changeinterface_.changeinterface.md).[getTimestamp](../interfaces/_database_change_changeinterface_.changeinterface.md#gettimestamp)*
 
-*Defined in [Database/Change/AbstractChange.ts:19](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/AbstractChange.ts#L19)*
+*Defined in [Database/Change/AbstractChange.ts:21](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/AbstractChange.ts#L21)*
 
 **Returns:** `Date`
+
+___
+<a id="gettype"></a>
+
+###  getType
+
+▸ **getType**(): `string`
+
+*Implementation of [ChangeInterface](../interfaces/_database_change_changeinterface_.changeinterface.md).[getType](../interfaces/_database_change_changeinterface_.changeinterface.md#gettype)*
+
+*Defined in [Database/Change/AbstractChange.ts:25](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/AbstractChange.ts#L25)*
+
+**Returns:** `string`
 
 ___
 

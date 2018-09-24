@@ -40,7 +40,7 @@
 
 ⊕ **new MapTupelIterator**(keys: *`KeyType`[]*, values: *`ValueType`[]*): [MapTupelIterator](_collection_map_.maptupeliterator.md)
 
-*Defined in [Collection/Map.ts:16](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Collection/Map.ts#L16)*
+*Defined in [Collection/Map.ts:16](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/core/src/Collection/Map.ts#L16)*
 
 **Parameters:**
 
@@ -61,7 +61,7 @@ ___
 
 **● keys**: *`KeyType`[]*
 
-*Defined in [Collection/Map.ts:15](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Collection/Map.ts#L15)*
+*Defined in [Collection/Map.ts:15](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/core/src/Collection/Map.ts#L15)*
 
 ___
 <a id="pointer"></a>
@@ -70,7 +70,7 @@ ___
 
 **● pointer**: *`number`* = 0
 
-*Defined in [Collection/Map.ts:14](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Collection/Map.ts#L14)*
+*Defined in [Collection/Map.ts:14](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/core/src/Collection/Map.ts#L14)*
 
 ___
 <a id="values"></a>
@@ -79,7 +79,7 @@ ___
 
 **● values**: *`ValueType`[]*
 
-*Defined in [Collection/Map.ts:16](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Collection/Map.ts#L16)*
+*Defined in [Collection/Map.ts:16](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/core/src/Collection/Map.ts#L16)*
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **__@iterator**(): `IterableIterator`<[MapTupel](../modules/_collection_map_.md#maptupel)<`KeyType`, `ValueType`>>
 
-*Defined in [Collection/Map.ts:39](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Collection/Map.ts#L39)*
+*Defined in [Collection/Map.ts:39](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/core/src/Collection/Map.ts#L39)*
 
 **Returns:** `IterableIterator`<[MapTupel](../modules/_collection_map_.md#maptupel)<`KeyType`, `ValueType`>>
 
@@ -102,7 +102,7 @@ ___
 
 ▸ **next**(): `IteratorResult`<[MapTupel](../modules/_collection_map_.md#maptupel)<`KeyType`, `ValueType`>>
 
-*Defined in [Collection/Map.ts:23](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Collection/Map.ts#L23)*
+*Defined in [Collection/Map.ts:23](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/core/src/Collection/Map.ts#L23)*
 
 **Returns:** `IteratorResult`<[MapTupel](../modules/_collection_map_.md#maptupel)<`KeyType`, `ValueType`>>
 

@@ -23,7 +23,7 @@
 **Ƭ PathType**: * [Path](../classes/_common_path_.path.md) &#124; `string` &#124; `string`[]
 *
 
-*Defined in [Common/Path.ts:10](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/Path.ts#L10)*
+*Defined in [Common/Path.ts:13](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/core/src/Common/Path.ts#L13)*
 
 ___
 

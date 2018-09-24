@@ -40,7 +40,7 @@
 
 ⊕ **new Snapshot**(reference: *[ReferenceInterface](../interfaces/_database_reference_referenceinterface_.referenceinterface.md)<`SnapshotType`>*, data: *`SnapshotType`*): [Snapshot](_database_snapshot_snapshot_.snapshot.md)
 
-*Defined in [Database/Snapshot/Snapshot.ts:17](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Snapshot/Snapshot.ts#L17)*
+*Defined in [Database/Snapshot/Snapshot.ts:17](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Snapshot/Snapshot.ts#L17)*
 
 **Parameters:**
 
@@ -61,7 +61,7 @@ ___
 
 **● data**: *`SnapshotType`*
 
-*Defined in [Database/Snapshot/Snapshot.ts:15](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Snapshot/Snapshot.ts#L15)*
+*Defined in [Database/Snapshot/Snapshot.ts:15](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Snapshot/Snapshot.ts#L15)*
 
 ___
 <a id="reference"></a>
@@ -70,7 +70,7 @@ ___
 
 **● reference**: *[ReferenceInterface](../interfaces/_database_reference_referenceinterface_.referenceinterface.md)<`SnapshotType`>*
 
-*Defined in [Database/Snapshot/Snapshot.ts:17](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Snapshot/Snapshot.ts#L17)*
+*Defined in [Database/Snapshot/Snapshot.ts:17](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Snapshot/Snapshot.ts#L17)*
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 *Implementation of [SnapshotInterface](../interfaces/_database_snapshot_snapshotinterface_.snapshotinterface.md).[key](../interfaces/_database_snapshot_snapshotinterface_.snapshotinterface.md#key)*
 
-*Defined in [Database/Snapshot/Snapshot.ts:28](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Snapshot/Snapshot.ts#L28)*
+*Defined in [Database/Snapshot/Snapshot.ts:28](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Snapshot/Snapshot.ts#L28)*
 
 **Returns:** `string`
 
@@ -97,7 +97,7 @@ ___
 
 *Implementation of [SnapshotInterface](../interfaces/_database_snapshot_snapshotinterface_.snapshotinterface.md).[value](../interfaces/_database_snapshot_snapshotinterface_.snapshotinterface.md#value)*
 
-*Defined in [Database/Snapshot/Snapshot.ts:24](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Snapshot/Snapshot.ts#L24)*
+*Defined in [Database/Snapshot/Snapshot.ts:24](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Snapshot/Snapshot.ts#L24)*
 
 **Returns:** `SnapshotType`
 

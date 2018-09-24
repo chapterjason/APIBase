@@ -11,6 +11,7 @@
 ### Functions
 
 * [escape](_common_regularexpression_.md#escape)
+* [getKeys](_common_regularexpression_.md#getkeys)
 * [match](_common_regularexpression_.md#match-1)
 * [matchAll](_common_regularexpression_.md#matchall)
 
@@ -24,7 +25,7 @@
 
 ▸ **escape**(string: *`string`*): `string`
 
-*Defined in [Common/RegularExpression.ts:10](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/RegularExpression.ts#L10)*
+*Defined in [Common/RegularExpression.ts:10](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/core/src/Common/RegularExpression.ts#L10)*
 
 **Parameters:**
 
@@ -35,13 +36,30 @@
 **Returns:** `string`
 
 ___
+<a id="getkeys"></a>
+
+###  getKeys
+
+▸ **getKeys**(raw: *`string`*): `string`[]
+
+*Defined in [Common/RegularExpression.ts:24](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/core/src/Common/RegularExpression.ts#L24)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| raw | `string` |
+
+**Returns:** `string`[]
+
+___
 <a id="match-1"></a>
 
 ###  match
 
 ▸ **match**(string: *`string`*, regexp: *`RegExp`*): `boolean`
 
-*Defined in [Common/RegularExpression.ts:14](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/RegularExpression.ts#L14)*
+*Defined in [Common/RegularExpression.ts:14](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/core/src/Common/RegularExpression.ts#L14)*
 
 **Parameters:**
 
@@ -57,9 +75,9 @@ ___
 
 ###  matchAll
 
-▸ **matchAll**(string: *`string`*, regexp: *`RegExp`*): `any`[]
+▸ **matchAll**(string: *`string`*, regexp: *`RegExp`*): `object`[]
 
-*Defined in [Common/RegularExpression.ts:24](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/core/src/Common/RegularExpression.ts#L24)*
+*Defined in [Common/RegularExpression.ts:29](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/core/src/Common/RegularExpression.ts#L29)*
 
 **Parameters:**
 
@@ -68,7 +86,7 @@ ___
 | string | `string` |
 | regexp | `RegExp` |
 
-**Returns:** `any`[]
+**Returns:** `object`[]
 
 ___
 

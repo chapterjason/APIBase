@@ -1,12 +1,14 @@
-[@apibase/database](../README.md) > ["Database/Change/DeleteChange"](../modules/_database_change_deletechange_.md) > [DeleteChange](../classes/_database_change_deletechange_.deletechange.md)
+[@apibase/database](../README.md) > ["Database/Change/UpdateChange"](../modules/_database_change_updatechange_.md) > [UpdateChange](../classes/_database_change_updatechange_.updatechange.md)
 
-# Class: DeleteChange
+# Class: UpdateChange
 
+## Type parameters
+#### DataType 
 ## Hierarchy
 
  [AbstractChange](_database_change_abstractchange_.abstractchange.md)
 
-**↳ DeleteChange**
+**↳ UpdateChange**
 
 ## Implements
 
@@ -16,19 +18,23 @@
 
 ### Constructors
 
-* [constructor](_database_change_deletechange_.deletechange.md#constructor)
+* [constructor](_database_change_updatechange_.updatechange.md#constructor)
 
 ### Properties
 
-* [path](_database_change_deletechange_.deletechange.md#path)
-* [timestamp](_database_change_deletechange_.deletechange.md#timestamp)
-* [type](_database_change_deletechange_.deletechange.md#type)
+* [before](_database_change_updatechange_.updatechange.md#before)
+* [path](_database_change_updatechange_.updatechange.md#path)
+* [timestamp](_database_change_updatechange_.updatechange.md#timestamp)
+* [type](_database_change_updatechange_.updatechange.md#type)
+* [value](_database_change_updatechange_.updatechange.md#value)
 
 ### Methods
 
-* [getPath](_database_change_deletechange_.deletechange.md#getpath)
-* [getTimestamp](_database_change_deletechange_.deletechange.md#gettimestamp)
-* [getType](_database_change_deletechange_.deletechange.md#gettype)
+* [getBefore](_database_change_updatechange_.updatechange.md#getbefore)
+* [getPath](_database_change_updatechange_.updatechange.md#getpath)
+* [getTimestamp](_database_change_updatechange_.updatechange.md#gettimestamp)
+* [getType](_database_change_updatechange_.updatechange.md#gettype)
+* [getValue](_database_change_updatechange_.updatechange.md#getvalue)
 
 ---
 
@@ -38,24 +44,35 @@
 
 ###  constructor
 
-⊕ **new DeleteChange**(path: *`PathType`*): [DeleteChange](_database_change_deletechange_.deletechange.md)
+⊕ **new UpdateChange**(path: *`PathType`*, before: *`DataType`*, value: *`DataType`*): [UpdateChange](_database_change_updatechange_.updatechange.md)
 
-*Inherited from [AbstractChange](_database_change_abstractchange_.abstractchange.md).[constructor](_database_change_abstractchange_.abstractchange.md#constructor)*
+*Overrides [AbstractChange](_database_change_abstractchange_.abstractchange.md).[constructor](_database_change_abstractchange_.abstractchange.md#constructor)*
 
-*Defined in [Database/Change/AbstractChange.ts:10](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/AbstractChange.ts#L10)*
+*Defined in [Database/Change/UpdateChange.ts:10](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/UpdateChange.ts#L10)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
 | path | `PathType` |
+| before | `DataType` |
+| value | `DataType` |
 
-**Returns:** [DeleteChange](_database_change_deletechange_.deletechange.md)
+**Returns:** [UpdateChange](_database_change_updatechange_.updatechange.md)
 
 ___
 
 ## Properties
 
+<a id="before"></a>
+
+### `<Protected>` before
+
+**● before**: *`DataType`*
+
+*Defined in [Database/Change/UpdateChange.ts:6](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/UpdateChange.ts#L6)*
+
+___
 <a id="path"></a>
 
 ### `<Protected>` path
@@ -82,16 +99,36 @@ ___
 
 ### `<Protected>` type
 
-**● type**: *`string`* = "delete"
+**● type**: *`string`* = "update"
 
 *Overrides [AbstractChange](_database_change_abstractchange_.abstractchange.md).[type](_database_change_abstractchange_.abstractchange.md#type)*
 
-*Defined in [Database/Change/DeleteChange.ts:4](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/DeleteChange.ts#L4)*
+*Defined in [Database/Change/UpdateChange.ts:10](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/UpdateChange.ts#L10)*
+
+___
+<a id="value"></a>
+
+### `<Protected>` value
+
+**● value**: *`DataType`*
+
+*Defined in [Database/Change/UpdateChange.ts:8](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/UpdateChange.ts#L8)*
 
 ___
 
 ## Methods
 
+<a id="getbefore"></a>
+
+###  getBefore
+
+▸ **getBefore**(): `DataType`
+
+*Defined in [Database/Change/UpdateChange.ts:18](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/UpdateChange.ts#L18)*
+
+**Returns:** `DataType`
+
+___
 <a id="getpath"></a>
 
 ###  getPath
@@ -135,6 +172,17 @@ ___
 *Defined in [Database/Change/AbstractChange.ts:25](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/AbstractChange.ts#L25)*
 
 **Returns:** `string`
+
+___
+<a id="getvalue"></a>
+
+###  getValue
+
+▸ **getValue**(): `DataType`
+
+*Defined in [Database/Change/UpdateChange.ts:22](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/UpdateChange.ts#L22)*
+
+**Returns:** `DataType`
 
 ___
 

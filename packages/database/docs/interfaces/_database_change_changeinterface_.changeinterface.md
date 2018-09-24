@@ -9,8 +9,9 @@
 ## Implemented by
 
 * [AbstractChange](../classes/_database_change_abstractchange_.abstractchange.md)
+* [CreateChange](../classes/_database_change_createchange_.createchange.md)
 * [DeleteChange](../classes/_database_change_deletechange_.deletechange.md)
-* [SetChange](../classes/_database_change_setchange_.setchange.md)
+* [UpdateChange](../classes/_database_change_updatechange_.updatechange.md)
 
 ## Index
 
@@ -18,6 +19,7 @@
 
 * [getPath](_database_change_changeinterface_.changeinterface.md#getpath)
 * [getTimestamp](_database_change_changeinterface_.changeinterface.md#gettimestamp)
+* [getType](_database_change_changeinterface_.changeinterface.md#gettype)
 
 ---
 
@@ -29,7 +31,7 @@
 
 ▸ **getPath**(): `Path`
 
-*Defined in [Database/Change/ChangeInterface.ts:5](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/ChangeInterface.ts#L5)*
+*Defined in [Database/Change/ChangeInterface.ts:5](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/ChangeInterface.ts#L5)*
 
 **Returns:** `Path`
 
@@ -40,9 +42,20 @@ ___
 
 ▸ **getTimestamp**(): `Date`
 
-*Defined in [Database/Change/ChangeInterface.ts:7](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Change/ChangeInterface.ts#L7)*
+*Defined in [Database/Change/ChangeInterface.ts:7](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/ChangeInterface.ts#L7)*
 
 **Returns:** `Date`
+
+___
+<a id="gettype"></a>
+
+###  getType
+
+▸ **getType**(): `string`
+
+*Defined in [Database/Change/ChangeInterface.ts:9](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/ChangeInterface.ts#L9)*
+
+**Returns:** `string`
 
 ___
 

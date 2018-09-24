@@ -1,12 +1,14 @@
-[@apibase/database](../README.md) > ["Database/Change/DeleteChange"](../modules/_database_change_deletechange_.md) > [DeleteChange](../classes/_database_change_deletechange_.deletechange.md)
+[@apibase/database](../README.md) > ["Database/Change/CreateChange"](../modules/_database_change_createchange_.md) > [CreateChange](../classes/_database_change_createchange_.createchange.md)
 
-# Class: DeleteChange
+# Class: CreateChange
 
+## Type parameters
+#### DataType 
 ## Hierarchy
 
  [AbstractChange](_database_change_abstractchange_.abstractchange.md)
 
-**↳ DeleteChange**
+**↳ CreateChange**
 
 ## Implements
 
@@ -16,19 +18,21 @@
 
 ### Constructors
 
-* [constructor](_database_change_deletechange_.deletechange.md#constructor)
+* [constructor](_database_change_createchange_.createchange.md#constructor)
 
 ### Properties
 
-* [path](_database_change_deletechange_.deletechange.md#path)
-* [timestamp](_database_change_deletechange_.deletechange.md#timestamp)
-* [type](_database_change_deletechange_.deletechange.md#type)
+* [path](_database_change_createchange_.createchange.md#path)
+* [timestamp](_database_change_createchange_.createchange.md#timestamp)
+* [type](_database_change_createchange_.createchange.md#type)
+* [value](_database_change_createchange_.createchange.md#value)
 
 ### Methods
 
-* [getPath](_database_change_deletechange_.deletechange.md#getpath)
-* [getTimestamp](_database_change_deletechange_.deletechange.md#gettimestamp)
-* [getType](_database_change_deletechange_.deletechange.md#gettype)
+* [getPath](_database_change_createchange_.createchange.md#getpath)
+* [getTimestamp](_database_change_createchange_.createchange.md#gettimestamp)
+* [getType](_database_change_createchange_.createchange.md#gettype)
+* [getValue](_database_change_createchange_.createchange.md#getvalue)
 
 ---
 
@@ -38,19 +42,20 @@
 
 ###  constructor
 
-⊕ **new DeleteChange**(path: *`PathType`*): [DeleteChange](_database_change_deletechange_.deletechange.md)
+⊕ **new CreateChange**(path: *`PathType`*, value: *`DataType`*): [CreateChange](_database_change_createchange_.createchange.md)
 
-*Inherited from [AbstractChange](_database_change_abstractchange_.abstractchange.md).[constructor](_database_change_abstractchange_.abstractchange.md#constructor)*
+*Overrides [AbstractChange](_database_change_abstractchange_.abstractchange.md).[constructor](_database_change_abstractchange_.abstractchange.md#constructor)*
 
-*Defined in [Database/Change/AbstractChange.ts:10](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/AbstractChange.ts#L10)*
+*Defined in [Database/Change/CreateChange.ts:8](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/CreateChange.ts#L8)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
 | path | `PathType` |
+| value | `DataType` |
 
-**Returns:** [DeleteChange](_database_change_deletechange_.deletechange.md)
+**Returns:** [CreateChange](_database_change_createchange_.createchange.md)
 
 ___
 
@@ -82,11 +87,20 @@ ___
 
 ### `<Protected>` type
 
-**● type**: *`string`* = "delete"
+**● type**: *`string`* = "create"
 
 *Overrides [AbstractChange](_database_change_abstractchange_.abstractchange.md).[type](_database_change_abstractchange_.abstractchange.md#type)*
 
-*Defined in [Database/Change/DeleteChange.ts:4](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/DeleteChange.ts#L4)*
+*Defined in [Database/Change/CreateChange.ts:8](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/CreateChange.ts#L8)*
+
+___
+<a id="value"></a>
+
+### `<Protected>` value
+
+**● value**: *`DataType`*
+
+*Defined in [Database/Change/CreateChange.ts:6](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/CreateChange.ts#L6)*
 
 ___
 
@@ -135,6 +149,17 @@ ___
 *Defined in [Database/Change/AbstractChange.ts:25](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/AbstractChange.ts#L25)*
 
 **Returns:** `string`
+
+___
+<a id="getvalue"></a>
+
+###  getValue
+
+▸ **getValue**(): `DataType`
+
+*Defined in [Database/Change/CreateChange.ts:15](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Change/CreateChange.ts#L15)*
+
+**Returns:** `DataType`
 
 ___
 

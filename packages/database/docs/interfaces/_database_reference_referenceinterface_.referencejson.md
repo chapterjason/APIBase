@@ -23,7 +23,7 @@
 
 **● path**: *`string`*
 
-*Defined in [Database/Reference/ReferenceInterface.ts:6](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Reference/ReferenceInterface.ts#L6)*
+*Defined in [Database/Reference/ReferenceInterface.ts:6](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Reference/ReferenceInterface.ts#L6)*
 
 ___
 <a id="value"></a>
@@ -32,7 +32,7 @@ ___
 
 **● value**: *`any`*
 
-*Defined in [Database/Reference/ReferenceInterface.ts:7](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/Reference/ReferenceInterface.ts#L7)*
+*Defined in [Database/Reference/ReferenceInterface.ts:7](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/Reference/ReferenceInterface.ts#L7)*
 
 ___
 

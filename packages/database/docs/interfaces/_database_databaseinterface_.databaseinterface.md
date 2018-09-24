@@ -33,7 +33,7 @@
 
 ▸ **applyChanges**(changes: *`Map`<`string`, [ChangeInterface](_database_change_changeinterface_.changeinterface.md)>*): `Promise`<`void`>
 
-*Defined in [Database/DatabaseInterface.ts:24](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L24)*
+*Defined in [Database/DatabaseInterface.ts:24](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/DatabaseInterface.ts#L24)*
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ ___
 
 ▸ **applyDelete**(change: *[DeleteChange](../classes/_database_change_deletechange_.deletechange.md)*): `Promise`<`boolean`>
 
-*Defined in [Database/DatabaseInterface.ts:28](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L28)*
+*Defined in [Database/DatabaseInterface.ts:28](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/DatabaseInterface.ts#L28)*
 
 **Parameters:**
 
@@ -65,15 +65,15 @@ ___
 
 ###  applySet
 
-▸ **applySet**(change: *[SetChange](../classes/_database_change_setchange_.setchange.md)*): `Promise`<`boolean`>
+▸ **applySet**(change: *[CreateChange](../classes/_database_change_createchange_.createchange.md)*): `Promise`<`boolean`>
 
-*Defined in [Database/DatabaseInterface.ts:26](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L26)*
+*Defined in [Database/DatabaseInterface.ts:26](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/DatabaseInterface.ts#L26)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| change | [SetChange](../classes/_database_change_setchange_.setchange.md) |
+| change | [CreateChange](../classes/_database_change_createchange_.createchange.md) |
 
 **Returns:** `Promise`<`boolean`>
 
@@ -84,7 +84,7 @@ ___
 
 ▸ **collection**<`ReferenceType`>(path?: *`PathType`*): [CollectionReferenceInterface](_database_reference_collectionreferenceinterface_.collectionreferenceinterface.md)<`ReferenceType`>
 
-*Defined in [Database/DatabaseInterface.ts:22](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L22)*
+*Defined in [Database/DatabaseInterface.ts:22](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/DatabaseInterface.ts#L22)*
 
 **Type parameters:**
 
@@ -104,7 +104,7 @@ ___
 
 ▸ **delete**(path?: *`PathType`*): `Promise`<`boolean`>
 
-*Defined in [Database/DatabaseInterface.ts:14](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L14)*
+*Defined in [Database/DatabaseInterface.ts:14](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/DatabaseInterface.ts#L14)*
 
 **Parameters:**
 
@@ -121,7 +121,7 @@ ___
 
 ▸ **get**<`T`>(path?: *`PathType`*): `Promise`<`T`>
 
-*Defined in [Database/DatabaseInterface.ts:18](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L18)*
+*Defined in [Database/DatabaseInterface.ts:18](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/DatabaseInterface.ts#L18)*
 
 **Type parameters:**
 
@@ -141,7 +141,7 @@ ___
 
 ▸ **reference**<`ReferenceType`>(path?: *`PathType`*): [ReferenceInterface](_database_reference_referenceinterface_.referenceinterface.md)<`ReferenceType`>
 
-*Defined in [Database/DatabaseInterface.ts:20](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L20)*
+*Defined in [Database/DatabaseInterface.ts:20](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/DatabaseInterface.ts#L20)*
 
 **Type parameters:**
 
@@ -161,7 +161,7 @@ ___
 
 ▸ **set**(path: *`PathType`*, value: *`any`*): `Promise`<`boolean`>
 
-*Defined in [Database/DatabaseInterface.ts:16](https://github.com/chapterjason/APIBase/blob/4d25de7/packages/database/src/Database/DatabaseInterface.ts#L16)*
+*Defined in [Database/DatabaseInterface.ts:16](https://github.com/chapterjason/APIBase/blob/f39c9da/packages/database/src/Database/DatabaseInterface.ts#L16)*
 
 **Parameters:**
 
