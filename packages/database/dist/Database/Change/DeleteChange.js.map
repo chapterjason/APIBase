@@ -6,5 +6,5 @@
     "../../../src/Database/Change/DeleteChange.ts"
   ],
   "names": [],
-  "mappings": ";;AAAA,qDAAgD;AAEhD,MAAa,YAAa,SAAQ,+BAAc;CAC/C;AADD,oCACC"
+  "mappings": ";;AAAA,qDAAgD;AAEhD,MAAa,YAAa,SAAQ,+BAAc;IAAhD;;QACc,SAAI,GAAW,QAAQ,CAAC;IACtC,CAAC;CAAA;AAFD,oCAEC"
 }

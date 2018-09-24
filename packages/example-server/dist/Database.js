@@ -66,11 +66,15 @@ load()
 function convertToTupelArray(data) {
     return data.map(item => {
         let change;
+        const type = item[1]['type'];
         const path = item[1]['path']['segments'];
-        if (typeof item[1]['value'] !== "undefined") {
-            change = new database_1.SetChange(path, item[1]['value']);
+        if (type === "create") {
+            change = new database_1.CreateChange(path, item[1]['value']);
         }
-        else {
+        else if (type === "update") {
+            change = new database_1.UpdateChange(path, item[1]['value'], item[1]['before']);
+        }
+        else if (type === "delete") {
             change = new database_1.DeleteChange(path);
         }
         change['timestamp'] = new Date(item[1]['timestamp']);

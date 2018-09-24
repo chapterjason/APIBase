@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const String_1 = require("./String");
 /*
  * This file is part of the APIBase package.
  *
@@ -9,6 +8,8 @@ const String_1 = require("./String");
  * For the full copyright and license information, please view the LICENSE
  * File that was distributed with this source code.
  */
+const String_1 = require("./String");
+/* istanbul ignore file */
 var LogLevel;
 (function (LogLevel) {
     LogLevel[LogLevel["QUIET"] = 0] = "QUIET";

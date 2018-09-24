@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "UpdateChange.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../src/Database/Change/UpdateChange.ts"
+  ],
+  "names": [],
+  "mappings": ";;AAAA,qDAAgD;AAGhD,MAAa,YAA6B,SAAQ,+BAAc;IAQ5D,YAAY,IAAc,EAAE,MAAgB,EAAE,KAAe;QACzD,KAAK,CAAC,IAAI,CAAC,CAAC;QAHN,SAAI,GAAW,QAAQ,CAAC;QAI9B,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;QACrB,IAAI,CAAC,KAAK,GAAG,KAAK,CAAC;IACvB,CAAC;IAEM,SAAS;QACZ,OAAO,IAAI,CAAC,MAAM,CAAC;IACvB,CAAC;IAEM,QAAQ;QACX,OAAO,IAAI,CAAC,KAAK,CAAC;IACtB,CAAC;CACJ;AArBD,oCAqBC"
+}

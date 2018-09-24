@@ -16,5 +16,7 @@ __export(require("./Common/Identifier"));
 __export(require("./Common/Logger"));
 __export(require("./Common/Path"));
 __export(require("./Common/RegularExpression"));
+__export(require("./Behavioral/Event/EventEmitter"));
+__export(require("./Behavioral/Event/Event"));
 __export(require("./Collection/Map"));
 //# sourceMappingURL=index.js.map

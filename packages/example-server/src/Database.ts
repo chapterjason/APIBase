@@ -1,5 +1,5 @@
 import * as path from "path";
-import {ChangeInterface, Database, DeleteChange, SetChange} from "@apibase/database";
+import {ChangeInterface, CreateChange, Database, DeleteChange, UpdateChange} from "@apibase/database";
 import * as fs from "fs";
 import {Map, MapTupel} from "@apibase/core";
 
@@ -51,11 +51,14 @@ interface ChangeData {
 export function convertToTupelArray(data: Array<SyncData>) {
     return data.map(item => {
         let change: ChangeInterface;
+        const type = item[1]['type'];
         const path = item[1]['path']['segments'];
 
-        if (typeof item[1]['value'] !== "undefined") {
-            change = new SetChange(path, item[1]['value']);
-        } else {
+        if (type === "create") {
+            change = new CreateChange(path, item[1]['value']);
+        } else if (type === "update") {
+            change = new UpdateChange(path, item[1]['value'], item[1]['before']);
+        } else if (type === "delete") {
             change = new DeleteChange(path);
         }
 

@@ -7,7 +7,7 @@
  * File that was distributed with this source code.
  */
 
-import {isObject, Map} from '../../src';
+import {isObject, Map, Path, walkDeep} from '../../src';
 
 describe('Object', () => {
 
@@ -39,6 +39,61 @@ describe('Object', () => {
 
         // Plain Objects
         expect(isObject({Foo: 'bar'})).toBe(true);
+    });
+
+    it('walkDeep', () => {
+        const data = {
+            User: {
+                Foo: {
+                    name: 'Foo',
+                    age: 20,
+                    specs: {
+                        CPU: 'anyone',
+                        RAM: 100
+                    }
+                },
+                Bar: {
+                    name: 'Bar',
+                    age: 40,
+                    specs: {
+                        CPU: 'none',
+                        RAM: 200
+                    }
+                }
+            }
+        };
+
+        const expected = [
+            ["/User", {
+                "Foo": {"name": "Foo", "age": 20, "specs": {"CPU": "anyone", "RAM": 100}},
+                "Bar": {"name": "Bar", "age": 40, "specs": {"CPU": "none", "RAM": 200}}
+            }],
+            ["/User/Foo", {"name": "Foo", "age": 20, "specs": {"CPU": "anyone", "RAM": 100}}],
+            ["/User/Foo/name", "Foo"],
+            ["/User/Foo/age", 20],
+            ["/User/Foo/specs", {"CPU": "anyone", "RAM": 100}],
+            ["/User/Foo/specs/CPU", "anyone"],
+            ["/User/Foo/specs/RAM", 100],
+            ["/User/Bar", {"name": "Bar", "age": 40, "specs": {"CPU": "none", "RAM": 200}}],
+            ["/User/Bar/name", "Bar"],
+            ["/User/Bar/age", 40],
+            ["/User/Bar/specs", {"CPU": "none", "RAM": 200}],
+            ["/User/Bar/specs/CPU", "none"],
+            ["/User/Bar/specs/RAM", 200]
+        ];
+
+        let counter = 0;
+        walkDeep(data, (path: Path, value: any) => {
+            expect(path.toString()).toBe(expected[counter][0]);
+            const val = expected[counter][1];
+            if (isObject(val) || Array.isArray(val)) {
+                expect(value).toMatchObject(val);
+            } else {
+                expect(value).toBe(val);
+            }
+
+            counter++;
+        });
     });
 
 });

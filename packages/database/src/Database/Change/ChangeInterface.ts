@@ -6,4 +6,6 @@ export interface ChangeInterface {
 
     getTimestamp(): Date;
 
+    getType(): string;
+
 }

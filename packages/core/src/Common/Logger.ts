@@ -1,5 +1,3 @@
-import { padLeft } from "./String";
-
 /*
  * This file is part of the APIBase package.
  *
@@ -8,6 +6,9 @@ import { padLeft } from "./String";
  * For the full copyright and license information, please view the LICENSE
  * File that was distributed with this source code.
  */
+import {padLeft} from "./String";
+
+/* istanbul ignore file */
 
 export enum LogLevel {
     QUIET,

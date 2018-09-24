@@ -7,7 +7,7 @@
  * File that was distributed with this source code.
  */
 
-import {Map} from '../../src/Collection/Map';
+import {Map} from '../../src';
 
 describe('Map', () => {
 

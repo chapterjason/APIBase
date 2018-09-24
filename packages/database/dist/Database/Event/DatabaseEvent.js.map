@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "DatabaseEvent.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../src/Database/Event/DatabaseEvent.ts"
+  ],
+  "names": [],
+  "mappings": ";;AAAA,wCAAoC;AAGpC,MAAa,aAAc,SAAQ,YAAK;IAIpC,YAAY,IAAY,EAAE,MAAuB;QAC7C,KAAK,CAAC,IAAI,CAAC,CAAC;QACZ,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;IACzB,CAAC;IAEM,SAAS;QACZ,OAAO,IAAI,CAAC,MAAM,CAAC;IACvB,CAAC;CAEJ;AAbD,sCAaC"
+}

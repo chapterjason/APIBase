@@ -13,8 +13,13 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./Database/Database"));
 __export(require("./Database/Change/AbstractChange"));
-__export(require("./Database/Change/SetChange"));
+__export(require("./Database/Change/CreateChange"));
 __export(require("./Database/Change/DeleteChange"));
+__export(require("./Database/Change/UpdateChange"));
+__export(require("./Database/Event/DatabaseEvent"));
+__export(require("./Database/Event/CreateEvent"));
+__export(require("./Database/Event/UpdateEvent"));
+__export(require("./Database/Event/DeleteEvent"));
 __export(require("./Database/Reference/Reference"));
 __export(require("./Database/Reference/CollectionReference"));
 __export(require("./Database/Snapshot/Snapshot"));

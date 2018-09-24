@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "CreateChange.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../src/Database/Change/CreateChange.ts"
+  ],
+  "names": [],
+  "mappings": ";;AAAA,qDAAgD;AAGhD,MAAa,YAA6B,SAAQ,+BAAc;IAM5D,YAAY,IAAc,EAAE,KAAe;QACvC,KAAK,CAAC,IAAI,CAAC,CAAC;QAHN,SAAI,GAAW,QAAQ,CAAC;QAI9B,IAAI,CAAC,KAAK,GAAG,KAAK,CAAC;IACvB,CAAC;IAEM,QAAQ;QACX,OAAO,IAAI,CAAC,KAAK,CAAC;IACtB,CAAC;CACJ;AAdD,oCAcC"
+}

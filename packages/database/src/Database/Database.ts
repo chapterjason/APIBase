@@ -7,13 +7,17 @@
  * File that was distributed with this source code.
  */
 
-import {generateIdentifier, Map, MapTupel, Path, PathType} from '@apibase/core';
+import {EventEmitter, EventHandlerType, generateIdentifier, Map, MapTupel, Path, PathType} from '@apibase/core';
 import {Reference} from "./Reference/Reference";
 import {CollectionReference} from "./Reference/CollectionReference";
 import {DatabaseIndex, DatabaseInterface} from './DatabaseInterface';
 import {DeleteChange} from "./Change/DeleteChange";
-import {SetChange} from "./Change/SetChange";
+import {CreateChange} from "./Change/CreateChange";
 import {ChangeInterface} from "./Change/ChangeInterface";
+import {DeleteEvent} from "./Event/DeleteEvent";
+import {UpdateEvent} from "./Event/UpdateEvent";
+import {UpdateChange} from "./Change/UpdateChange";
+import {CreateEvent} from "./Event/CreateEvent";
 
 export class Database implements DatabaseInterface {
 
@@ -24,6 +28,8 @@ export class Database implements DatabaseInterface {
     protected depthLimit: number = 32;
 
     protected changes: Map<string, ChangeInterface> = new Map<string, ChangeInterface>();
+
+    protected eventEmitters: { [path: string]: EventEmitter } = {};
 
     public constructor(mapping: DatabaseIndex = {}) {
         this.original = mapping;
@@ -36,6 +42,47 @@ export class Database implements DatabaseInterface {
 
     public async getChanges(): Promise<Map<string, ChangeInterface>> {
         return Promise.resolve(this.changes);
+    }
+
+    public on(event: "create", path: PathType, callback: EventHandlerType);
+
+    public on(event: "update", path: PathType, callback: EventHandlerType);
+
+    public on(event: "delete", path: PathType, callback: EventHandlerType);
+
+    public on(event: "create" | "update" | "delete", path: PathType, callback: EventHandlerType) {
+        path = Path.ensurePath(path);
+        const stringPath = path.toString();
+
+        if (!this.eventEmitters[stringPath]) {
+            this.eventEmitters[stringPath] = new EventEmitter();
+        }
+
+        this.eventEmitters[stringPath].on(event, callback);
+    }
+
+    public once(event: "create", path: PathType, callback: EventHandlerType);
+
+    public once(event: "update", path: PathType, callback: EventHandlerType);
+
+    public once(event: "delete", path: PathType, callback: EventHandlerType);
+
+    public once(event: "create" | "update" | "delete", path: PathType, callback: EventHandlerType) {
+        path = Path.ensurePath(path);
+        const stringPath = path.toString();
+
+        if (!this.eventEmitters[stringPath]) {
+            this.eventEmitters[stringPath] = new EventEmitter();
+        }
+
+        this.eventEmitters[stringPath].once(event, callback);
+    }
+
+    public off(callback: EventHandlerType) {
+        const paths = Object.keys(this.eventEmitters);
+        for (let path of paths) {
+            this.eventEmitters[path].off(callback);
+        }
     }
 
     public async applyChanges(changes: Map<string, ChangeInterface>) {
@@ -52,7 +99,7 @@ export class Database implements DatabaseInterface {
         for (let change of this.changes.values()) {
             if (change instanceof DeleteChange) {
                 await this.applyDelete(change);
-            } else if (change instanceof SetChange) {
+            } else if (change instanceof CreateChange) {
                 await this.applySet(change);
             }
         }
@@ -63,16 +110,44 @@ export class Database implements DatabaseInterface {
     public async delete(path?: PathType): Promise<boolean> {
         const change = new DeleteChange(path);
         this.changes.set(generateIdentifier(), change);
+
+        const eventEmitters = this.getEventEmitters(change.getPath());
+        if (eventEmitters.length > 0) {
+            for (let eventEmitter of eventEmitters) {
+                eventEmitter.emit(new DeleteEvent(change));
+            }
+        }
+
         return this.applyDelete(change);
     }
 
     public async set(path: PathType, value: any): Promise<boolean> {
-        const change = new SetChange(path, value);
+        let change;
+        let event;
+
+        try {
+            const before = await this.get(path);
+            change = new UpdateChange(path, before, value);
+            event = new UpdateEvent(change);
+        } catch (error) {
+            change = new CreateChange(path, value);
+            event = new CreateEvent(change);
+        }
+
         this.changes.set(generateIdentifier(), change);
+
+        const eventEmitters = this.getEventEmitters(change.getPath());
+
+        if (eventEmitters.length > 0) {
+            for (let eventEmitter of eventEmitters) {
+                eventEmitter.emit(event);
+            }
+        }
+
         return this.applySet(change);
     }
 
-    public async applySet(change: SetChange): Promise<boolean> {
+    public async applySet(change: CreateChange | UpdateChange): Promise<boolean> {
         const path = Path.ensurePath(change.getPath());
 
         if (path.length() === 0) {
@@ -176,6 +251,19 @@ export class Database implements DatabaseInterface {
         }
     }
 
+    protected getEventEmitters(path: Path) {
+        const eventPaths: string[] = Object.keys(this.eventEmitters);
+        const emitters: EventEmitter[] = [];
+
+        for (let eventPath of eventPaths) {
+            if (path.startsWith(eventPath)) {
+                emitters.push(this.eventEmitters[eventPath]);
+            }
+        }
+
+        return emitters;
+    }
+
     protected cleanupChanges() {
         let groupObject: { [path: string]: ChangeInterface[] } = {};
 
@@ -192,12 +280,7 @@ export class Database implements DatabaseInterface {
         // Filter out all groups that doesn't end with a delete
         const groups = Object.keys(groupObject).filter(path => {
             const items = groupObject[path];
-            if (items.length > 0) {
-                if (items[items.length - 1] instanceof DeleteChange) {
-                    return true;
-                }
-            }
-            return false;
+            return items[items.length - 1] instanceof DeleteChange;
         }).map(path => groupObject[path]);
 
         // Map all groups to the last path

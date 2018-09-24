@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "EventInterface.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../src/Behavioral/Event/EventInterface.ts"
+  ],
+  "names": [],
+  "mappings": ""
+}

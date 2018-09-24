@@ -27,7 +27,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", {value: true});
 const core_1 = require("@apibase/core");
-const database_1 = require("@apibase/database");
 const ResponseSuccess_1 = require("../Response/ResponseSuccess");
 const ResponseError_1 = require("../Response/ResponseError");
 const Database_1 = require("../Database");
@@ -41,7 +40,7 @@ function DatabaseSync(database, save) {
                     const items = Database_1.convertToTupelArray(request.body);
                     const changes = new core_1.Map(items);
                     changes.forEach(data => {
-                        core_1.Logger.debug('SYNC', data.getTimestamp(), data instanceof database_1.SetChange ? 'SET' : 'DELETE', data.getPath());
+                        core_1.Logger.debug('SYNC', data.getTimestamp(), data['type'], data.getPath());
                     });
                     yield database.applyChanges(changes);
                 }

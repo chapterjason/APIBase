@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "UpdateEvent.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../src/Database/Event/UpdateEvent.ts"
+  ],
+  "names": [],
+  "mappings": ";;AAAA,mDAA8C;AAG9C,MAAa,WAAY,SAAQ,6BAAa;IAI1C,YAAY,MAAoB;QAC5B,KAAK,CAAC,QAAQ,EAAE,MAAM,CAAC,CAAC;IAC5B,CAAC;CAEJ;AARD,kCAQC"
+}

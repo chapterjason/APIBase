@@ -38,11 +38,16 @@ const core_1 = require("@apibase/core");
 const Reference_1 = require("./Reference/Reference");
 const CollectionReference_1 = require("./Reference/CollectionReference");
 const DeleteChange_1 = require("./Change/DeleteChange");
-const SetChange_1 = require("./Change/SetChange");
+const CreateChange_1 = require("./Change/CreateChange");
+const DeleteEvent_1 = require("./Event/DeleteEvent");
+const UpdateEvent_1 = require("./Event/UpdateEvent");
+const UpdateChange_1 = require("./Change/UpdateChange");
+const CreateEvent_1 = require("./Event/CreateEvent");
 class Database {
     constructor(mapping = {}) {
         this.depthLimit = 32;
         this.changes = new core_1.Map();
+        this.eventEmitters = {};
         this.original = mapping;
         this.mapping = mapping;
     }
@@ -55,6 +60,31 @@ class Database {
         return __awaiter(this, void 0, void 0, function* () {
             return Promise.resolve(this.changes);
         });
+    }
+
+    on(event, path, callback) {
+        path = core_1.Path.ensurePath(path);
+        const stringPath = path.toString();
+        if (!this.eventEmitters[stringPath]) {
+            this.eventEmitters[stringPath] = new core_1.EventEmitter();
+        }
+        this.eventEmitters[stringPath].on(event, callback);
+    }
+
+    once(event, path, callback) {
+        path = core_1.Path.ensurePath(path);
+        const stringPath = path.toString();
+        if (!this.eventEmitters[stringPath]) {
+            this.eventEmitters[stringPath] = new core_1.EventEmitter();
+        }
+        this.eventEmitters[stringPath].once(event, callback);
+    }
+
+    off(callback) {
+        const paths = Object.keys(this.eventEmitters);
+        for (let path of paths) {
+            this.eventEmitters[path].off(callback);
+        }
     }
     applyChanges(changes) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -69,7 +99,7 @@ class Database {
                 if (change instanceof DeleteChange_1.DeleteChange) {
                     yield this.applyDelete(change);
                 }
-                else if (change instanceof SetChange_1.SetChange) {
+                else if (change instanceof CreateChange_1.CreateChange) {
                     yield this.applySet(change);
                 }
             }
@@ -80,13 +110,35 @@ class Database {
         return __awaiter(this, void 0, void 0, function* () {
             const change = new DeleteChange_1.DeleteChange(path);
             this.changes.set(core_1.generateIdentifier(), change);
+            const eventEmitters = this.getEventEmitters(change.getPath());
+            if (eventEmitters.length > 0) {
+                for (let eventEmitter of eventEmitters) {
+                    eventEmitter.emit(new DeleteEvent_1.DeleteEvent(change));
+                }
+            }
             return this.applyDelete(change);
         });
     }
     set(path, value) {
         return __awaiter(this, void 0, void 0, function* () {
-            const change = new SetChange_1.SetChange(path, value);
+            let change;
+            let event;
+            try {
+                const before = yield this.get(path);
+                change = new UpdateChange_1.UpdateChange(path, before, value);
+                event = new UpdateEvent_1.UpdateEvent(change);
+            }
+            catch (error) {
+                change = new CreateChange_1.CreateChange(path, value);
+                event = new CreateEvent_1.CreateEvent(change);
+            }
             this.changes.set(core_1.generateIdentifier(), change);
+            const eventEmitters = this.getEventEmitters(change.getPath());
+            if (eventEmitters.length > 0) {
+                for (let eventEmitter of eventEmitters) {
+                    eventEmitter.emit(event);
+                }
+            }
             return this.applySet(change);
         });
     }
@@ -185,6 +237,16 @@ class Database {
         });
     }
 
+    getEventEmitters(path) {
+        const eventPaths = Object.keys(this.eventEmitters);
+        const emitters = [];
+        for (let eventPath of eventPaths) {
+            if (path.startsWith(eventPath)) {
+                emitters.push(this.eventEmitters[eventPath]);
+            }
+        }
+        return emitters;
+    }
     cleanupChanges() {
         let groupObject = {};
         // Group all changes by path
@@ -198,12 +260,7 @@ class Database {
         // Filter out all groups that doesn't end with a delete
         const groups = Object.keys(groupObject).filter(path => {
             const items = groupObject[path];
-            if (items.length > 0) {
-                if (items[items.length - 1] instanceof DeleteChange_1.DeleteChange) {
-                    return true;
-                }
-            }
-            return false;
+            return items[items.length - 1] instanceof DeleteChange_1.DeleteChange;
         }).map(path => groupObject[path]);
         // Map all groups to the last path
         const pathsToDelete = groups.map(items => {

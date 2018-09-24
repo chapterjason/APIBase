@@ -61,4 +61,20 @@ describe('Path', () => {
         expect(Path.ensurePath(new Path('/Foo/Bar')).toString()).toBe('/Foo/Bar');
     });
 
+    it('startsWith', () => {
+        const path = new Path('/some/thing/er5g1er6g51e/deep/with/key');
+
+        expect(path.startsWith('/some/thng/{id}/deep/{why}')).toBeFalsy();
+        expect(path.startsWith('/some/thing/{id}/dep/{why}')).toBeFalsy();
+
+        const emptyMap = path.startsWith('/some/thing');
+        expect(emptyMap).toBeTruthy();
+        expect(emptyMap['_keys']).toMatchObject([]);
+        expect(emptyMap['_values']).toMatchObject([]);
+
+        const resultMap = path.startsWith('/some/thing/{id}/deep/{why}');
+        expect(resultMap['_keys']).toMatchObject(['id', 'why']);
+        expect(resultMap['_values']).toMatchObject(["er5g1er6g51e", "with"]);
+    })
+
 });

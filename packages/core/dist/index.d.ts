@@ -3,4 +3,7 @@ export * from './Common/Identifier';
 export * from './Common/Logger';
 export * from './Common/Path';
 export * from './Common/RegularExpression';
+export * from './Behavioral/Event/EventEmitter';
+export * from './Behavioral/Event/Event';
+export * from './Behavioral/Event/EventInterface';
 export * from './Collection/Map';

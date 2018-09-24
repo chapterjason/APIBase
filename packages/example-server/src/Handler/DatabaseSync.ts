@@ -1,5 +1,5 @@
 import {Logger, Map, Path} from "@apibase/core";
-import {ChangeInterface, DatabaseInterface, SetChange} from "@apibase/database";
+import {ChangeInterface, DatabaseInterface} from "@apibase/database";
 import {ResponseSuccess} from "../Response/ResponseSuccess";
 import {ResponseError} from "../Response/ResponseError";
 import {convertToTupelArray} from "../Database";
@@ -15,7 +15,7 @@ export function DatabaseSync(database: DatabaseInterface, save: () => Promise<vo
                     const items = convertToTupelArray(request.body);
                     const changes = new Map<string, ChangeInterface>(items);
                     changes.forEach(data => {
-                        Logger.debug('SYNC', data.getTimestamp(), data instanceof SetChange ? 'SET' : 'DELETE', data.getPath());
+                        Logger.debug('SYNC', data.getTimestamp(), data['type'], data.getPath());
                     });
                     await database.applyChanges(changes);
                 }

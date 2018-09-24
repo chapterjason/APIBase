@@ -8,6 +8,8 @@
  * File that was distributed with this source code.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+const RegularExpression_1 = require("./RegularExpression");
+const __1 = require("..");
 class Path {
     constructor(path) {
         if (path instanceof Path) {
@@ -35,12 +37,25 @@ class Path {
         if (typeof segment === "string") {
             segment = segment.split('/');
         }
-        if (Array.isArray(segment)) {
-            segment = [].concat(...segment.map(item => item.split('/')));
-        }
+        segment = [].concat(...segment.map(item => item.split('/')));
         return segment
+            .filter(segment => (segment || '').toString().length)
             .map(segment => segment.trim())
             .filter(segment => segment.length);
+    }
+
+    startsWith(path) {
+        path = Path.ensurePath(path);
+        const keys = RegularExpression_1.getKeys(path.toString());
+        const regexp = new RegExp(RegularExpression_1.escape(path.toString()).replace(/\\{(\w+)\\}/g, '(\\w+)'), 'g');
+        const matches = RegularExpression_1.matchAll(this.toString(), regexp);
+        if (matches.length === 1) {
+            const groups = matches.shift().groups;
+            return new __1.Map(keys.map((key, index) => [key, groups[index]]));
+        }
+        else {
+            return false;
+        }
     }
     toString() {
         return '/' + this.segments.join('/');

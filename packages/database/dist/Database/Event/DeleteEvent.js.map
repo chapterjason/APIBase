@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "DeleteEvent.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../src/Database/Event/DeleteEvent.ts"
+  ],
+  "names": [],
+  "mappings": ";;AAAA,mDAA8C;AAG9C,MAAa,WAAY,SAAQ,6BAAa;IAC1C,YAAY,MAAuB;QAC/B,KAAK,CAAC,QAAQ,EAAE,MAAM,CAAC,CAAC;IAC5B,CAAC;CACJ;AAJD,kCAIC"
+}

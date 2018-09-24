@@ -7,6 +7,9 @@
  * File that was distributed with this source code.
  */
 
+import {escape, getKeys, matchAll} from "./RegularExpression";
+import {Map, MapTupel} from "..";
+
 export type PathType = Path | string | string[];
 
 export class Path {
@@ -38,13 +41,26 @@ export class Path {
             segment = segment.split('/');
         }
 
-        if (Array.isArray(segment)) {
-            segment = ([] as string[]).concat(...segment.map(item => item.split('/')));
-        }
+        segment = ([] as string[]).concat(...segment.map(item => item.split('/')));
 
         return segment
+            .filter(segment => (segment || '').toString().length)
             .map(segment => segment.trim())
             .filter(segment => segment.length);
+    }
+
+    public startsWith(path: PathType): Map<string, string> | false {
+        path = Path.ensurePath(path);
+        const keys = getKeys(path.toString());
+        const regexp = new RegExp(escape(path.toString()).replace(/\\{(\w+)\\}/g, '(\\w+)'), 'g');
+        const matches = matchAll(this.toString(), regexp);
+
+        if (matches.length === 1) {
+            const groups = matches.shift().groups;
+            return new Map<string, string>(keys.map((key, index) => [key, groups[index]]) as Array<MapTupel<string, string>>);
+        } else {
+            return false;
+        }
     }
 
     public toString() {

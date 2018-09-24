@@ -5,4 +5,11 @@ export interface Match {
     input: string;
     groups: string[];
 }
-export declare function matchAll(string: string, regexp: RegExp): any[];
+
+export declare function getKeys(raw: string): string[];
+
+export declare function matchAll(string: string, regexp: RegExp): {
+    index: number;
+    input: string;
+    groups: string[];
+}[];

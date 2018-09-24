@@ -21,8 +21,13 @@ export interface Match {
     groups: string[];
 }
 
+export function getKeys(raw: string) {
+    const keys = matchAll(raw, /\/{(\w+)}/g);
+    return keys.map(key => key.groups.shift());
+}
+
 export function matchAll(string: string, regexp: RegExp) {
-    const matches = [];
+    const matches: { index: number, input: string, groups: string[] }[] = [];
     let currentMatch;
 
     if (!regexp.global) {

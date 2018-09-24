@@ -7,6 +7,8 @@ export abstract class AbstractChange implements ChangeInterface {
 
     protected timestamp: Date;
 
+    protected type: string = undefined;
+
     public constructor(path: PathType) {
         this.path = Path.ensurePath(path);
         this.timestamp = new Date();
@@ -18,6 +20,10 @@ export abstract class AbstractChange implements ChangeInterface {
 
     public getTimestamp(): Date {
         return this.timestamp;
+    }
+
+    public getType(): string {
+        return this.type;
     }
 
 }

@@ -16,6 +16,13 @@ function match(string, regexp) {
     return !!regexp.exec(string);
 }
 exports.match = match;
+
+function getKeys(raw) {
+    const keys = matchAll(raw, /\/{(\w+)}/g);
+    return keys.map(key => key.groups.shift());
+}
+
+exports.getKeys = getKeys;
 function matchAll(string, regexp) {
     const matches = [];
     let currentMatch;

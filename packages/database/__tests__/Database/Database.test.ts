@@ -7,7 +7,17 @@
  * File that was distributed with this source code.
  */
 
-import {AbstractChange, ChangeInterface, Database, DeleteChange, SetChange} from '../../src';
+import {
+    AbstractChange,
+    ChangeInterface,
+    CreateChange,
+    CreateEvent,
+    Database,
+    DeleteChange,
+    DeleteEvent,
+    UpdateChange,
+    UpdateEvent
+} from '../../src';
 import {generateIdentifier, Map, Path} from "@apibase/core";
 
 describe('Database', () => {
@@ -127,18 +137,20 @@ describe('Database', () => {
         }
 
         const c1Change = new CustomChange('foo');
-        const setChange = new SetChange('bar', 'ue');
+        const setChangeA = new CreateChange('bar', 'ue');
+        const setChangeB = new CreateChange('bar', 'de');
         const c2Change = new CustomChange('bar');
         const deleteChange = new DeleteChange('foo');
 
-        changes.set(generateIdentifier(), setChange);
+        changes.set(generateIdentifier(), setChangeA);
         changes.set(generateIdentifier(), c1Change);
+        changes.set(generateIdentifier(), setChangeB);
         changes.set(generateIdentifier(), deleteChange);
         changes.set(generateIdentifier(), c2Change);
 
         await database.applyChanges(changes);
 
-        expect(await database.get()).toMatchObject({'bar': 'ue'});
+        expect(await database.get()).toMatchObject({'bar': 'de'});
 
     });
 
@@ -287,14 +299,16 @@ describe('Database', () => {
         });
     });
 
-    it('set over limit', () => {
+    it('set over limit', async () => {
         let segments: string[] = [];
         for (let i = 1; i < 32; segments[i++] = 't-' + i + '') ;
         expect(segments.length).toBe(32);
 
-        database.set(segments, {'Bar': 'Foo'}).catch(error => {
+        try {
+            await database.set(segments, {'Bar': 'Foo'});
+        } catch (error) {
             expect(error.toString()).toBe('Error: Depth limit of 32 exceeded!');
-        });
+        }
     });
 
     it('get not existing', async () => {
@@ -368,8 +382,8 @@ describe('Database', () => {
         });
 
         const date = new Date();
-        const updateChangeA = new SetChange('/users/a/name', 'Change A');
-        const updateChangeB = new SetChange('/users/a/name', 'Change B');
+        const updateChangeA = new CreateChange('/users/a/name', 'Change A');
+        const updateChangeB = new CreateChange('/users/a/name', 'Change B');
 
         updateChangeA['timestamp'] = date;
         updateChangeB['timestamp'] = date;
@@ -382,8 +396,125 @@ describe('Database', () => {
         await database.applyChanges(changes);
         // @todo Is this really expected...?
         expect(database['mapping']).toMatchObject({"users": {"a": {"name": "Change A"}, "b": {"name": "Bar"}}});
+    });
 
+    it('on create, update and delete', async () => {
+        const database = new Database({
+            'users': {
+                'a': {'name': 'Foo'},
+                'b': {'name': 'Bar'}
+            }
+        });
 
+        const events = [];
+
+        database.on("create", '/users/{id}', (event: CreateEvent) => {
+            events.push(event);
+        });
+
+        database.on("update", '/users/{id}', (event: UpdateEvent) => {
+            events.push(event);
+            const change = event.getChange() as UpdateChange;
+            expect(change.getPath().getSegments()).toMatchObject(['users', key]);
+            expect(change.getBefore()).toMatchObject({'name': 'Example'});
+            expect(change.getValue()).toMatchObject({'name': 'Test'});
+        });
+
+        database.on("delete", '/users/{id}', (event: DeleteEvent) => {
+            events.push(event);
+        });
+
+        database.on("update", '/user/{id}', (event: UpdateEvent) => {
+            events.push(event);
+        });
+
+        const reference = database.collection('/users');
+        const itemReference = await reference.push({'name': 'Example'});
+        const key = itemReference.key();
+        await itemReference.set({'name': 'Test'});
+        await itemReference.delete();
+
+        expect(events.length).toBe(3);
+
+        // Create
+        expect(events[0]['type']).toBe('create');
+        expect(events[0]['change']['path']['segments']).toMatchObject(['users', key]);
+        expect(events[0]['change']['value']).toMatchObject({'name': 'Example'});
+
+        // Update
+        expect(events[1]['type']).toBe('update');
+        expect(events[1]['change']['path']['segments']).toMatchObject(['users', key]);
+        expect(events[1]['change']['before']).toMatchObject({'name': 'Example'});
+        expect(events[1]['change']['value']).toMatchObject({'name': 'Test'});
+
+        // Delete
+        expect(events[2]['type']).toBe('delete');
+        expect(events[2]['change']['path']['segments']).toMatchObject(['users', key]);
+    });
+
+    it('once event', async () => {
+        const database = new Database({
+            'users': {
+                'a': {'name': 'Foo'},
+                'b': {'name': 'Bar'}
+            }
+        });
+
+        const events = [];
+        let counter = 0;
+
+        database.once("update", '/users/{id}', (event: CreateEvent) => {
+            events.push(event);
+            counter++;
+        });
+
+        database.once("update", '/users/{id}', (event: CreateEvent) => {
+            events.push(event);
+            counter++;
+        });
+
+        const reference = database.reference('/users/a');
+        await reference.set({'name': 'A'});
+        await reference.set({'name': 'B'});
+        await reference.set({'name': 'C'});
+
+        expect(events.length).toBe(2);
+        expect(counter).toBe(2);
+    });
+
+    it('off event', async () => {
+        const database = new Database({
+            'users': {
+                'a': {'name': 'Foo'},
+                'b': {'name': 'Bar'}
+            }
+        });
+
+        const onEvents = [];
+        const offEvents = [];
+        let counter = 0;
+
+        const handler = (event: CreateEvent) => {
+            offEvents.push(event);
+            counter++;
+        };
+        database.on("update", '/users/{id}', handler);
+
+        database.on("update", '/users/{id}', (event: CreateEvent) => {
+            onEvents.push(event);
+            counter++;
+        });
+
+        database.off(handler);
+
+        const reference = database.reference('/users/a');
+        await reference.set({'name': 'A'});
+        await reference.set({'name': 'B'});
+        await reference.set({'name': 'C'});
+
+        expect(onEvents.length).toBe(3);
+        expect(offEvents.length).toBe(0);
+        expect(counter).toBe(3);
     });
 
 });
